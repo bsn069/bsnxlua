@@ -1,40 +1,57 @@
 @echo off
 
 if not exist nogit (
+	echo create nogit dir
 	mkdir nogit
 	if not exist nogit (
 		echo not found dir nogit in path %CD%
-		exit 1
+		goto Exit1
 	) 
 ) 
 
-if not exist nogit/xLua (
-	git clone https://github.com/Tencent/xLua.git
-	if not exist nogit/xlua (
-		echo not found dir nogit/xlua in path %CD%
-		exit 1
-	) 
-
-	if exist nogit/xLuaTmp (
-		rm -rf nogit/xLuaTmp 
-	)
-	cp -r nogit/xLua/Assets/XLua nogit/XLuaTmp
-	cp -r nogit/xLua/Assets/Plugins nogit/XLuaTmp/Plugins
-	rm -rf nogit/xLuaTmp/Doc	
-	rm -rf nogit/xLuaTmp/Examples	
-	rm -rf nogit/xLuaTmp/Tutorial	
-	del /s /q nogit\xLuaTmp\*.meta
-
-	if not exist u3d/Assets/XLua (
-		mkdir u3d\Assets\XLua
-		if not exist u3d/Assets/XLua (
-			echo not found dir u3d/Assets/XLua in path %CD%
-			exit 1
+pushd nogit
+	if not exist xLua (
+		echo clone xLua
+		git clone https://github.com/Tencent/xLua.git
+		if not exist xlua (
+			echo not found dir xlua in path %CD%
+			goto Exit1
 		) 
-	) 
-	cp -r nogit/xLuaTmp/* u3d/Assets/XLua
-	rm -rf nogit/xLuaTmp
-) 
+	)
 
+	pushd xLua
+		echo update xLua
+		git pull
+	popd
 
-pause
+	if exist xLuaTmp (
+		echo remove xLuaTmp dir
+		rm -rf xLuaTmp
+	)
+
+	echo init XLuaTmp dir
+	cp -r xLua/Assets/XLua XLuaTmp
+	cp -r xLua/Assets/Plugins XLuaTmp/Plugins
+	pushd XLuaTmp
+		rm -rf Doc	
+		rm -rf Examples	
+		rm -rf Tutorial	
+		rm -rf Plugins/WSA
+		find . -name "*.meta" -exec rm -f {} ;
+	popd
+
+popd
+
+echo copy new XLua
+if not exist u3d\Assets\XLua (
+	mkdir u3d\Assets\XLua
+	if not exist u3d\Assets\XLua (
+		echo not found dir u3d\Assets\XLua 
+		goto Exit1
+	)
+)
+cp -r nogit/XLuaTmp/* u3d/Assets/XLua 
+ 
+
+:Exit1
+REM pause
