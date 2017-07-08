@@ -8,8 +8,23 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public class CResources 
+public class CResources : I_GameObjectLoad, I_Init
 {
+	public GameObject Load(S_GameObjectLoadParam p)
+	{
+		return Load(p.strPath);
+	}
+
+	public bool Init() 
+	{
+		return true;
+	}
+
+	public void UnInit() 
+	{
+		
+	}
+
 	public GameObject Load(string strPath) 
 	{
 		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CResources.Load({0})", strPath); 

@@ -8,15 +8,17 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public class CResMgr
+public class CResMgr: I_GameObjectLoad, I_Init
 {
-	public GameObject Load(string strPath, string strSuffix) 
+	public  GameObject Load(S_GameObjectLoadParam p)
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CResMgr.Load({0}, {1})", strPath, strSuffix);
+		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CResMgr.Load({0})", p);
 
-		GameObject go = m_iABLoad.Load(strPath, strSuffix);
+		// first from ab
+		GameObject go = m_iGameObjectLoad.Load(p);
 		if (go == null) {
-			go = m_Resources.Load(strPath);
+			// second from resources
+			go = m_Resources.Load(p);
 		}
 
 		if (go != null) {
@@ -26,22 +28,30 @@ public class CResMgr
 		return go;
 	}
 
-	public bool Init() {
+	public  bool Init() 
+	{
 		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CResMgr.Init()");
+
+		m_Resources = new NBsn.CResources();
+		var iInit = m_Resources as I_Init;
+		if (!iInit.Init())
+		{
+			return false;
+		}
 
 		switch (NBsn.Config.ResLoadType) {
 #if UNITY_EDITOR
 			case NBsn.EResLoadType.EditorABRes: {
-				m_iABLoad = new NBsn.CABRes();
+				m_iGameObjectLoad = new NBsn.CABRes();
 			}
 			break;
 			case NBsn.EResLoadType.EditorABOut: {
-				m_iABLoad = new NBsn.CABOut();
+				m_iGameObjectLoad = new NBsn.CABOut();
 			}
 			break;
 #endif
 			case NBsn.EResLoadType.AppAB: {
-				m_iABLoad = new NBsn.CABApp();
+				m_iGameObjectLoad = new NBsn.CABApp();
 			}
 			break;
 			default: {
@@ -50,17 +60,30 @@ public class CResMgr
 			}
 		}
 
-		return m_iABLoad.Init();
+		iInit = m_iGameObjectLoad as I_Init;
+		return iInit.Init();
 	}
 
-	public void UnInit() {
+	public  void UnInit() 
+	{
 		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CResMgr.UnInit()");
-		m_iABLoad.UnInit();
-		m_iABLoad = null;
+		if (m_iGameObjectLoad != null)
+		{
+			var iInit = m_iGameObjectLoad as I_Init;
+			iInit.UnInit();
+			m_iGameObjectLoad = null;
+		}
+
+		if (m_Resources != null)
+		{
+			var iInit = m_Resources as I_Init;
+			iInit.UnInit();
+			m_Resources = null;
+		}
 	}
 
-	protected NBsn.CResources    m_Resources = new NBsn.CResources();
-	protected NBsn.IABLoad 	m_iABLoad = null;
+	protected NBsn.CResources		m_Resources 		= new NBsn.CResources();
+	protected NBsn.I_GameObjectLoad	m_iGameObjectLoad 	= null;
 }
 
 }

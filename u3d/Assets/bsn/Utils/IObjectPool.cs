@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
@@ -9,9 +8,10 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public class CABApp : CABOut
+public interface I_ObjectPool
 {
-
+	bool Put(GameObject go);
+	GameObject Get(); 
 }
 
 }

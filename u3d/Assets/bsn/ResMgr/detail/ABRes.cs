@@ -12,15 +12,11 @@ using UnityEditor;
 namespace NBsn 
 {
 
-public class CABRes : IABLoad
+public class CABRes: I_GameObjectLoad, I_Init
 {
-	public GameObject Load(string strPath, string strSuffix) 
+	public GameObject Load(S_GameObjectLoadParam p)
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CABRes.Load({0}, {1})", strPath, strSuffix); 
-
-		strPath = string.Format(m_strPathFormat, strPath, strSuffix);
-		NBsn.CGlobal.Instance.Log.InfoFormat("strPath={0}", strPath);
-		return AssetDatabase.LoadAssetAtPath<GameObject>(strPath);
+		return Load(p.strPath, p.strSuffix);
 	}
 
 	public bool Init() 
@@ -30,10 +26,19 @@ public class CABRes : IABLoad
 
 	public void UnInit() 
 	{
-
+		
 	}
 
-	private string m_strPathFormat = "Assets/ABRes/{0}.{1}";
+	public GameObject Load(string strPath, string strSuffix) 
+	{
+		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CABRes.Load({0}, {1})", strPath, strSuffix); 
+
+		strPath = string.Format(mc_strPathFormat, strPath, strSuffix);
+		NBsn.CGlobal.Instance.Log.InfoFormat("strPath={0}", strPath);
+		return AssetDatabase.LoadAssetAtPath<GameObject>(strPath);
+	}
+
+	private const string mc_strPathFormat = "Assets/ABRes/{0}.{1}";
 }
 
 }

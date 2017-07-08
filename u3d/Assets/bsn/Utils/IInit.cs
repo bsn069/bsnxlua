@@ -8,9 +8,8 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public interface IABLoad
+public interface I_Init
 {
-	GameObject Load(string strPath, string strSuffix); 
 	bool Init();
 	void UnInit(); 
 }

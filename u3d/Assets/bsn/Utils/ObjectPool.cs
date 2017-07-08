@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections;
 using System.Runtime.InteropServices;
@@ -9,9 +8,17 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public class CABApp : CABOut
+public class C_ObjectPool : I_Init
 {
+	public bool Init()
+	{
+		return true;
+	}
 
+	public void UnInit()
+	{
+
+	}
 }
 
 }

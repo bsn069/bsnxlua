@@ -9,21 +9,21 @@ namespace NBsn
 public static class PathConfig 
 {
 	// AB根目录 相对资源路径 
-	// ABOut/Win/AB
+	// pc ABOut/Win/AB
 	public static string PlatformABPath 
 	{
 		get { return m_strPlatformABPath; }
 	}
 
 	// AB根目录 本地全路径
-	// F:/github/bsnxlua/u3d/Assets/ABOut/Win/AB/
+	// pc F:/github/bsnxlua/u3d/Assets/ABOut/Win/AB/
 	public static string ABLocalFullPath 
 	{
 		get { return m_strABLocalFullPath; }
 	}
 
 	// 资源根目录 本地全路径
-	// F:/github/bsnxlua/u3d/Assets/
+	// pc F:/github/bsnxlua/u3d/Assets/
 	public static string ResLocalFullPath 
 	{
 		get { return m_strResLocalFullPath; }
@@ -45,6 +45,7 @@ public static class PathConfig
 			);
 		NBsn.CGlobal.Instance.Log.InfoFormat("PlatformABPath={0}", PlatformABPath); 
 
+		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.Config.ResLoadType={0}", NBsn.Config.ResLoadType); 
 		if (NBsn.Config.ResLoadType == NBsn.EResLoadType.AppAB) 
 		{
 			m_strResLocalFullPath   = Application.persistentDataPath + "/" + NBsn.Config.ServerResLocalDirName + "/";
