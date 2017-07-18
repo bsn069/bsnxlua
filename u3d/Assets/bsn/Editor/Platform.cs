@@ -6,23 +6,30 @@ using System.IO;
 using UnityEditor;
 
 
-namespace NBsn {
+namespace NBsn.NEditor
+ {
 
-public static class CPlatform_Editor {
-	public static string Name(BuildTarget buildTarget) {
+public static class CPlatform_Editor
+ {
+	public static string Name(BuildTarget buildTarget) 
+	{
 		Debug.LogFormat("NBsn.CPlatform.Name({0})", buildTarget);
 		string strPlatform = "";
-		switch (buildTarget) {
-			case BuildTarget.Android: {
+		switch (buildTarget) 
+		{
+			case BuildTarget.Android: 
+				{
 					strPlatform = "Android";
 				} 
 				break;               
 			case BuildTarget.StandaloneWindows:
-			case BuildTarget.StandaloneWindows64: {
+			case BuildTarget.StandaloneWindows64: 
+				{
 					strPlatform = "Win";
 				}
 				break;              
-			default: {
+			default: 
+				{
 					Debug.LogErrorFormat("unknown buildTarget={0}", buildTarget);
 					return null;
 				}
