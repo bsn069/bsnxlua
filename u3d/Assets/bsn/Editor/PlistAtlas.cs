@@ -13,18 +13,19 @@ namespace NBsn.NEditor
 
 public static class C_PlistAtlas 
 {
-    [MenuItem("GameObject/Bsn/PlistAtlas/拆解", false, 48)]
-    [MenuItem("Assets/Bsn/PlistAtlas/拆解")]
-    [MenuItem("Bsn/PlistAtlas/拆解")]
-    static void SelectObj() 
+    [MenuItem("GameObject/Bsn/PlistAtlas/修改为Multiple", false, 1)]
+	[MenuItem("Assets/Bsn/PlistAtlas/修改为Multiple")]
+    [MenuItem("Bsn/PlistAtlas/修改为Multiple")]
+	static void ChangeToMultiple() 
     {
         string strAssetPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
-        ms_cPlist.LoadFile(strAssetPath);
+		ms_cPlist.SetPlistPath(strAssetPath);
+        ms_cPlist.ChangeToMultiple();
     }
 
-    [MenuItem("GameObject/Bsn/PlistAtlas/拆解", true)]
-    [MenuItem("Assets/Bsn/PlistAtlas/拆解", true)]
-    [MenuItem("Bsn/PlistAtlas/拆解", true)]
+    [MenuItem("GameObject/Bsn/PlistAtlas/修改为Multiple", true)]
+	[MenuItem("Assets/Bsn/PlistAtlas/修改为Multiple", true)]
+    [MenuItem("Bsn/PlistAtlas/修改为Multiple", true)]
     static bool SelectObjValidate() {
        string strAssetPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
        Debug.LogFormat(strAssetPath);

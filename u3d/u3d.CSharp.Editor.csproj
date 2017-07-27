@@ -210,6 +210,7 @@
     <Compile Include="Assets\XLua\Src\Editor\TemplateRef.cs" />
     <Compile Include="Assets\bsn\Editor\AB.cs" />
     <Compile Include="Assets\bsn\Editor\Asset.cs" />
+    <Compile Include="Assets\bsn\Editor\EditorEx.cs" />
     <Compile Include="Assets\bsn\Editor\FolderDialog.cs" />
     <Compile Include="Assets\bsn\Editor\NGUIAtlas.cs" />
     <Compile Include="Assets\bsn\Editor\PList.cs" />
