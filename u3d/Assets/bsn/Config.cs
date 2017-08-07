@@ -21,7 +21,7 @@ public static class Config
 		get { return "ABOut/{0}/AB"; }
 	}
 
-
+		
 	public static string ServerResLocalDirName
 	{
 		get { return "ServerRes"; }
