@@ -1,0 +1,41 @@
+ManifestFileVersion: 0
+CRC: 1955320081
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a8de2f0117fb971318b9788a6db3d82a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 21f0dc8ebad690f009368069428e0a1a
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/ABRes/Atlas/gameui1/vic_tilizhi.png
+- Assets/ABRes/Atlas/gameui1/kapai_8_f.png
+- Assets/ABRes/Atlas/gameui1/hire10_sward4.png
+- Assets/ABRes/Atlas/gameui1/hire10_sward1.png
+- Assets/ABRes/Atlas/gameui1/duiwu_1_3.png
+- Assets/ABRes/Atlas/gameui1/vic_haoyoushangxian.png
+- Assets/ABRes/Atlas/gameui1/duiwu_2.png
+- Assets/ABRes/Atlas/gameui1/jingliping_2.png
+- Assets/ABRes/Atlas/gameui1/zhuanshegn_chuchu.png
+- Assets/ABRes/Atlas/gameui1/duiwu_1_1.png
+- Assets/ABRes/Atlas/gameui1/zcxq_bg.png
+- Assets/ABRes/Atlas/gameui1/hire10_sward5.png
+- Assets/ABRes/Atlas/gameui1/kuozhan_xiakezhong.png
+- Assets/ABRes/Atlas/gameui1/duiwurenshu.png
+- Assets/ABRes/Atlas/gameui1/hire10_sward3.png
+- Assets/ABRes/Atlas/gameui1/vic_jiantou_shengli.png
+- Assets/ABRes/Atlas/gameui1/hunpo.png
+- Assets/ABRes/Atlas/gameui1/zcxq_anniu.png
+- Assets/ABRes/Atlas/gameui1/jingliping.png
+- Assets/ABRes/Atlas/gameui1/hunpo_bg.png
+- Assets/ABRes/Atlas/gameui1/tongyong_1_1.png
+- Assets/ABRes/Atlas/gameui1/hire10_sward2.png
+- Assets/ABRes/Atlas/gameui1/hunpo_jingyantiao.png
+- Assets/ABRes/Atlas/gameui1/vic_weiwang.png
+Dependencies: []

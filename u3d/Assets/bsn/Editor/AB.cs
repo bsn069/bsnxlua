@@ -19,7 +19,7 @@ public static class C_AB
 	{
         string clearPath = NBsn.NEditor.C_FolderDialog.Open("select clean dir", "CleanDirABName");
         List<string> fullPath = NBsn.NEditor.C_Path.GetCanSetABNameRes(clearPath);
-        List<string> assetsPath = NBsn.Utils.FullPath2AssetsPath(fullPath);
+        List<string> assetsPath = fullPath.FullPaths2AssetsPaths();
         foreach (var filePath in assetsPath) {
             var importer = AssetImporter.GetAtPath(filePath);
             if (importer == null) {
@@ -37,14 +37,14 @@ public static class C_AB
 	{
         string clearPath = NBsn.NEditor.C_FolderDialog.Open("select set dir", "SetDirABName");
         List<string> fullPath = NBsn.NEditor.C_Path.GetCanSetABNameRes(clearPath);
-        List<string> assetsPath = NBsn.Utils.FullPath2AssetsPath(fullPath);
+        List<string> assetsPath = fullPath.FullPaths2AssetsPaths();
         foreach (var filePath in assetsPath) {
             var importer = AssetImporter.GetAtPath(filePath);
             if (importer == null) {
                 Debug.LogErrorFormat("basePath={0} importer == null", filePath);
                 continue;
             }
-            var strAssetsLatePath = NBsn.Utils.AssetsPath2AssetsLatePath(filePath) + ".ab";
+            var strAssetsLatePath = filePath.PathAssets2AssetsLate() + ".ab";
             importer.SetAssetBundleNameAndVariant(strAssetsLatePath, null);
         }
     }
@@ -56,14 +56,14 @@ public static class C_AB
 	{
         string path = NBsn.NEditor.C_FolderDialog.Open("select set dir", "SetDirABNameToAssetsRelativeDirName");
         List<string> fullPath = NBsn.NEditor.C_Path.GetCanSetABNameRes(path);
-        List<string> assetsPath = NBsn.Utils.FullPath2AssetsPath(fullPath);
+        List<string> assetsPath = fullPath.FullPaths2AssetsPaths();
         foreach (var filePath in assetsPath) {
             var importer = AssetImporter.GetAtPath(filePath);
             if (importer == null) {
                 Debug.LogErrorFormat("basePath={0} importer == null", filePath);
                 continue;
             }
-            var strAssetsLatePathNoFile = NBsn.Utils.AssetsPath2AssetsLatePathNoFile(filePath) + ".ab";
+            var strAssetsLatePathNoFile = filePath.PathAssetsRelativeDir() + ".ab";
             importer.SetAssetBundleNameAndVariant(strAssetsLatePathNoFile, null);
         }
     }
@@ -72,7 +72,9 @@ public static class C_AB
     [MenuItem("Assets/Bsn/AB/Make AB Win64")]
 	private static void MakeABWin() 
     {
-        string strFullPath = NBsn.NEditor.C_FolderDialog.Save("select out dir", "MakeABWin");
+		NBsn.CGlobal.EditorInit();
+        string strFullPath = NBsn.PathConfig.ABLocalFullPath;
+		NBsn.CGlobal.EditorUnInit();
         MakeAB(BuildTarget.StandaloneWindows64, strFullPath);
     }
 

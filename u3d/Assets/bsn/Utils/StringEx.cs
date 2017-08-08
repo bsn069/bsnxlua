@@ -9,7 +9,13 @@ namespace NBsn {
 
 public static class StringEx  
 {
- // 返回全路径的Assets后的路径
+	public static byte[] UTF8Bytes(this string strData)
+	{
+		byte[] bytes = System.Text.Encoding.UTF8.GetBytes(strData);
+        return bytes;
+	}
+
+	// 返回全路径的Assets后的路径
 	// strFullPath = F:\github\bsnxlua\u3d\Assets\bsn\Utils\CommonEx.cs
 	// ret bsn\Utils\CommonEx.cs
 	public static string FullPath2AssetsLatePath(this string strFullPath) 
@@ -17,25 +23,21 @@ public static class StringEx
 		return strFullPath.Substring(ms_dataPathLength);
 	}
 
-	// 返回全路径的Assets路径
-	// strFullPath = F:\github\bsnxlua\u3d\Assets\bsn\Utils\CommonEx.cs
-	// ret Assets\bsn\Utils\CommonEx.cs
-	public static string FullPathToAssetsPath(string strFullPath) 
+	// 返回Assets路径后的路径
+	// strAssetsPath = Assets\bsn\Utils\CommonEx.cs
+	// ret bsn\Utils\CommonEx.cs
+	public static string PathAssets2AssetsLate(this string strAssetsPath) 
 	{
-		return strFullPath.Substring(ms_rootPathLength);
+		return strAssetsPath.Substring(ms_assetsPathLength + 1);
 	}
 
 	// 返回全路径的Assets路径
-    // path ["H:/dev/swordm3d-code/trunk/client/swordm3d/Assets/_Game/Resources/Packages/UI/EquipAvartarTip.prefab", ...]
-    // ret ["Assets/_Game/Resources/Packages/UI/EquipAvartarTip.prefab", ...]
-    public static List<string> FullPath2AssetsPath(this List<string> listPath) 
-    {
-        List<string> ret = new List<string>();
-        foreach (var item in path) {
-            ret.Add(item.FullPathToAssetsPath());
-        }
-        return ret;
-    }
+	// strFullPath = F:\github\bsnxlua\u3d\Assets\bsn\Utils\CommonEx.cs
+	// ret Assets\bsn\Utils\CommonEx.cs
+	public static string FullPathToAssetsPath(this string strFullPath) 
+	{
+		return strFullPath.Substring(ms_rootPathLength);
+	}
 
 	// 将路径的目录拆分符格式为平台相关的
 	// strPath use system directory separator char Path.DirectorySeparatorChar 
@@ -98,7 +100,7 @@ public static class StringEx
     public static string PathAssetsRelativeDir(this string strPath) 
     {
 		var strUpDir = strPath.PathUpDir();
-        var strAfter = strBefore.Substring(ms_assetsPathLength + 1);
+        var strAfter = strUpDir.Substring(ms_assetsPathLength + 1);
         return strAfter;
     }
 
@@ -106,7 +108,7 @@ public static class StringEx
 	public static int ms_dataPathLength = Application.dataPath.Length;
 	public static int ms_rootPathLength = ms_dataPathLength - ms_assetsPathLength;
 
-	public static string PathTest() 
+	public static void PathTest() 
 	{
 		var strDataPath = Application.dataPath;
 		Debug.LogFormat("strDataPath={0}", strDataPath);

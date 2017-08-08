@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 1203484249
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: abres/atlas/gameui1.ab
+      Dependencies: {}
+    Info_1:
+      Name: abres/prefab/ui/uidesign.prefab.ab
+      Dependencies: {}
+    Info_2:
+      Name: abres/prefab/ui/uiscreen.prefab.ab
+      Dependencies: {}
+    Info_3:
+      Name: abres/atlas/gameui.ab
+      Dependencies: {}
+    Info_4:
+      Name: abres/atlas/icons4.ab
+      Dependencies: {}

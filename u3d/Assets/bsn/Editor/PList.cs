@@ -50,7 +50,7 @@ public class C_PList
 			{
 				byte[] str = new byte[(int)file.Length];
 				file.Read(str, 0, str.Length);
-				strXmlContent = str.UTF8();
+				strXmlContent = str.UTF8String();
 				file.Close();
 				// file.Dispose();
 			}

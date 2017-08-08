@@ -90,12 +90,26 @@ public static class C_EditorEx
 			return false;
 		}
 
+		bool bSetReadWriteAttr = false;
+		if (!textureImporter.isReadable)
+		{
+			bSetReadWriteAttr = true;
+			textureImporter.isReadable = true;
+			AssetDatabase.ImportAsset(strTexPath, ImportAssetOptions.ForceUpdate);		
+		}
+
 		Directory.CreateDirectory(strOutDir);
 		var color32 = tex2D.GetPixels32();
 		var spritesheet = textureImporter.spritesheet;
 		foreach (var item in spritesheet)
 		{
 			SavePNG(color32, tex2D.width, tex2D.height, item, strOutDir);
+		}
+
+		if (bSetReadWriteAttr)
+		{
+			textureImporter.isReadable = false;
+			AssetDatabase.ImportAsset(strTexPath, ImportAssetOptions.ForceUpdate);		
 		}
 
 		return true;
@@ -123,7 +137,9 @@ public static class C_EditorEx
 
         tex.SetPixels32(newPixels);
 		tex.Apply();
-        File.WriteAllBytes(strOutDir + "/" + metaData.name + ".png", tex.EncodeToPNG());
+		var strFileName = metaData.name.Replace('\\', '_').Replace('/', '_');
+		var strFilePath = strOutDir.PathCombine(strFileName);
+        File.WriteAllBytes(strFilePath, tex.EncodeToPNG());
 		return true;
 	}	
 }

@@ -11,15 +11,7 @@ public class CGlobal : IDisposable
 {
 	public static NBsn.CGlobal Instance 
 	{
-		get { 
-			#if UNITY_EDITOR
-			if (m_instance == null) 
-			{
-				new CGlobal();
-			}
-			#endif
-			return m_instance; 
-		}
+		get { return m_instance; }
 	}
 
 	public NBsn.CLog Log 
@@ -57,18 +49,49 @@ public class CGlobal : IDisposable
 		get { return m_tfMain; }
 	}
 
-    public event System.Actio OnUpdate;
+    public event System.Action OnUpdate;
     public event System.Action OnLateUpdate;
+
+#if UNITY_EDITOR
+	public static void EditorInit()
+	{
+		var pGlobal = NBsn.CGlobal.Instance;
+		if (pGlobal != null)
+		{
+			return;
+		}
+		new NBsn.CGlobal();
+		pGlobal = NBsn.CGlobal.Instance;
+		pGlobal.Init(null, null);
+	}
+
+	public static void EditorUnInit()
+	{
+		var pGlobal = NBsn.CGlobal.Instance;
+		if (pGlobal == null)
+		{
+			return;
+		}
+		pGlobal.UnInit();
+		pGlobal.Dispose();
+	}
+#endif
 
 	#region updater
 	public void Update()
 	{
-		OnUpdate();
+		if (OnUpdate != null)
+		{
+			OnUpdate();
+		}
 	}
 
 	public void LateUpdate()
 	{
-		OnLateUpdate();
+		if (OnLateUpdate != null)
+		{
+			OnLateUpdate();
+		}
 	}
 	#endregion
 
@@ -76,17 +99,23 @@ public class CGlobal : IDisposable
 	// 游戏逻辑初始化
 	public void Init(GameObject goMain, NBsn.MMain Main) 
 	{
-		m_goMain    = goMain;
-		m_Main      = Main;
-		m_tfMain    = m_goMain.transform;
+		if (goMain != null)
+		{
+			m_goMain    = goMain;
+			m_Main      = Main;
+			m_tfMain    = m_goMain.transform;
+		}
 
 		m_Log = new NBsn.CLog();
 		Log.Init();
 
 		NBsn.PathConfig.Init();
 
-		m_Coroutine = new NBsn.CCoroutine();
-		Coroutine.Init(m_Main);
+		if (m_Main != null)
+		{
+			m_Coroutine = new NBsn.CCoroutine();
+			Coroutine.Init(m_Main);
+		}
 
 		m_ResMgr = new NBsn.CResMgr();
 		ResMgr.Init();
@@ -105,8 +134,11 @@ public class CGlobal : IDisposable
 		ResMgr.UnInit();
 		m_ResMgr = null;		
 
-		Coroutine.UnInit();	
-		m_Coroutine = null;
+		if (Coroutine != null)
+		{
+			Coroutine.UnInit();	
+			m_Coroutine = null;
+		}
 
 		Log.UnInit();
 		m_Log = null;	

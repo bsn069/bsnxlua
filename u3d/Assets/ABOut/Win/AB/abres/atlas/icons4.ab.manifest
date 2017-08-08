@@ -1,0 +1,36 @@
+ManifestFileVersion: 0
+CRC: 515520880
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 20c4b0da1eaae5e70f1f317b709ffbbc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 21f0dc8ebad690f009368069428e0a1a
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/ABRes/Atlas/icons4/guanchai_2_icon.png
+- Assets/ABRes/Atlas/icons4/murongfu_3_icon.png
+- Assets/ABRes/Atlas/icons4/hezudao_2_icon.png
+- Assets/ABRes/Atlas/icons4/hufei_2_icon.png
+- Assets/ABRes/Atlas/icons4/danqingsheng_2_icon.png
+- Assets/ABRes/Atlas/icons4/qigai_2_icon.png
+- Assets/ABRes/Atlas/icons4/tongqianzong_1_icon.png
+- Assets/ABRes/Atlas/icons4/chengkun_3_icon.png
+- Assets/ABRes/Atlas/icons4/bibochun_1_icon.png
+- Assets/ABRes/Atlas/icons4/yuelingshan_2_icon.png
+- Assets/ABRes/Atlas/icons4/xiaxueyi_3_icon.png
+- Assets/ABRes/Atlas/icons4/qiaofeng_3_icon.png
+- Assets/ABRes/Atlas/icons4/jingxizong_1_icon.png
+- Assets/ABRes/Atlas/icons4/beihaishi_3_icon.png
+- Assets/ABRes/Atlas/icons4/jingyanzong_1_icon.png
+- Assets/ABRes/Atlas/icons4/zhuanshengzong_1_icon.png
+- Assets/ABRes/Atlas/icons4/hunpozong_1_icon.png
+- Assets/ABRes/Atlas/icons4/xiakezong_1_icon.png
+- Assets/ABRes/Atlas/icons4/mengwuzong_1_icon.png
+Dependencies: []

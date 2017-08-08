@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public struct S_GameObjectLoadParam
+public class S_GameObjectLoadParam
 {
 	public string strPath 	= null;
 	public string strSuffix = null;
