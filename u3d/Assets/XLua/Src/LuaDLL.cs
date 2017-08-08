@@ -270,7 +270,7 @@ namespace XLua.LuaDLL
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern void xlua_pushuint(IntPtr L, uint value);
 
-        public static void lua_pushstring(IntPtr L, string str) //业务使用
+        public static void lua_pushstring(IntPtr L, string str) //涓氬姟浣跨敤
         {
             if (str == null)
             {
@@ -503,7 +503,7 @@ namespace XLua.LuaDLL
         //[DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         //public static extern void xlua_pushbuffer(IntPtr L, byte[] buff);
 
-        //对于Unity，仅浮点组成的struct较多，这几个api用于优化这类struct
+        //瀵逛簬Unity锛屼粎娴偣缁勬垚鐨剆truct杈冨锛岃繖鍑犱釜api鐢ㄤ簬浼樺寲杩欑被struct
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern bool xlua_pack_float2(IntPtr buff, int offset, float f1, float f2);
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]

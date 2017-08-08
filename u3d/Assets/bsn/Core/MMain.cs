@@ -11,12 +11,7 @@ public class MMain : MonoBehaviour
 	{
 		DontDestroyOnLoad(gameObject);  //防止销毁自己
 		new NBsn.CGlobal();
-		NBsn.CGlobal.Instance.Awake();
-	}
-
-	void Start() 
-	{
-		NBsn.CGlobal.Instance.Start(gameObject, this);
+		NBsn.CGlobal.Instance.Init(gameObject, this);
 	}
 
 	void Update()
@@ -24,9 +19,15 @@ public class MMain : MonoBehaviour
 		NBsn.CGlobal.Instance.Update();
 	}
 
+	void LateUpdate()
+	{
+		NBsn.CGlobal.Instance.LateUpdate();
+	}
+
 	void OnDestroy() 
 	{
-		NBsn.CGlobal.Instance.OnDestroy();		
+		NBsn.CGlobal.Instance.UnInit();		
+		NBsn.CGlobal.Instance.Dispose();		
 	}
 }
 

@@ -57,32 +57,24 @@ public class CGlobal : IDisposable
 		get { return m_tfMain; }
 	}
 
-	#region mono
-	public void Awake() 
-	{
-	}
+    public event System.Actio OnUpdate;
+    public event System.Action OnLateUpdate;
 
-	public void Start(GameObject goMain, NBsn.MMain Main) 
-	{
-		Init(goMain, Main);
-		Lua.DoString("print(1)");
-	}
-
+	#region updater
 	public void Update()
 	{
+		OnUpdate();
 	}
 
-	public void OnDestroy() 
+	public void LateUpdate()
 	{
-		Log.InfoFormat("NBsn.CGlobal.OnDestroy()"); 
-		UnInit();
-		Dispose();
+		OnLateUpdate();
 	}
 	#endregion
 
 	#region game init
 	// 游戏逻辑初始化
-	private void Init(GameObject goMain, NBsn.MMain Main) 
+	public void Init(GameObject goMain, NBsn.MMain Main) 
 	{
 		m_goMain    = goMain;
 		m_Main      = Main;
@@ -93,28 +85,28 @@ public class CGlobal : IDisposable
 
 		NBsn.PathConfig.Init();
 
+		m_Coroutine = new NBsn.CCoroutine();
+		Coroutine.Init(m_Main);
+
 		m_ResMgr = new NBsn.CResMgr();
 		ResMgr.Init();
 
 		m_Lua	= new NBsn.CLua();
 		Lua.Init();
-
-		m_Coroutine = new NBsn.CCoroutine();
-		Coroutine.Init(m_Main);
 	}
 
-	private void UnInit() 
+	public void UnInit() 
 	{
 		Log.Info("NBsn.CGlobal.UnInit()"); 
 
 		Lua.UnInit();
 		m_Lua = null;
 
-		Coroutine.UnInit();	
-		m_Coroutine = null;
-
 		ResMgr.UnInit();
 		m_ResMgr = null;		
+
+		Coroutine.UnInit();	
+		m_Coroutine = null;
 
 		Log.UnInit();
 		m_Log = null;	
@@ -130,6 +122,7 @@ public class CGlobal : IDisposable
 	{
 		m_instance = this;
 	}
+
 	public void Dispose() 
 	{
 		m_instance = null;
