@@ -53,6 +53,12 @@ public static class StringEx
 		}
 	}
 
+	// 将strPath中的cDirectorySeparatorChar替换为目录拆分符
+	public static string PathReplaceToDirectorySeparatorChar(this string strPath, char cDirectorySeparatorChar) 
+	{
+		return strPath.Replace(cDirectorySeparatorChar, Path.DirectorySeparatorChar);
+	}
+
 	// 路径的上级目录
 	// strPath "Assets/_Game/Resources/Packages/UI/EquipAvartarTip.prefab" 
 	// ret Assets/_Game/Resources/Packages/UI

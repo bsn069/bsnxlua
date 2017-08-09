@@ -20,6 +20,12 @@ public static class C_Config
 		get { return ".ab";}
 	}
 
+	// Lua文件后缀
+	public static string LuaSuffix
+	{
+		get { return ".txt";}
+	}
+
 	#region
 	private static NBsn.E_ResLoadType ms_eResLoadType = NBsn.E_ResLoadType.EditorABRes;
 	#endregion

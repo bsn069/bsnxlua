@@ -122,6 +122,7 @@ public class C_Global : IDisposable
 
 		m_Lua	= new NBsn.C_Lua();
 		Lua.Init();
+		Lua.DoString("require('main')");
 	}
 
 	public void UnInit() 

@@ -53,6 +53,25 @@ public static class C_BsnAB
         }
     }
 
+	[MenuItem("Bsn/Bsn/Set AB Name/Lua")]
+	private static void SetLuaABName()
+	{
+		var strABResLuaPath = NBsn.C_PathConfig.AssetsABResPath.PathCombine(NBsn.C_PathConfig.ABResLuaDir);
+
+		var listPrefabFileFullPaths = NBsn.NEditor.C_Path.GetABResPrebabFileFullPaths();
+		List<string> listAssetsPaths = listPrefabFileFullPaths.FullPaths2AssetsPaths();
+        foreach (var strAssetsPath in listAssetsPaths) {
+            var importer = AssetImporter.GetAtPath(strAssetsPath);
+            if (importer == null) {
+                Debug.LogErrorFormat("basePath={0} importer == null", strAssetsPath);
+                continue;
+            }
+
+			var strABPath = strAssetsPath.TrimLeftString(strABResPath) + NBsn.C_Config.ABSuffix;
+            importer.SetAssetBundleNameAndVariant(strABPath, null);
+        }
+    }
+
 	[MenuItem("Bsn/Bsn/Make AB/Win64")]
 	private static void MakeABWin64() 
     {

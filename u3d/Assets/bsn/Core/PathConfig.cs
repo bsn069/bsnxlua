@@ -37,12 +37,19 @@ public static class C_PathConfig
 		get { return "Prefab"; }
 	}
 
+	// ABRes下的存放lua的目录
+	public static string ABResLuaDir
+	{
+		get { return "Lua"; }
+	}
+
 	// ab资源存放目录
 	// win Assets/ABRes
 	public static string AssetsABResPath
 	{
 		get { return AssetsDir.PathCombine(ABResDir); }
 	}
+
 
 	// AB输出Assets下的目录
 	// strPlatform="Win" ABOut/Win/ABRes

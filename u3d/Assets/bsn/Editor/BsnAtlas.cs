@@ -16,7 +16,7 @@ public static class C_BsnAtlas
     [MenuItem("Bsn/Bsn/Set Atlas Sprite Packing Tag")]
 	private static void SetSpritePackingTag()
 	{
-		var listAtlasFileFullPaths = NBsn.NEditor.C_Path.GetAtlasFileFullPaths();
+		var listAtlasFileFullPaths = NBsn.NEditor.C_Path.GetABResAtlasFileFullPaths();
 		List<string> listAssetsPaths = listAtlasFileFullPaths.FullPaths2AssetsPaths();
         foreach (var strAssetsPath in listAssetsPaths) {
 			NBsn.NEditor.C_EditorEx.SetSpritePackingTag(strAssetsPath, strAssetsPath.PathUpDirName());

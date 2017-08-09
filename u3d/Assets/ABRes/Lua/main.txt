@@ -1,0 +1,6 @@
+print(1111111111111)
+print(CS.NBsn.StringEx.PathTest())
+for i,v in pairs(CS) do
+	print(i,v)
+end
+
