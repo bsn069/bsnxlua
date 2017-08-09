@@ -27,6 +27,14 @@ public static class CommonEx
         }
         return ret;
     }
+
+	// Instantiate go then set name
+	public static GameObject Clone(this GameObject go)
+	{
+		var goClone = (GameObject)UnityEngine.Object.Instantiate(go);
+		goClone.name = goClone.name.Replace("(Clone)", "");
+		return goClone;
+	}
 }  
 
 }

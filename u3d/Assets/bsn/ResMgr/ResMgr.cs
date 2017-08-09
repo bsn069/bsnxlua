@@ -8,70 +8,66 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public class CResMgr: I_GameObjectLoad, I_Init
+public class C_ResMgr: I_ResLoad, I_Init
 {
-	public  GameObject Load(S_GameObjectLoadParam p)
+	public T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CResMgr.Load({0})", p);
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ResMgr.Load({0})", p);
 
-		// first from ab
-		GameObject go = m_iGameObjectLoad.Load(p);
-		if (go == null) {
+		// first from res
+		T ret = m_iResLoad.Load<T>(p);
+		if (ret == null) {
 			// second from resources
-			go = m_Resources.Load(p);
+			ret = m_Resources.Load<T>(p);
 		}
 
-		if (go != null) {
-			go = (GameObject)UnityEngine.Object.Instantiate(go);
-			go.name = go.name.Replace("(Clone)", "");
-		}
-		return go;
+		return ret;
 	}
 
-	public  bool Init() 
+	public bool Init() 
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CResMgr.Init()");
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ResMgr.Init()");
 
-		m_Resources = new NBsn.CResources();
+		m_Resources = new NBsn.C_Resources();
 		var iInit = m_Resources as I_Init;
 		if (!iInit.Init())
 		{
 			return false;
 		}
 
-		switch (NBsn.Config.ResLoadType) {
+		switch (NBsn.C_Config.ResLoadType) {
 #if UNITY_EDITOR
-			case NBsn.EResLoadType.EditorABRes: {
-				m_iGameObjectLoad = new NBsn.CABRes();
+			case NBsn.E_ResLoadType.EditorABRes: {
+				m_iResLoad = new NBsn.C_ABRes();
 			}
 			break;
-			case NBsn.EResLoadType.EditorABOut: {
-				m_iGameObjectLoad = new NBsn.CABOut();
+			case NBsn.E_ResLoadType.EditorABOut: {
+				m_iResLoad = new NBsn.C_ABOut();
 			}
 			break;
 #endif
-			case NBsn.EResLoadType.AppAB: {
-				m_iGameObjectLoad = new NBsn.CABApp();
+			case NBsn.E_ResLoadType.AppAB: {
+				m_iResLoad = new NBsn.C_ABApp();
 			}
 			break;
 			default: {
-				NBsn.CGlobal.Instance.Log.InfoFormat("ResLoadType={0}", NBsn.Config.ResLoadType);
+				NBsn.C_Global.Instance.Log.InfoFormat("ResLoadType={0}", NBsn.C_Config.ResLoadType);
 				return false;
 			}
 		}
 
-		iInit = m_iGameObjectLoad as I_Init;
+		iInit = m_iResLoad as I_Init;
 		return iInit.Init();
 	}
 
-	public  void UnInit() 
+	public void UnInit() 
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CResMgr.UnInit()");
-		if (m_iGameObjectLoad != null)
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ResMgr.UnInit()");
+		if (m_iResLoad != null)
 		{
-			var iInit = m_iGameObjectLoad as I_Init;
+			var iInit = m_iResLoad as I_Init;
 			iInit.UnInit();
-			m_iGameObjectLoad = null;
+			m_iResLoad = null;
 		}
 
 		if (m_Resources != null)
@@ -82,8 +78,8 @@ public class CResMgr: I_GameObjectLoad, I_Init
 		}
 	}
 
-	protected NBsn.CResources		m_Resources 		= new NBsn.CResources();
-	protected NBsn.I_GameObjectLoad	m_iGameObjectLoad 	= null;
+	protected NBsn.C_Resources	m_Resources	= new NBsn.C_Resources();
+	protected NBsn.I_ResLoad	m_iResLoad 	= null;
 }
 
 }

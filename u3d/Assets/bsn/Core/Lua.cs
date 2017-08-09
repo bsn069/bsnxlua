@@ -7,11 +7,11 @@ using XLua;
 
 namespace NBsn {
 
-public class CLua 
+public class C_Lua 
 {
 	public object[] DoString(string strLua) 
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CLua.DoString({0})", strLua); 
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Lua.DoString({0})", strLua); 
 		return m_Lua.DoString(strLua);
 	}
 
@@ -23,7 +23,7 @@ public class CLua
 
 	public void UnInit() 
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CLua.UnInit()");
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Lua.UnInit()");
 		m_Lua.Dispose();
 		m_Lua = null;
 	}

@@ -447,7 +447,7 @@ namespace XLua
         }
 #endif
         
-        public static void Config(IEnumerable<Type> cfg_check_types)
+        public static void C_Config(IEnumerable<Type> cfg_check_types)
         {
             if (cfg_check_types != null)
             {
@@ -481,7 +481,7 @@ namespace XLua
                 assembly.MainModule.Types.Add(new TypeDefinition("__XLUA_GEN", "__XLUA_GEN_FLAG", Mono.Cecil.TypeAttributes.Class,
                     objType));
 
-                Config(cfg_check_types);
+                C_Config(cfg_check_types);
 
                 //var hotfixDelegateAttributeType = assembly.MainModule.Types.Single(t => t.FullName == "XLua.HotfixDelegateAttribute");
                 hotfix_bridges = (from method in delegateBridgeType.Methods

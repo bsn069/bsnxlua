@@ -4,7 +4,7 @@ using System;
 
 namespace NBsn {
 
-public class CLog {
+public class C_Log {
 	public void InfoFormat(string format, params object[] args) 
 	{
 		Debug.LogFormat(format, args);
@@ -28,12 +28,12 @@ public class CLog {
 	#region init
 	public void Init() 
 	{
-		InfoFormat("NBsn.CLog.Init()");
+		InfoFormat("NBsn.C_Log.Init()");
 	}
 
 	public void UnInit() 
 	{
-		InfoFormat("NBsn.CLog.UnInit()");
+		InfoFormat("NBsn.C_Log.UnInit()");
 	}
 	#endregion
 }

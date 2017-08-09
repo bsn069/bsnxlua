@@ -8,11 +8,11 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public class CResources : I_GameObjectLoad, I_Init
+public class C_Resources : I_ResLoad, I_Init
 {
-	public GameObject Load(S_GameObjectLoadParam p)
+	public T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object
 	{
-		return Load(p.strPath);
+		return Load<T>(p.strPath);
 	}
 
 	public bool Init() 
@@ -25,11 +25,11 @@ public class CResources : I_GameObjectLoad, I_Init
 		
 	}
 
-	public GameObject Load(string strPath) 
+	public T Load<T>(string strPath) where T : UnityEngine.Object
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CResources.Load({0})", strPath); 
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Resources.Load({0})", strPath); 
 
-		var go = Resources.Load<GameObject>(strPath);
+		var go = Resources.Load<T>(strPath);
 		return go;
 	}
 }

@@ -61,6 +61,16 @@ public static class StringEx
 		return Path.GetDirectoryName(strPath);
 	}
 
+	/* 路径的上级目录名
+	strPath "Assets/_Game/Resources/Packages/UI/EquipAvartarTip.prefab" 
+	ret UI
+	*/
+	public static string PathUpDirName(this string strPath) 
+	{
+		var strUpDir = strPath.PathUpDir();
+		return Path.GetFileName(strUpDir);
+	}
+
 	// 路径的扩展名 
 	// strPath "Assets/_Game/Resources/Packages/UI/EquipAvartarTip.prefab" 
 	// ret prefab
@@ -103,6 +113,19 @@ public static class StringEx
         var strAfter = strUpDir.Substring(ms_assetsPathLength + 1);
         return strAfter;
     }
+
+	// 移除左边的strTrim字符串
+	// strPath "Assets/ABRes/Prefab/UI/EquipAvartarTip.prefab" 
+	// strTrim "Assets/ABRes/"
+	// ret Prefab/UI/EquipAvartarTip.prefab
+	public static string TrimLeftString(this string strPath, string strTrim) 
+	{
+		if (strPath.StartsWith(strTrim))
+		{
+			return strPath.Substring(strTrim.Length);
+		}
+		return strPath;
+	}
 
 	public static int ms_assetsPathLength = "Assets".Length;
 	public static int ms_dataPathLength = Application.dataPath.Length;

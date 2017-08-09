@@ -142,6 +142,37 @@ public static class C_EditorEx
         File.WriteAllBytes(strFilePath, tex.EncodeToPNG());
 		return true;
 	}	
+
+	// strAssetTexPath Assets/*/?.png
+	// strSpritePackingTag
+	public static bool SetSpritePackingTag(string strAssetTexPath, string strSpritePackingTag) 
+    {
+		if (strAssetTexPath == null)
+		{
+			Debug.LogError("strAssetTexPath = null");
+			return false;
+		}
+
+		if (strSpritePackingTag == null)
+		{
+			Debug.LogError("strSpritePackingTag = null");
+			return false;
+		}
+
+        Texture2D tex2D = AssetDatabase.LoadAssetAtPath(strAssetTexPath, typeof(Texture2D)) as Texture2D;
+		if (tex2D == null)
+		{
+			Debug.LogErrorFormat("strAssetTexPath={0} not found", strAssetTexPath);
+			return false;
+		}
+
+		TextureImporter textureImporter = AssetImporter.GetAtPath(strAssetTexPath) as TextureImporter;
+		textureImporter.spritePackingTag = strSpritePackingTag;
+
+		AssetDatabase.ImportAsset(strAssetTexPath, ImportAssetOptions.ForceUpdate);
+		return true;
+    }
+
 }
 
 }

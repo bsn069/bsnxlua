@@ -7,34 +7,34 @@ using XLua;
 
 namespace NBsn {
 
-public class CGlobal : IDisposable 
+public class C_Global : IDisposable 
 {
-	public static NBsn.CGlobal Instance 
+	public static NBsn.C_Global Instance 
 	{
 		get { return m_instance; }
 	}
 
-	public NBsn.CLog Log 
+	public NBsn.C_Log Log 
 	{
 		get { return m_Log; }
 	}
 
-	public NBsn.CLua Lua
+	public NBsn.C_Lua Lua
 	{
 		get { return m_Lua; }
 	}
 
-	public NBsn.CResMgr ResMgr
+	public NBsn.C_ResMgr ResMgr
 	{
 		get { return m_ResMgr; }
 	}
 
-	public NBsn.CCoroutine Coroutine 
+	public NBsn.C_Coroutine Coroutine 
 	{
 		get {return m_Coroutine;}
 	}
 
-	public NBsn.MMain Main 
+	public NBsn.M_Main Main 
 	{
 		get { return m_Main; }
 	}
@@ -55,19 +55,19 @@ public class CGlobal : IDisposable
 #if UNITY_EDITOR
 	public static void EditorInit()
 	{
-		var pGlobal = NBsn.CGlobal.Instance;
+		var pGlobal = NBsn.C_Global.Instance;
 		if (pGlobal != null)
 		{
 			return;
 		}
-		new NBsn.CGlobal();
-		pGlobal = NBsn.CGlobal.Instance;
+		new NBsn.C_Global();
+		pGlobal = NBsn.C_Global.Instance;
 		pGlobal.Init(null, null);
 	}
 
 	public static void EditorUnInit()
 	{
-		var pGlobal = NBsn.CGlobal.Instance;
+		var pGlobal = NBsn.C_Global.Instance;
 		if (pGlobal == null)
 		{
 			return;
@@ -97,7 +97,7 @@ public class CGlobal : IDisposable
 
 	#region game init
 	// 游戏逻辑初始化
-	public void Init(GameObject goMain, NBsn.MMain Main) 
+	public void Init(GameObject goMain, NBsn.M_Main Main) 
 	{
 		if (goMain != null)
 		{
@@ -106,27 +106,27 @@ public class CGlobal : IDisposable
 			m_tfMain    = m_goMain.transform;
 		}
 
-		m_Log = new NBsn.CLog();
+		m_Log = new NBsn.C_Log();
 		Log.Init();
 
-		NBsn.PathConfig.Init();
+		NBsn.C_PathConfig.Init();
 
 		if (m_Main != null)
 		{
-			m_Coroutine = new NBsn.CCoroutine();
+			m_Coroutine = new NBsn.C_Coroutine();
 			Coroutine.Init(m_Main);
 		}
 
-		m_ResMgr = new NBsn.CResMgr();
+		m_ResMgr = new NBsn.C_ResMgr();
 		ResMgr.Init();
 
-		m_Lua	= new NBsn.CLua();
+		m_Lua	= new NBsn.C_Lua();
 		Lua.Init();
 	}
 
 	public void UnInit() 
 	{
-		Log.Info("NBsn.CGlobal.UnInit()"); 
+		Log.Info("NBsn.C_Global.UnInit()"); 
 
 		Lua.UnInit();
 		m_Lua = null;
@@ -150,7 +150,7 @@ public class CGlobal : IDisposable
 	#endregion
 
 	#region
-	public CGlobal() 
+	public C_Global() 
 	{
 		m_instance = this;
 	}
@@ -160,17 +160,17 @@ public class CGlobal : IDisposable
 		m_instance = null;
 	}
 
-	protected static CGlobal m_instance = null;
+	protected static C_Global m_instance = null;
 
-	protected NBsn.CLog 		m_Log 		= null;
-	protected NBsn.CCoroutine 	m_Coroutine = null;
-	protected NBsn.CResMgr 		m_ResMgr 	= null;
+	protected NBsn.C_Log 		m_Log 		= null;
+	protected NBsn.C_Coroutine 	m_Coroutine = null;
+	protected NBsn.C_ResMgr 		m_ResMgr 	= null;
 
-	protected NBsn.MMain 	m_Main 		= null;
+	protected NBsn.M_Main 	m_Main 		= null;
 	protected GameObject 	m_goMain 	= null;
 	protected Transform 	m_tfMain 	= null;
 
-	protected NBsn.CLua 	m_Lua 		= null;
+	protected NBsn.C_Lua 	m_Lua 		= null;
 	#endregion
 }
 

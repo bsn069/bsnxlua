@@ -6,13 +6,13 @@ using System;
 namespace NBsn 
 {
 
-public class CCoroutine 
+public class C_Coroutine 
 {
 	public Coroutine Start(IEnumerator iEnumerator) 
 	{
 #if UNITY_EDITOR
 		if (m_Mono == null) {
-			NBsn.CGlobal.Instance.Log.InfoFormat("m_Mono == null"); 
+			NBsn.C_Global.Instance.Log.InfoFormat("m_Mono == null"); 
 			return null;
 		}
 #endif
@@ -23,7 +23,7 @@ public class CCoroutine
 	{
 #if UNITY_EDITOR
 		if (m_Mono == null) {
-			NBsn.CGlobal.Instance.Log.InfoFormat("m_Mono == null"); 
+			NBsn.C_Global.Instance.Log.InfoFormat("m_Mono == null"); 
 			return;
 		}
 #endif
@@ -33,13 +33,13 @@ public class CCoroutine
 	#region init
 	public void Init(MonoBehaviour Mono) 
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CCoroutine.Init()");
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Coroutine.Init()");
 		m_Mono = Mono;
 	}
 
 	public void UnInit() 
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CCoroutine.UnInit()");
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Coroutine.UnInit()");
 		m_Mono = null;
 	}
 	#endregion

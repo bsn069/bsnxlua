@@ -7,25 +7,25 @@ using UnityEditor;
 
 
 namespace NBsn.NEditor
- {
+{
 
-public static class CPlatform_Editor
- {
+public static class CPlatform
+{
 	public static string Name(BuildTarget buildTarget) 
 	{
-		Debug.LogFormat("NBsn.CPlatform.Name({0})", buildTarget);
+		Debug.LogFormat("NBsn.NEditor.CPlatform.Name({0})", buildTarget);
 		string strPlatform = "";
 		switch (buildTarget) 
 		{
 			case BuildTarget.Android: 
 				{
-					strPlatform = "Android";
+					strPlatform = NBsn.CPlatform.GetName(1);
 				} 
 				break;               
 			case BuildTarget.StandaloneWindows:
 			case BuildTarget.StandaloneWindows64: 
 				{
-					strPlatform = "Win";
+					strPlatform = NBsn.CPlatform.GetName(0);
 				}
 				break;              
 			default: 

@@ -108,6 +108,9 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -125,6 +128,7 @@
     <Compile Include="Assets\bsn\Editor\AB.cs" />
     <Compile Include="Assets\bsn\Editor\Asset.cs" />
     <Compile Include="Assets\bsn\Editor\BsnAB.cs" />
+    <Compile Include="Assets\bsn\Editor\BsnAtlas.cs" />
     <Compile Include="Assets\bsn\Editor\EditorEx.cs" />
     <Compile Include="Assets\bsn\Editor\FolderDialog.cs" />
     <Compile Include="Assets\bsn\Editor\NGUIAtlas.cs" />

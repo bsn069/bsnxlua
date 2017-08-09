@@ -44,7 +44,7 @@ public static class C_AB
                 Debug.LogErrorFormat("basePath={0} importer == null", filePath);
                 continue;
             }
-            var strAssetsLatePath = filePath.PathAssets2AssetsLate() + ".ab";
+            var strAssetsLatePath = filePath.PathAssets2AssetsLate() + NBsn.C_Config.ABSuffix;
             importer.SetAssetBundleNameAndVariant(strAssetsLatePath, null);
         }
     }
@@ -63,30 +63,10 @@ public static class C_AB
                 Debug.LogErrorFormat("basePath={0} importer == null", filePath);
                 continue;
             }
-            var strAssetsLatePathNoFile = filePath.PathAssetsRelativeDir() + ".ab";
+            var strAssetsLatePathNoFile = filePath.PathAssetsRelativeDir() + NBsn.C_Config.ABSuffix;
             importer.SetAssetBundleNameAndVariant(strAssetsLatePathNoFile, null);
         }
     }
-
-    [MenuItem("Bsn/AB/Make AB Win64")]
-    [MenuItem("Assets/Bsn/AB/Make AB Win64")]
-	private static void MakeABWin() 
-    {
-		NBsn.CGlobal.EditorInit();
-        string strFullPath = NBsn.PathConfig.ABLocalFullPath;
-		NBsn.CGlobal.EditorUnInit();
-        MakeAB(BuildTarget.StandaloneWindows64, strFullPath);
-    }
-
-    public static void MakeAB(BuildTarget buildTarget, string strOutFullPath) {
-        Debug.LogFormat("buildTarget={0} strOutFullPath={1}", buildTarget, strOutFullPath); 
-
-        Directory.CreateDirectory(strOutFullPath);
-
-        //AssetDatabase.Refresh();
-        BuildPipeline.BuildAssetBundles(strOutFullPath, BuildAssetBundleOptions.UncompressedAssetBundle, buildTarget);
-        //AssetDatabase.Refresh();
-    } 
 }
 
 }

@@ -9,17 +9,17 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public class CABApp : I_GameObjectLoad, I_Init
+public class C_ABApp : I_ResLoad, I_Init
 {
-public GameObject Load(S_GameObjectLoadParam p)
+	public T Load<T>(C_ResLoadParam p)  where T : UnityEngine.Object
 	{
-		return Load(p.strPath, p.strSuffix);
+		return Load<T>(p.strPath, p.strSuffix);
 	}
 
 	public bool Init() 
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CABOut.Init()"); 
-		var strLoadPath = NBsn.PathConfig.ABLocalFullPath + "AB";
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABOut.Init()"); 
+		var strLoadPath = NBsn.C_PathConfig.ABLocalFullPath + "AB";
 		var ab = AssetBundle.LoadFromFile(strLoadPath);
 		m_abManifest = ab.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
 		ab.Unload(false);
@@ -31,9 +31,9 @@ public GameObject Load(S_GameObjectLoadParam p)
 		
 	}
 
-	public GameObject Load(string strPath, string strSuffix) 
+	public T Load<T>(string strPath, string strSuffix)  where T : UnityEngine.Object
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CABOut.Load({0}, {1})", strPath, strSuffix); 
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABOut.Load({0}, {1})", strPath, strSuffix); 
 		
 		strPath += "." + strSuffix;
 		AssetBundle ab = LoadAB(strPath);
@@ -43,8 +43,8 @@ public GameObject Load(S_GameObjectLoadParam p)
 
 		var index = strPath.LastIndexOf("/");
 		var strResName = strPath.Substring(index+1);
-		NBsn.CGlobal.Instance.Log.InfoFormat("strResName={0}", strResName);
-		return ab.LoadAsset<GameObject>(strResName);
+		NBsn.C_Global.Instance.Log.InfoFormat("strResName={0}", strResName);
+		return ab.LoadAsset<T>(strResName);
 	}
 
 	#region 
@@ -55,23 +55,23 @@ public GameObject Load(S_GameObjectLoadParam p)
 	#endregion
 
 	private AssetBundle LoadAB(string strResPath) {
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CABOut.LoadAB({0})", strResPath);
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABOut.LoadAB({0})", strResPath);
 
 		AssetBundle ab;
 		if (!m_abCache.TryGetValue(strResPath, out ab)) {
 			var strABName = string.Format(mc_strPathFormat, strResPath);
-			NBsn.CGlobal.Instance.Log.InfoFormat("strABName={0}", strABName);
+			NBsn.C_Global.Instance.Log.InfoFormat("strABName={0}", strABName);
 			var arrDepd = m_abManifest.GetDirectDependencies(strABName);
 			for(int i = 0; i < arrDepd.Length; ++i) {
 				var strDepABName = arrDepd[i];
-				NBsn.CGlobal.Instance.Log.InfoFormat("i={1} strDepABName={0}", strDepABName, i);
+				NBsn.C_Global.Instance.Log.InfoFormat("i={1} strDepABName={0}", strDepABName, i);
 				strDepABName = strDepABName.Substring(13);
 				strDepABName = strDepABName.Substring(0, strDepABName.Length - 3);
 				LoadAB(strDepABName);
 			}
 
-			var strLoadPath = NBsn.PathConfig.ABLocalFullPath + strABName;
-			NBsn.CGlobal.Instance.Log.InfoFormat("strLoadPath={0}", strLoadPath);
+			var strLoadPath = NBsn.C_PathConfig.ABLocalFullPath + strABName;
+			NBsn.C_Global.Instance.Log.InfoFormat("strLoadPath={0}", strLoadPath);
 			ab = AssetBundle.LoadFromFile(strLoadPath);
 			if (ab != null) {
 				m_abCache.Add(strResPath, ab);

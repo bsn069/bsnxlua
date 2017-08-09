@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8541811e31f56b244bc17650ea63536d
-timeCreated: 1502197104
+timeCreated: 1502247213
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -68,7 +68,7 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape: []
-  spritePackingTag: 
+  spritePackingTag: gameui
   userData: 
-  assetBundleName: abres/atlas/gameui.ab
+  assetBundleName: atlas/gameui.ab
   assetBundleVariant: 

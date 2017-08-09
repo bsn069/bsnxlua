@@ -12,15 +12,16 @@ using UnityEditor;
 namespace NBsn 
 {
 
-public class CABRes: I_GameObjectLoad, I_Init
+public class C_ABRes: I_ResLoad, I_Init
 {
-	public GameObject Load(S_GameObjectLoadParam p)
+	public T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object
 	{
-		return Load(p.strPath, p.strSuffix);
+		return Load<T>(p.strPath, p.strSuffix);
 	}
 
 	public bool Init() 
 	{
+		NBsn.C_Global.Instance.Log.InfoFormat("mc_strPathFormat={0}", mc_strPathFormat);
 		return true;
 	}
 
@@ -29,16 +30,16 @@ public class CABRes: I_GameObjectLoad, I_Init
 		
 	}
 
-	public GameObject Load(string strPath, string strSuffix) 
+	public T Load<T>(string strPath, string strSuffix) where T : UnityEngine.Object
 	{
-		NBsn.CGlobal.Instance.Log.InfoFormat("NBsn.CABRes.Load({0}, {1})", strPath, strSuffix); 
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABRes.Load({0}, {1})", strPath, strSuffix); 
 
-		strPath = string.Format(mc_strPathFormat, strPath, strSuffix);
-		NBsn.CGlobal.Instance.Log.InfoFormat("strPath={0}", strPath);
-		return AssetDatabase.LoadAssetAtPath<GameObject>(strPath);
+		var strAssetsPath = string.Format(mc_strPathFormat, strPath, strSuffix);
+		NBsn.C_Global.Instance.Log.InfoFormat("strAssetsPath={0}", strAssetsPath);
+		return AssetDatabase.LoadAssetAtPath<T>(strAssetsPath);
 	}
 
-	private const string mc_strPathFormat = "Assets/ABRes/{0}.{1}";
+	private readonly string mc_strPathFormat = NBsn.C_PathConfig.AssetsABResPath.PathCombine("{0}.{1}");
 }
 
 }

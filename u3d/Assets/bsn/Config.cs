@@ -5,30 +5,23 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public static class Config 
+public static class C_Config 
 {
 	// 资源加载类型
-	public static NBsn.EResLoadType ResLoadType 
+	public static NBsn.E_ResLoadType ResLoadType 
 	{
 		get { return ms_eResLoadType; }
 		set { ms_eResLoadType = value; }
 	}
-	
-	// AB存放相对Assets目录格式化
-	// {0} strPlatform[Win, Android]
-	public static string PlatformABPathFormat 
-	{
-		get { return "ABOut/{0}/AB"; }
-	}
 
-		
-	public static string ServerResLocalDirName
+	// AB文件后缀
+	public static string ABSuffix
 	{
-		get { return "ServerRes"; }
+		get { return ".ab";}
 	}
 
 	#region
-	private static NBsn.EResLoadType ms_eResLoadType = NBsn.EResLoadType.EditorABRes;
+	private static NBsn.E_ResLoadType ms_eResLoadType = NBsn.E_ResLoadType.EditorABRes;
 	#endregion
 }
 

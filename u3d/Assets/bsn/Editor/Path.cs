@@ -13,29 +13,31 @@ namespace NBsn.NEditor
 
 public static class C_Path
 {
-	/* 获取Atlas下的图集文件全路径
-    ["F:\github\bsnxlua\u3d\Assets\ABRes\Atlas\gameui1\duiwurenshu.png.png", 
-	"F:\github\bsnxlua\u3d\Assets\ABRes\Atlas\gameui1\duiwu_1_1.png.png",
+	/* 获取ABRes\Atlas下的图集文件全路径
+    [
+		"F:\github\bsnxlua\u3d\Assets\ABRes\Atlas\gameui1\duiwurenshu.png", 
+		"F:\github\bsnxlua\u3d\Assets\ABRes\Atlas\gameui1\duiwu_1_1.png",
 	...]
 	*/
-	public static List<string> GetAtlasFileFullPaths()
+	public static List<string> GetABResAtlasFileFullPaths()
 	{
-		string strAtlasFullPath = Application.dataPath.PathFormat().PathCombine("ABRes").PathCombine("Atlas");
-		// Debug.Log(strAtlasFullPath);
-		return GetNoMetaFileFullPaths(strAtlasFullPath);
+		string strABResAtlasFullPath = Application.dataPath.PathFormat().PathCombine(NBsn.C_PathConfig.ABResDir).PathCombine(NBsn.C_PathConfig.ABResAtlasDir);
+		return GetNoMetaFileFullPaths(strABResAtlasFullPath);
     }
 
-	/* 获取Prefab下的prefab文件全路径
-    ["F:\github\bsnxlua\u3d\Assets\ABRes\Atlas\gameui1\duiwurenshu.png.png", 
-	"F:\github\bsnxlua\u3d\Assets\ABRes\Atlas\gameui1\duiwu_1_1.png.png",
+	/* 获取ABRes\Prefab下的prefab文件全路径
+    [
+		"F:\github\bsnxlua\u3d\Assets\ABRes\Prefab\UI\a.prefab", 
+		"F:\github\bsnxlua\u3d\Assets\ABRes\Prefab\UI\b.prefab",
 	...]
 	*/
-	public static List<string> GetPrebabFileFullPaths()
+	public static List<string> GetABResPrebabFileFullPaths()
 	{
-		string strPrefabFullPath = Application.dataPath.PathFormat().PathCombine("ABRes").PathCombine("Prefab");
-		// Debug.Log(strPrefabFullPath);
+		string strPrefabFullPath = Application.dataPath.PathFormat().PathCombine(NBsn.C_PathConfig.ABResDir).PathCombine(NBsn.C_PathConfig.ABResPrefabDir);
 		return GetNoMetaFileFullPaths(strPrefabFullPath);
     }
+
+
 
 	public static List<string> GetNoMetaFileFullPaths(string strFullPath)
 	{
@@ -97,7 +99,7 @@ public static class C_Path
                 string file = files[i];
                 if (file.EndsWith(".cs")
                     || file.EndsWith(".meta")
-                    || file.EndsWith(".ab")
+                    || file.EndsWith(NBsn.C_Config.ABSuffix)
                 ) {
                     continue;
                 }

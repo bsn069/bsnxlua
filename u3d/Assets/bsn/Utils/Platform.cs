@@ -8,16 +8,28 @@ namespace NBsn {
 
 public static class CPlatform 
 {
+
 	public static string Name() 
 	{
 		#if UNITY_STANDALONE
-			return "Win";
+			return GetName(0);
 		#elif UNITY_ANDROID
-			return "Android";
+			return GetName(1);
 		#else
 			return null;
 		#endif
 	} 
+
+	public static string GetName(uint index)
+	{
+		return ms_platformNames[index];
+	} 
+
+	private static string[] ms_platformNames = new string[]
+	{
+		"Win"
+		, "Android"
+	};
 } 
 
 }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 16bf9e960caf6904f95cd0fb09192480
-timeCreated: 1502197010
+timeCreated: 1502247218
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName: {}
@@ -68,7 +68,7 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape: []
-  spritePackingTag: 
+  spritePackingTag: icons4
   userData: 
-  assetBundleName: abres/atlas/icons4.ab
+  assetBundleName: atlas/icons4.ab
   assetBundleVariant: 
