@@ -13,8 +13,6 @@ namespace NBsn.NEditor
 
 public static class C_BsnAB
 {
-
-
     [MenuItem("Bsn/Bsn/Set AB Name/Atlas")]
 	private static void SetAtlasABName()
 	{
@@ -56,19 +54,26 @@ public static class C_BsnAB
 	[MenuItem("Bsn/Bsn/Set AB Name/Lua")]
 	private static void SetLuaABName()
 	{
-		var strABResLuaPath = NBsn.C_PathConfig.AssetsABResPath.PathCombine(NBsn.C_PathConfig.ABResLuaDir);
+		var strABResPath = NBsn.C_PathConfig.AssetsABResPath + Path.DirectorySeparatorChar;
 
-		var listPrefabFileFullPaths = NBsn.NEditor.C_Path.GetABResPrebabFileFullPaths();
-		List<string> listAssetsPaths = listPrefabFileFullPaths.FullPaths2AssetsPaths();
-        foreach (var strAssetsPath in listAssetsPaths) {
-            var importer = AssetImporter.GetAtPath(strAssetsPath);
-            if (importer == null) {
-                Debug.LogErrorFormat("basePath={0} importer == null", strAssetsPath);
-                continue;
+		string strABResLuaFullPath = Application.dataPath.PathFormat().PathCombine(NBsn.C_PathConfig.ABResDir).PathCombine(NBsn.C_PathConfig.ABResLuaDir);
+
+		string[] strFileFullPaths = Directory.GetFiles(strABResLuaFullPath, "*.txt", SearchOption.AllDirectories);
+        if (strFileFullPaths != null) 
+		{
+            for (int i = 0; i < strFileFullPaths.Length; ++i)
+			{
+                string strAssetsPath = strFileFullPaths[i].FullPathToAssetsPath();
+
+				var importer = AssetImporter.GetAtPath(strAssetsPath);
+				if (importer == null) {
+					Debug.LogErrorFormat("basePath={0} importer == null", strAssetsPath);
+					continue;
+				}
+
+				var strABPath = strAssetsPath.TrimLeftString(strABResPath) + NBsn.C_Config.ABSuffix;
+				importer.SetAssetBundleNameAndVariant(strABPath, null);
             }
-
-			var strABPath = strAssetsPath.TrimLeftString(strABResPath) + NBsn.C_Config.ABSuffix;
-            importer.SetAssetBundleNameAndVariant(strABPath, null);
         }
     }
 

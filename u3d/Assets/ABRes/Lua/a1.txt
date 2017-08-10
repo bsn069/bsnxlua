@@ -1,0 +1,6 @@
+print('a1(')
+ 
+require 'a2'
+require 'b.b1'
+
+print('a1)')

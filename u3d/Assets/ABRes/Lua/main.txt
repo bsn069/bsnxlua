@@ -1,3 +1,9 @@
+print('main(') 
+require 'a1'
+print('main)')
+require 'a1'
+require 'a2'
+
 print(1111111111111)
 print(CS.NBsn.StringEx.PathTest())
 for i,v in pairs(CS) do
