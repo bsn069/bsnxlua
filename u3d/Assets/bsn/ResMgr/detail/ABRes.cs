@@ -16,7 +16,14 @@ public class C_ABRes: I_ResLoad, I_Init
 {
 	public T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object
 	{
-		return Load<T>(p.strPath, p.strSuffix);
+		var strAssetsPath = string.Format(mc_strPathFormat, p.strPath, p.strSuffix);
+		return AssetDatabase.LoadAssetAtPath<T>(strAssetsPath);
+	}
+
+	public UnityEngine.Object[] LoadAll(C_ResLoadParam p)
+	{
+		var strAssetsPath = string.Format(mc_strPathFormat, p.strPath, p.strSuffix);
+		return AssetDatabase.LoadAllAssetsAtPath(strAssetsPath);
 	}
 
 	public bool Init() 
@@ -28,15 +35,6 @@ public class C_ABRes: I_ResLoad, I_Init
 	public void UnInit() 
 	{
 		
-	}
-
-	public T Load<T>(string strPath, string strSuffix) where T : UnityEngine.Object
-	{
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABRes.Load({0}, {1})", strPath, strSuffix); 
-
-		var strAssetsPath = string.Format(mc_strPathFormat, strPath, strSuffix);
-		NBsn.C_Global.Instance.Log.InfoFormat("strAssetsPath={0}", strAssetsPath);
-		return AssetDatabase.LoadAssetAtPath<T>(strAssetsPath);
 	}
 
 	private readonly string mc_strPathFormat = NBsn.C_PathConfig.AssetsABResPath.PathCombine("{0}.{1}");

@@ -17,6 +17,11 @@ public class C_ABOut : I_ResLoad, I_Init
 		return Load<T>(p.strPath, p.strSuffix);
 	}
 
+	public UnityEngine.Object[] LoadAll(C_ResLoadParam p)
+	{
+		return null;
+	}
+
 	public bool Init() 
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABOut.Init()"); 

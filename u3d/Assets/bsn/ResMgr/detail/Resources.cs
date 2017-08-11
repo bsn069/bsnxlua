@@ -15,6 +15,11 @@ public class C_Resources : I_ResLoad, I_Init
 		return Load<T>(p.strPath);
 	}
 
+	public UnityEngine.Object[] LoadAll(C_ResLoadParam p)
+	{
+		return null;
+	}
+
 	public bool Init() 
 	{
 		return true;

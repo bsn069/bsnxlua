@@ -24,6 +24,17 @@ public class C_ResMgr: I_ResLoad, I_Init
 		return ret;
 	}
 
+	public UnityEngine.Object[] LoadAll(C_ResLoadParam p)
+	{
+		var ret = m_iResLoad.LoadAll(p);
+		if (ret == null) {
+			// second from resources
+			ret = m_Resources.LoadAll(p);
+		}
+
+		return ret;
+	}
+
 	public bool Init() 
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ResMgr.Init()");

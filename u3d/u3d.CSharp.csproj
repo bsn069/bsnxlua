@@ -77,6 +77,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\bsn\AtlasMgr\AtlasMgr.cs" />
+    <Compile Include="Assets\bsn\AtlasMgr\Detail\Atlas.cs" />
     <Compile Include="Assets\bsn\Config.cs" />
     <Compile Include="Assets\bsn\Core\Coroutine.cs" />
     <Compile Include="Assets\bsn\Core\Define.cs" />
@@ -91,6 +93,8 @@
     <Compile Include="Assets\bsn\ResMgr\Detail\Resources.cs" />
     <Compile Include="Assets\bsn\ResMgr\ResMgr.cs" />
     <Compile Include="Assets\bsn\Utils\CommonEx.cs" />
+    <Compile Include="Assets\bsn\Utils\Container\Map.cs" />
+    <Compile Include="Assets\bsn\Utils\Container\MapHelper.cs" />
     <Compile Include="Assets\bsn\Utils\IInit.cs" />
     <Compile Include="Assets\bsn\Utils\IObjectPool.cs" />
     <Compile Include="Assets\bsn\Utils\Log.cs" />

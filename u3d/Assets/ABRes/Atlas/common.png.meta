@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3d656539ba431df469d05537dfacf577
-timeCreated: 1502420085
+timeCreated: 1502443714
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -60,14 +60,20 @@ TextureImporter:
     21300106: zhanchang_2_2
     21300108: zhanchang_2_2_hong
     21300110: zhanchang_2_hong
-    21300112: zhanchangshuxing_an
-    21300114: zhanchangshuxing_guang
-    21300116: zhanchangshuxing_huo
+    21300112: an
+    21300114: guang
+    21300116: huo
     21300118: zhanchangshuxing_mu
-    21300120: zhanchangshuxing_shui
+    21300120: shui
     21300122: zhanchangshuxing_za
     21300124: zhuansheng_1_1
     21300126: zschenggong_1_1
+    21300128: zhanchangshuxing_an
+    21300130: huo
+    21300132: shui
+    21300134: zhanchangshuxing_guang
+    21300136: zhanchangshuxing_huo
+    21300138: zhanchangshuxing_shui
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -85,7 +91,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -120,6 +126,14 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
     maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 1

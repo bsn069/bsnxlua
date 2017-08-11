@@ -31,6 +31,7 @@ public interface I_ResLoad
 			?Resources/Prefab/UI/UIBsnUpdate.prefab
 	*/
 	T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object; 
+	UnityEngine.Object[] LoadAll(C_ResLoadParam p);
 }
 
 }
