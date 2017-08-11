@@ -67,7 +67,7 @@ public class C_AtlasMgr: I_Init
 		{
 			if (pObject is Sprite)
 			{
-				NBsn.C_Global.Instance.Log.InfoFormat("{0}", pObject);
+				// NBsn.C_Global.Instance.Log.InfoFormat("{0}", pObject);
 				pAtlas.AddSprite(pObject.name, pObject as Sprite);
 			}
 		}

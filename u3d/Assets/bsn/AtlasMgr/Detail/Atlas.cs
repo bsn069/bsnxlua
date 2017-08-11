@@ -29,7 +29,7 @@ public class C_Atlas
 
 	public void AddSprite(string strSpriteName, Sprite pSprite)
 	{
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Atlas.AddSprite({0}, {1})", strSpriteName, pSprite);
+		// NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Atlas.AddSprite({0}, {1})", strSpriteName, pSprite);
 
 		m_mapSprites.Add(strSpriteName, pSprite);
 	}

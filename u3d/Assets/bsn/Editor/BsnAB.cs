@@ -13,6 +13,14 @@ namespace NBsn.NEditor
 
 public static class C_BsnAB
 {
+    [MenuItem("Bsn/Bsn/Set AB Name/All")]
+	private static void SetAllABName()
+	{
+		SetAtlasABName();
+		SetPrefabABName();
+		SetLuaABName();
+	}
+
     [MenuItem("Bsn/Bsn/Set AB Name/Atlas")]
 	private static void SetAtlasABName()
 	{
@@ -27,7 +35,7 @@ public static class C_BsnAB
                 continue;
             }
 
-			var strABPath = strAssetsPath.TrimLeftString(strABResPath) + NBsn.C_Config.ABSuffix;
+			var strABPath = strAssetsPath + NBsn.C_Config.ABSuffix;
             importer.SetAssetBundleNameAndVariant(strABPath, null);
         }
     }
@@ -46,7 +54,7 @@ public static class C_BsnAB
                 continue;
             }
 
-			var strABPath = strAssetsPath.TrimLeftString(strABResPath) + NBsn.C_Config.ABSuffix;
+			var strABPath = strAssetsPath + NBsn.C_Config.ABSuffix;
             importer.SetAssetBundleNameAndVariant(strABPath, null);
         }
     }
@@ -71,7 +79,7 @@ public static class C_BsnAB
 					continue;
 				}
 
-				var strABPath = strAssetsPath.TrimLeftString(strABResPath) + NBsn.C_Config.ABSuffix;
+				var strABPath = strAssetsPath + NBsn.C_Config.ABSuffix;
 				importer.SetAssetBundleNameAndVariant(strABPath, null);
             }
         }

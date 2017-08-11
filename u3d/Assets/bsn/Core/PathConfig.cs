@@ -19,12 +19,6 @@ public static class C_PathConfig
 		get { return "ABRes"; }
 	}
 
-	// ABRes下的文件 打包输出总目录
-	public static string ABOutDir
-	{
-		get { return "ABOut"; }
-	}
-
 	// ABRes下的存放图集的目录
 	public static string ABResAtlasDir
 	{
@@ -50,12 +44,24 @@ public static class C_PathConfig
 		get { return AssetsDir.PathCombine(ABResDir); }
 	}
 
+	// AB根目录名
+	public static string ABRootDir
+	{
+		get { return "AB"; }
+	}
 
 	// AB输出Assets下的目录
-	// strPlatform="Win" ABOut/Win/ABRes
+	// strPlatform="Win" ABOut/Win/AB
 	public static string AssetsLatePlatformABOutPath(string strPlatform) 
 	{
-		return ABOutDir.PathCombine(strPlatform).PathCombine(ABResDir);
+		return "ABOut".PathCombine(strPlatform).PathCombine(ABRootDir);
+	}
+
+	// Assets上层全路径
+	// pc F:/github/bsnxlua/u3d
+	public static string AssetsUpFullPath() 
+	{
+		return Application.dataPath.PathUpDir().PathFormat();
 	}
 
 
@@ -87,6 +93,8 @@ public static class C_PathConfig
 		NBsn.C_Global.Instance.Log.InfoFormat("Application.dataPath={0}", Application.dataPath);
 		NBsn.C_Global.Instance.Log.InfoFormat("Application.streamingAssetsPath={0}", Application.streamingAssetsPath);
 		NBsn.C_Global.Instance.Log.InfoFormat("Application.temporaryCachePath={0}", Application.temporaryCachePath);
+
+
 
 		// NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Config.PlatformABPathFormat={0}", NBsn.C_Config.PlatformABPathFormat); 
 		// m_strPlatformABPath = string.Format(

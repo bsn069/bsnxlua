@@ -131,6 +131,12 @@ public class C_Global : IDisposable
 		m_Lua	= new NBsn.C_Lua();
 		Lua.Init();
 		Lua.DoString("require('main')");
+
+		C_ResLoadParam pResLoadParam = new C_ResLoadParam();
+		pResLoadParam.strPath = @"atlas\red";
+		pResLoadParam.strSuffix = "prefab";
+		var a = ResMgr.Load<Sprite>(pResLoadParam);
+		Log.Info(a); 
 	}
 
 	public void UnInit() 
