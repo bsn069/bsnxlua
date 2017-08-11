@@ -27,7 +27,7 @@ public static class C_BsnAB
                 continue;
             }
 
-			var strABPath = strAssetsPath.PathUpDir().TrimLeftString(strABResPath) + NBsn.C_Config.ABSuffix;
+			var strABPath = strAssetsPath.TrimLeftString(strABResPath) + NBsn.C_Config.ABSuffix;
             importer.SetAssetBundleNameAndVariant(strABPath, null);
         }
     }

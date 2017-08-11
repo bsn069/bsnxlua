@@ -138,7 +138,7 @@ public static class C_EditorEx
         tex.SetPixels32(newPixels);
 		tex.Apply();
 		var strFileName = metaData.name.Replace('\\', '_').Replace('/', '_');
-		var strFilePath = strOutDir.PathCombine(strFileName);
+		var strFilePath = strOutDir.PathCombine(strFileName + ".png");
         File.WriteAllBytes(strFilePath, tex.EncodeToPNG());
 		return true;
 	}	

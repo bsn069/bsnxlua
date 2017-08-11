@@ -1,0 +1,1034 @@
+fileFormatVersion: 2
+guid: 3d656539ba431df469d05537dfacf577
+timeCreated: 1502420085
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Anniu07_Changtai
+    21300002: Anniu07_Huitai
+    21300004: Anniu08_Changtai
+    21300006: Anniu08_Hongse
+    21300008: biandui_1_1
+    21300010: biandui_2_1_1
+    21300012: bibochun_1_icon
+    21300014: Daqu_bg1
+    21300016: Daqu_Xuanzhong
+    21300018: Daqu_Xuanzhong_Jiantou
+    21300020: duiwu_1_1
+    21300022: duiwurenshu
+    21300024: Fanhui
+    21300026: Fuwuqi_bg
+    21300028: Gonggao_bg02
+    21300030: hire10_sward1
+    21300032: hire10_sward2
+    21300034: hire10_sward3
+    21300036: hire10_sward4
+    21300038: hire10_sward5
+    21300040: hunpo
+    21300042: hunpo_bg
+    21300044: hunpo_jingyantiao
+    21300046: Login_Family_Xuanzhong
+    21300048: Login_Fanye_You
+    21300050: Login_Fanye_Zuo
+    21300052: Login_Fuwuqi_Anniu
+    21300054: Login_Menpai_bg
+    21300056: Login_Menpai_bg_Xuanzhong
+    21300058: Login_Menpai_Guang
+    21300060: Login_Mi_Yuanbg
+    21300062: Login_Shurukuang_bg
+    21300064: Login_Touxiang_Nan_bg
+    21300066: Login_Touxiang_Nan_Kuang
+    21300068: Login_Touxiang_Nv_bg
+    21300070: Login_Touxiang_Nv_Guang
+    21300072: Login_Touxiang_Nv_Kuang
+    21300074: Login_Zhiyezhanshi_bg
+    21300076: pvp_1_1
+    21300078: qianghua_1_1
+    21300080: Quanping_bg1
+    21300082: State_Gray
+    21300084: State_Green
+    21300086: State_Red
+    21300088: State_Yellow
+    21300090: suo_xiyuanfen
+    21300092: suosou_1_1
+    21300094: tongyong_1_1
+    21300096: vic_jiantou_shengli
+    21300098: zcxq_anniu
+    21300100: zcxq_bg
+    21300102: zhanchang_2
+    21300104: zhanchang_2_1
+    21300106: zhanchang_2_2
+    21300108: zhanchang_2_2_hong
+    21300110: zhanchang_2_hong
+    21300112: zhanchangshuxing_an
+    21300114: zhanchangshuxing_guang
+    21300116: zhanchangshuxing_huo
+    21300118: zhanchangshuxing_mu
+    21300120: zhanchangshuxing_shui
+    21300122: zhanchangshuxing_za
+    21300124: zhuansheng_1_1
+    21300126: zschenggong_1_1
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Anniu07_Changtai
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 921
+        width: 104
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Anniu07_Huitai
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 817
+        width: 104
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Anniu08_Changtai
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 39
+        width: 178
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Anniu08_Hongse
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 30
+        width: 178
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: biandui_1_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 113
+        width: 322
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: biandui_2_1_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 103
+        width: 60
+        height: 764
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bibochun_1_icon
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 19
+        width: 88
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Daqu_bg1
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 808
+        width: 286
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Daqu_Xuanzhong
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 925
+        width: 112
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Daqu_Xuanzhong_Jiantou
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 259
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: duiwu_1_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 361
+        width: 60
+        height: 506
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: duiwurenshu
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 5
+        width: 188
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Fanhui
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 688
+        width: 36
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Fuwuqi_bg
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 72
+        width: 144
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Gonggao_bg02
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 204
+        width: 200
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hire10_sward1
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 746
+        width: 102
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hire10_sward2
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 9
+        width: 108
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hire10_sward3
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 104
+        width: 118
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hire10_sward4
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 268
+        width: 193
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hire10_sward5
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 688
+        width: 182
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hunpo
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 162
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hunpo_bg
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 463
+        width: 124
+        height: 560
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: hunpo_jingyantiao
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 376
+        width: 336
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Family_Xuanzhong
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 369
+        width: 143
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Fanye_You
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 728
+        width: 42
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Fanye_Zuo
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 845
+        width: 42
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Fuwuqi_Anniu
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 627
+        width: 238
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Menpai_bg
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 158
+        width: 106
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Menpai_bg_Xuanzhong
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 94
+        width: 106
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Menpai_Guang
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 706
+        width: 83
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Mi_Yuanbg
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 103
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Shurukuang_bg
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 573
+        width: 60
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Touxiang_Nan_bg
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 869
+        width: 150
+        height: 154
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Touxiang_Nan_Kuang
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 258
+        width: 126
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Touxiang_Nv_bg
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 619
+        width: 150
+        height: 154
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Touxiang_Nv_Guang
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 11
+        width: 104
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Touxiang_Nv_Kuang
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 171
+        width: 125
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Login_Zhiyezhanshi_bg
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 121
+        width: 83
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pvp_1_1
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 401
+        width: 504
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: qianghua_1_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 237
+        width: 402
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Quanping_bg1
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 912
+        width: 200
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: State_Gray
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 735
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: State_Green
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 683
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: State_Red
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 631
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: State_Yellow
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 582
+        width: 16
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: suo_xiyuanfen
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 55
+        width: 30
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: suosou_1_1
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 775
+        width: 60
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: tongyong_1_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 175
+        width: 368
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: vic_jiantou_shengli
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 787
+        width: 24
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zcxq_anniu
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 112
+        width: 72
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zcxq_bg
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 538
+        width: 324
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchang_2
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 462
+        width: 370
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchang_2_1
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 778
+        width: 48
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchang_2_2
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 183
+        width: 27
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchang_2_2_hong
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 49
+        width: 27
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchang_2_hong
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 386
+        width: 370
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchangshuxing_an
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 338
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchangshuxing_guang
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 290
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchangshuxing_huo
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 73
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchangshuxing_mu
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 5
+        width: 46
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchangshuxing_shui
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 27
+        width: 46
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhanchangshuxing_za
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 66
+        width: 46
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zhuansheng_1_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 51
+        width: 222
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zschenggong_1_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 299
+        width: 574
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: atlas/common.png.ab
+  assetBundleVariant: 
