@@ -2,11 +2,14 @@ version: 2
 importPivots: 1
 tpsheetFileNames:
 - Assets/ABRes/Atlas/common.tpsheet
+- Assets/ABRes/Atlas/uipack.tpsheet
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
 textureFileNames:
 - Assets/ABRes/Atlas/common.png
+- Assets/ABRes/Atlas/uipack.png
 - Assets/codeandweb.com/Example/SpriteSheet/sprites.png
 normalmapFileNames:
+- 
 - 
 - Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
 enableDebugOutput: 0

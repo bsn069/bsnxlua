@@ -24,7 +24,7 @@ public interface I_ResLoad
 			. NBsn.C_Config.ResLoadType = NBsn.E_ResLoadType.EditorABRes
 				pc Assets/ABRes/Prefab/UI/UIBsnUpdate.prefab
 			. NBsn.C_Config.ResLoadType = NBsn.E_ResLoadType.EditorABOut
-				pc Assets/ABOut/Win/AB/prefab/ui/uibsnupdate.prefab.ab
+				pc Assets/ABOut/Win/AB/assets/abres/prefab/ui/uibsnupdate.prefab.ab
 			. NBsn.C_Config.ResLoadType = NBsn.E_ResLoadType.AppAB
 				 
 		2. not found  

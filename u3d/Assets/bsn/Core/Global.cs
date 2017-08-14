@@ -34,6 +34,11 @@ public class C_Global : IDisposable
 		get { return m_ResMgr; }
 	}
 
+	public NBsn.C_UIMgr UIMgr
+	{
+		get { return m_UIMgr; }
+	}
+
 	public NBsn.C_Coroutine Coroutine 
 	{
 		get {return m_Coroutine;}
@@ -128,6 +133,9 @@ public class C_Global : IDisposable
 		m_AtlasMgr = new NBsn.C_AtlasMgr();
 		AtlasMgr.Init();
 
+		m_UIMgr = new NBsn.C_UIMgr();
+		UIMgr.Init();
+
 		m_Lua	= new NBsn.C_Lua();
 		Lua.Init();
 		Lua.DoString("require('main')");
@@ -145,6 +153,9 @@ public class C_Global : IDisposable
 
 		Lua.UnInit();
 		m_Lua = null;
+
+		UIMgr.UnInit();
+		m_UIMgr = null;		
 
 		AtlasMgr.UnInit();
 		m_AtlasMgr = null;		
@@ -184,6 +195,7 @@ public class C_Global : IDisposable
 	protected NBsn.C_Coroutine 	m_Coroutine = null;
 	protected NBsn.C_AtlasMgr	m_AtlasMgr 	= null;
 	protected NBsn.C_ResMgr		m_ResMgr 	= null;
+	protected NBsn.C_UIMgr		m_UIMgr 	= null;
 
 	protected NBsn.M_Main 	m_Main 		= null;
 	protected GameObject 	m_goMain 	= null;

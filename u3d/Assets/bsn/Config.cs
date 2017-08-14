@@ -27,7 +27,8 @@ public static class C_Config
 	}
 
 	#region
-	private static NBsn.E_ResLoadType ms_eResLoadType = NBsn.E_ResLoadType.EditorABOut;
+	// private static NBsn.E_ResLoadType ms_eResLoadType = NBsn.E_ResLoadType.EditorABOut;
+	private static NBsn.E_ResLoadType ms_eResLoadType = NBsn.E_ResLoadType.EditorABRes;
 	#endregion
 }
 
