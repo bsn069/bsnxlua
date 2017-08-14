@@ -10,8 +10,9 @@ namespace NBsn
 
 public class C_ResLoadParam
 {
-	public string strPath 	= null;
-	public string strSuffix = null;
+	public string 	strPath 	= null;
+	public string 	strSuffix 	= null;
+	public bool 	m_bClone 	= false;
 }
 
 public interface I_ResLoad

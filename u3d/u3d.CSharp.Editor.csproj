@@ -235,6 +235,7 @@
     <None Include="Assets\ABRes\Lua\b\c\c1.txt" />
     <None Include="Assets\ABRes\Lua\b\c\c2.txt" />
     <None Include="Assets\ABRes\Lua\main.txt" />
+    <None Include="Assets\ABRes\Lua\ui\ui.txt" />
     <None Include="Assets\Editor Default Resources\readme.txt" />
     <None Include="Assets\Editor\readme.txt" />
     <None Include="Assets\Gizmos\readme.txt" />

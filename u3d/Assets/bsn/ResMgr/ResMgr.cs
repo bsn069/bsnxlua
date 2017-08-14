@@ -21,6 +21,17 @@ public class C_ResMgr: I_ResLoad, I_Init
 			ret = m_Resources.Load<T>(p);
 		}
 
+		if (p.m_bClone && ret != null) {
+			GameObject go = ret as GameObject;
+			if (go != null)
+			{
+				go = (GameObject)UnityEngine.Object.Instantiate(go);
+				go.name = go.name.Replace("(Clone)", "");
+				return go as T;
+			}
+			return null;
+		}
+
 		return ret;
 	}
 

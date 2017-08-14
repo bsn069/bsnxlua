@@ -1,0 +1,8 @@
+
+
+ui = ui or {}
+local fl_oUIMgr = CS.NBsn.C_Global.Instance.UIMgr
+
+function ui:GetUI(strUIName)
+	fl_oUIMgr:GetUI(strUIName, true)
+end

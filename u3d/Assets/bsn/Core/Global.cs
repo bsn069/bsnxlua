@@ -133,8 +133,11 @@ public class C_Global : IDisposable
 		m_AtlasMgr = new NBsn.C_AtlasMgr();
 		AtlasMgr.Init();
 
-		m_UIMgr = new NBsn.C_UIMgr();
-		UIMgr.Init();
+		if (m_tfMain != null)
+		{
+			m_UIMgr = new NBsn.C_UIMgr();
+			UIMgr.Init(m_tfMain.Find("UIMgr"));
+		}
 
 		m_Lua	= new NBsn.C_Lua();
 		Lua.Init();
@@ -160,8 +163,11 @@ public class C_Global : IDisposable
 		AtlasMgr.UnInit();
 		m_AtlasMgr = null;		
 
-		ResMgr.UnInit();
-		m_ResMgr = null;		
+		if (m_tfMain != null)
+		{
+			ResMgr.UnInit();
+			m_ResMgr = null;		
+		}
 
 		if (Coroutine != null)
 		{
