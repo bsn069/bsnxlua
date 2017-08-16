@@ -7,7 +7,15 @@ using UnityEngine;
 namespace NBsn.NMVVM
 {
 
-public abstract class View<T> : MonoBehaviour where T:ViewModel
+
+interface I_View
+{
+	void Show(Action actionOnShowAfter);
+	void Hide(Action actionOnHideAfter);	
+}
+
+
+public abstract class View<T> : MonoBehaviour, I_View where T:ViewModel
 {
 	#region mono behaviour
 	protected virtual void Awake()
@@ -118,7 +126,6 @@ public abstract class View<T> : MonoBehaviour where T:ViewModel
 
 	protected virtual void OnHide()
 	{
-		
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnHide()", typeof(T));
 	}
 

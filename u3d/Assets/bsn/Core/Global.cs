@@ -136,7 +136,7 @@ public class C_Global : IDisposable
 		if (m_tfMain != null)
 		{
 			m_UIMgr = new NBsn.C_UIMgr();
-			UIMgr.Init(m_tfMain.Find("UIMgr"));
+			UIMgr.Init(m_tfMain);
 		}
 
 		m_Lua	= new NBsn.C_Lua();

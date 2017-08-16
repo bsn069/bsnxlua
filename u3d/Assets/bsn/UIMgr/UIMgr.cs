@@ -10,20 +10,18 @@ namespace NBsn
 
 public class C_UIMgr
 {
+	
 	/*
 	strUIName UILogin
 	*/
-	public GameObject GetUI(string strUIName, bool bLoad)
+	public GameObject GetUI(string strUIName)
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_UIMgr.GetUI() strUIName={0}", strUIName);
 
 		GameObject pRet;
 		if (!m_mapUIs.TryGetValue(strUIName, out pRet))
 		{
-			if (bLoad)
-			{
-				return LoadUI(strUIName);
-			}
+			return LoadUI(strUIName);
 		}
 		return pRet;
 	}
@@ -50,27 +48,37 @@ public class C_UIMgr
 		rectTransform.sizeDelta = Vector2.zero;
 		rectTransform.localScale = Vector3.one;
 
+		var canvas = goUIPrefeb.GetComponent<Canvas>();
+		canvas.worldCamera = m_Camera;
+
 		m_mapUIs.Add(strUIName, goUIPrefeb);
 		return goUIPrefeb;
 	}
 
 	#region init
-	public bool Init(Transform tfUIMgr) 
+	public bool Init(Transform tfMain) 
 	{
 		NBsn.C_Global.Instance.Log.Info("NBsn.C_UIMgr.Init()");
-		m_tfUI = tfUIMgr;
-		// GetUI("UILogin", true);
-		// GetUI("UILogin", true);
+		m_tfUI = tfMain.Find("UIMgr");
+		m_Camera = tfMain.FindChild("UICamera").GetComponent<Camera>();
 		return true;
 	}
 
 	public void UnInit() 
 	{
 		NBsn.C_Global.Instance.Log.Info("NBsn.C_UIMgr.UnInit()");
+
+		var itor = m_mapUIs.GetEnumerator();
+        while (itor.MoveNext())
+        {
+            GameObject.DestroyImmediate(itor.Current.Value);
+        }
+		m_mapUIs.Clear();
 	}
 	#endregion
 
 	private Transform 	m_tfUI = null;
+	private Camera 		m_Camera = null;
 	private string 		m_strPathSuffix = "Prefab".PathCombine("UI") + Path.DirectorySeparatorChar;
 	private NBsn.NContainer.Map<string, GameObject> m_mapUIs = new NBsn.NContainer.Map<string, GameObject>();
 }
