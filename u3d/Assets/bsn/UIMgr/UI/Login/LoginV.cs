@@ -3,41 +3,67 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NBsn.NMVVM
 {
 
 public class LoginV: View<LoginVM>
 {
-	public InputField m_inputName;
-	public InputField m_inputPwd;
-	public Button m_btnLogin;
+	#region UI
+	public InputField 	m_inputName;
+	public InputField 	m_inputPwd;
+	public Button 		m_btnLogin;
+	#endregion
 
 	public LoginVM VM 
 	{ 
-		get { return (LoginVM)Context; } 
+		get { return (LoginVM)GetVM(); } 
 	}
 
+	#region init
 	protected override void OnInit()
 	{
-		base.OnInit();
-		m_btnLogin.onClick.AddListener(AddMember);
-	}
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.LoginV.OnInit()");
 
-	public void NameChanged()
+		Binder.Add<string>("NameDefault", VMOnNameDefaultChanged);
+
+		var vm = new LoginVM();
+		SetVM(vm);
+	}
+	#endregion
+
+	#region UIXXX
+	public void UIOnNameChanged()
 	{
+		NBsn.C_Global.Instance.Log.Info("NBsn.NMVVM.LoginV.UIOnNameChanged()");
+
 		VM.Name.Value = m_inputName.text;
 	}
 
-	public void PwdChanged()
+	public void UIOnPwdChanged()
 	{
+		NBsn.C_Global.Instance.Log.Info("NBsn.NMVVM.LoginV.UIOnPwdChanged()");
+
 		VM.Pwd.Value = m_inputPwd.text;
 	}
 
-	public void OnClickLogin()
+	public void UIOnClickLogin()
 	{
+		NBsn.C_Global.Instance.Log.Info("NBsn.NMVVM.LoginV.UIOnClickLogin()");
+
 		VM.Login();
 	}
+	#endregion
+
+	#region VMXXX
+	private void VMOnNameDefaultChanged(string oldValue, string newValue)
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.LoginV.VMOnNameDefaultChanged() oldValue={0} newValue={1}", oldValue, newValue);
+
+		m_inputName.text = newValue;
+	}
+	#endregion
 }
 
 }

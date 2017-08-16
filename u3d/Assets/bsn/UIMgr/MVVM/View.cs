@@ -7,52 +7,92 @@ using UnityEngine;
 namespace NBsn.NMVVM
 {
 
-public abstract class View<T> where T:ViewModel
+public abstract class View<T> : MonoBehaviour where T:ViewModel
 {
-	public T Context
+	#region mono behaviour
+	protected virtual void Awake()
 	{
-		get { return ViewModelProperty.Value; }
-		set
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.Awake()", typeof(T));
+
+		OnInit();
+	}
+
+	protected virtual void OnDestroy()
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnDestroy()", typeof(T));
+		OnUnInit();
+	}
+	#endregion
+
+	#region init
+	protected virtual void OnInit()
+	{
+		
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnInit()", typeof(T));
+	}
+	
+	protected virtual void OnUnInit()
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnUnInit()", typeof(T));
+		SetVM(null);		
+	}
+	#endregion
+
+	#region vm
+	protected virtual void SetVM(T vm)
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.SetVM()", typeof(T));
+		if (m_vm == vm)
 		{
-			if (!m_bInit)
-			{
-				OnInit();
-				m_bInit = true;
-			}
-			ViewModelProperty.Value = value;
+			return;
+		}
+
+		if (m_vm != null)
+		{			
+			Binder.Unbind(m_vm);
+			m_vm.OnUnInit();
+		}
+		m_vm = vm;
+		if (m_vm != null)
+		{			
+			Binder.Bind(m_vm);
+			m_vm.OnInit();
 		}
 	}
 
-	// 绑定的上下文发生改变时
-	public virtual void OnContextChanged(T oldValue, T newValue)
+	protected virtual T GetVM()
 	{
-		Binder.Unbind(oldValue);
-		Binder.Bind(newValue);
+		return m_vm;
 	}
+	#endregion
 
 	#region show
-	public void Show(Action actionOnShowAfter)
+	public virtual void Show(Action actionOnShowAfter)
 	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.Show()", typeof(T));
 		m_actionOnShowAfter = actionOnShowAfter;
 		OnShowBegin();
 		OnShow();
 		OnShowEnd();
 	}
 
-	public virtual void OnShowBegin()
+	protected virtual void OnShowBegin()
 	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnShowBegin()", typeof(T));
 		gameObject.SetActive(true);
-		Context.OnShowBegin();
+		GetVM().OnShowBegin();
 	}
 
-	public virtual void OnShow()
+	protected virtual void OnShow()
 	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnShow()", typeof(T));
 		
 	}
 
-	public virtual void OnShowEnd()
+	protected virtual void OnShowEnd()
 	{
-		Context.OnShowEnd();
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnShowEnd()", typeof(T));
+		GetVM().OnShowEnd();
 		if (m_actionOnShowAfter != null)
 		{
 			m_actionOnShowAfter();
@@ -61,28 +101,32 @@ public abstract class View<T> where T:ViewModel
 	#endregion
 
 	#region hide
-	public void Hide(Action actionOnHideAfter)
+	public virtual void Hide(Action actionOnHideAfter)
 	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.Hide()", typeof(T));
 		m_actionOnHideAfter = actionOnHideAfter;
 		OnHideBegin();
 		OnHide();
 		OnHideEnd();
 	}
 
-	public virtual void OnHideBegin()
+	protected virtual void OnHideBegin()
 	{
-		Context.OnHideBegin();
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnHideBegin()", typeof(T));
+		GetVM().OnHideBegin();
 	}
 
-	public virtual void OnHide()
+	protected virtual void OnHide()
 	{
 		
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnHide()", typeof(T));
 	}
 
-	public virtual void OnHideEnd()
+	protected virtual void OnHideEnd()
 	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.OnHideEnd()", typeof(T));
 		gameObject.SetActive(false);
-		Context.OnHideEnd();
+		GetVM().OnHideEnd();
 		if (m_actionOnHideAfter != null)
 		{
 			m_actionOnHideAfter();
@@ -90,16 +134,10 @@ public abstract class View<T> where T:ViewModel
 	}
 	#endregion
 
-	protected virtual void OnInit()
-	{
-		ViewModelProperty.OnValueChanged += OnContextChanged;
-	}
-
+	protected T 		m_vm 				= null;
+	protected Action 	m_actionOnShowAfter = null;
+	protected Action 	m_actionOnHideAfter = null;
 	protected readonly PropertyBinder<T> Binder=new PropertyBinder<T>();
-	private readonly BindableProperty<T> ViewModelProperty = new BindableProperty<T>();
-	private bool m_bInit = false;
-	protected Action m_actionOnShowAfter = null;
-	protected Action m_actionOnHideAfter = null;
 }
 
 }

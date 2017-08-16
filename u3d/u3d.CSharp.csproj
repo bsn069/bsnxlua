@@ -92,7 +92,12 @@
     <Compile Include="Assets\bsn\ResMgr\Detail\IResLoad.cs" />
     <Compile Include="Assets\bsn\ResMgr\Detail\Resources.cs" />
     <Compile Include="Assets\bsn\ResMgr\ResMgr.cs" />
+    <Compile Include="Assets\bsn\UIMgr\MVVM\View.cs" />
+    <Compile Include="Assets\bsn\UIMgr\MVVM\ViewModel.cs" />
+    <Compile Include="Assets\bsn\UIMgr\UI\Login\LoginV.cs" />
+    <Compile Include="Assets\bsn\UIMgr\UI\Login\LoginVM.cs" />
     <Compile Include="Assets\bsn\UIMgr\UIMgr.cs" />
+    <Compile Include="Assets\bsn\Utils\BindableProperty.cs" />
     <Compile Include="Assets\bsn\Utils\CommonEx.cs" />
     <Compile Include="Assets\bsn\Utils\Container\Map.cs" />
     <Compile Include="Assets\bsn\Utils\Container\MapHelper.cs" />
@@ -103,6 +108,7 @@
     <Compile Include="Assets\bsn\Utils\ObjectPool.cs" />
     <Compile Include="Assets\bsn\Utils\Path.cs" />
     <Compile Include="Assets\bsn\Utils\Platform.cs" />
+    <Compile Include="Assets\bsn\Utils\PropertyBinder.cs" />
     <Compile Include="Assets\bsn\Utils\StringEx.cs" />
     <Compile Include="Assets\bsn\Utils\Timer.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
