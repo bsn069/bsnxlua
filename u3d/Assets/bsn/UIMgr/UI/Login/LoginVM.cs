@@ -50,6 +50,10 @@ public class LoginVM : ViewModel
 	public void Login()
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.LoginVM.Login() Name={0}, Pwd={1}", Name, Pwd);
+
+		var pMsgView = NBsn.C_Global.Instance.UIMgr.GetView("UIMsg");
+		pMsgView.Show(null);
+		NBsn.C_Global.Instance.UIMgr.GetView("UILogin").Hide(null);
 	}
 	#endregion
 }

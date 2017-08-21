@@ -11,4 +11,5 @@ for i,v in pairs(CS) do
 	print(i,v)
 end
 
-ui:GetUI("UILogin")
+local l_oLoginView = ui:GetView("UILogin")
+l_oLoginView:Show(nil)

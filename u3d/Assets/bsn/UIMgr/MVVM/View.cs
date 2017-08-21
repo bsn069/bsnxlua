@@ -8,7 +8,7 @@ namespace NBsn.NMVVM
 {
 
 
-interface I_View
+public interface I_View
 {
 	void Show(Action actionOnShowAfter);
 	void Hide(Action actionOnHideAfter);	

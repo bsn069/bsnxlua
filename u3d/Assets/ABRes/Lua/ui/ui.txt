@@ -4,5 +4,9 @@ ui = ui or {}
 local fl_oUIMgr = CS.NBsn.C_Global.Instance.UIMgr
 
 function ui:GetUI(strUIName)
-	fl_oUIMgr:GetUI(strUIName, true)
+	return fl_oUIMgr:GetUI(strUIName)
+end
+
+function ui:GetView(strUIName)
+	return fl_oUIMgr:GetView(strUIName)
 end

@@ -9,8 +9,23 @@ namespace NBsn
 {
 
 public class C_UIMgr
-{
-	
+{	
+	/*
+	strUIName UILogin
+	*/
+	public NBsn.NMVVM.I_View GetView(string strUIName)
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_UIMgr.GetView() strUIName={0}", strUIName);
+
+		GameObject pGo = GetUI(strUIName);
+		if (pGo == null)
+		{
+			return null;
+		}
+
+		return pGo.GetComponent<NBsn.NMVVM.I_View>();
+	}
+
 	/*
 	strUIName UILogin
 	*/
@@ -52,6 +67,7 @@ public class C_UIMgr
 		canvas.worldCamera = m_Camera;
 
 		m_mapUIs.Add(strUIName, goUIPrefeb);
+		goUIPrefeb.SetActive(false);
 		return goUIPrefeb;
 	}
 
@@ -60,7 +76,7 @@ public class C_UIMgr
 	{
 		NBsn.C_Global.Instance.Log.Info("NBsn.C_UIMgr.Init()");
 		m_tfUI = tfMain.Find("UIMgr");
-		m_Camera = tfMain.FindChild("UICamera").GetComponent<Camera>();
+		m_Camera = tfMain.Find("UICamera").GetComponent<Camera>();
 		return true;
 	}
 
