@@ -12,6 +12,7 @@ public interface I_View
 {
 	void Show(Action actionOnShowAfter);
 	void Hide(Action actionOnHideAfter);	
+	ViewModel GetVM();
 }
 
 
@@ -68,7 +69,7 @@ public abstract class View<T> : MonoBehaviour, I_View where T:ViewModel
 		}
 	}
 
-	protected virtual T GetVM()
+	public virtual ViewModel GetVM()
 	{
 		return m_vm;
 	}

@@ -13,6 +13,7 @@ public class MsgV: View<MsgVM>
 	#region UI
 	public Text 	m_textName;
 	public Text 	m_textDesc;
+	public GameObject m_goBackGround = null;
 	#endregion
 
 	public MsgVM VM 
@@ -28,13 +29,19 @@ public class MsgV: View<MsgVM>
 		Binder.Add<string>("Name", VMOnNameChanged);
 		Binder.Add<string>("Desc", VMOnDescChanged);
 
+		C_UIEvent.Get(m_goBackGround).onClick += UIOnClickBackGround;
+
 		var vm = new MsgVM();
 		SetVM(vm);
 	}
 	#endregion
 
 	#region UIXXX
-	
+	void UIOnClickBackGround(GameObject go)
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.MsgV.UIOnClickBackGround() go={0}", go);
+		Hide(null);
+	}
 	#endregion
 
 	#region VMXXX

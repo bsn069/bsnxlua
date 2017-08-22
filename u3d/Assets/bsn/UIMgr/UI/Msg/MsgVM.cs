@@ -31,7 +31,7 @@ public class MsgVM : ViewModel
 	#endregion
 
 	#region func
- 
+
 	#endregion
 }
 
