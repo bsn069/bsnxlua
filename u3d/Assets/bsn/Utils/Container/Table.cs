@@ -1,9 +1,20 @@
 using System;
+using UnityEngine;
+using System.Collections;
+using System;
+
+namespace NBsn.NContainer {
+
+public interface I_Key<TKey>
+{
+	TKey GetKey();
+}
+
 
 // 线性存储的表
 public class Table<TKey, TValue>
     where TKey : IComparable<TKey>
-    where TValue : IComparable<TValue>, ITableType<TKey, TValue>
+    where TValue : IComparable<TValue>, I_Key<TKey>
 {
     public Table(){
         m_list = new Vector<TValue>();
@@ -24,12 +35,12 @@ public class Table<TKey, TValue>
     public bool Add(TKey key, TValue value) {
 #if UNITY_EDITOR
         if (value.GetKey().CompareTo(key) != 0) {
-            Log.Error("Add Value With different key.");
+            Debug.LogError("Add Value With different key.");
             return false;
         }
 #endif
         if (m_bSorted) {
-            if (m_list.Count > 0 && m_list[m_list.Count - 1].CompareTo(value) > 0) {
+            if (m_list.Size() > 0 && m_list[m_list.Size() - 1].CompareTo(value) > 0) {
                 m_bSorted = false;
             }
         }
@@ -45,7 +56,7 @@ public class Table<TKey, TValue>
         }
 
         int pos = LowerBounder(key);
-        if (pos < m_list.Count && m_list[pos].GetKey().CompareTo(key) == 0) {
+        if (pos < m_list.Size() && m_list[pos].GetKey().CompareTo(key) == 0) {
             ret = m_list[pos];
             return true;
         }
@@ -74,7 +85,7 @@ public class Table<TKey, TValue>
         }
 
         int pos = LowerBounder(key);
-        if (pos < m_list.Count && m_list[pos].GetKey().CompareTo(key) == 0) {
+        if (pos < m_list.Size() && m_list[pos].GetKey().CompareTo(key) == 0) {
             return true;
         }
 
@@ -83,8 +94,8 @@ public class Table<TKey, TValue>
 
     public TValue Get(int index) {
 #if UNITY_EDITOR
-        if (index < 0 || index >= m_list.Count) {
-            Log.Error("[Table] Argument out of Index.");
+        if (index < 0 || index >= m_list.Size()) {
+            Debug.LogError("[Table] Argument out of Index.");
             return default(TValue);
         }
 #endif
@@ -102,9 +113,9 @@ public class Table<TKey, TValue>
 
     public bool CheckData() {
 #if UNITY_EDITOR
-        for (int i = 1; i < m_list.Count; ++i) {
+        for (int i = 1; i < m_list.Size(); ++i) {
             if (m_list[i - 1].CompareTo(m_list[i]) == 0) {
-                Log.Error("[Table] Key={0},Value={1} Has SameKey.", typeof(TKey), typeof(TValue));
+                Debug.LogErrorFormat("[Table] Key={0},Value={1} Has SameKey.", typeof(TKey), typeof(TValue));
                 return false;
             }
         }
@@ -113,7 +124,7 @@ public class Table<TKey, TValue>
     }
 
     public int LowerBounder(TKey key) {
-        int low = 0, high = m_list.Count;
+        int low = 0, high = m_list.Size();
 
         while (low < high) {
             int mid = (low + high) >> 1;
@@ -129,4 +140,7 @@ public class Table<TKey, TValue>
 
     private bool m_bSorted = true;
     private Vector<TValue> m_list = null;
+}
+
+
 }

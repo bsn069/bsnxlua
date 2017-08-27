@@ -29,18 +29,17 @@ public class MsgV: View<MsgVM>
 		Binder.Add<string>("Name", VMOnNameChanged);
 		Binder.Add<string>("Desc", VMOnDescChanged);
 
-		C_UIEvent.Get(m_goBackGround).onClick += UIOnClickBackGround;
-
 		var vm = new MsgVM();
 		SetVM(vm);
 	}
 	#endregion
 
 	#region UIXXX
-	void UIOnClickBackGround(GameObject go)
+	public void UIOnClickHide()
 	{
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.MsgV.UIOnClickBackGround() go={0}", go);
-		Hide(null);
+		NBsn.C_Global.Instance.Log.Info("NBsn.NMVVM.LoginV.UIOnClickHide()");
+
+		Hide();
 	}
 	#endregion
 

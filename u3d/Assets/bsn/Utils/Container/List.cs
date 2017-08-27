@@ -20,7 +20,7 @@ public class List<T> {
     }
 
 	public int Capacity() {
-		return m_value.Length;
+		return m_value.Capacity();
 	}
 
     public int PushFront(T value) {
@@ -43,7 +43,7 @@ public class List<T> {
     }
 
     public void Remove(int id) {
-        if (id == INVALID_HEAD || id >= m_value.Count) {
+        if (id == INVALID_HEAD || id >= m_value.Size()) {
             return;
         }
         m_next[m_prev[id]] = m_next[id];
@@ -55,7 +55,7 @@ public class List<T> {
     }
 
     public T GetValue(int id) {
-        if (id == INVALID_HEAD || id >= m_value.Count) {
+        if (id == INVALID_HEAD || id >= m_value.Size()) {
             return default(T);
         }
         return m_value[id];
@@ -89,13 +89,13 @@ public class List<T> {
 
     private int _RequestFirstNew(T value) {
         int id = INVALID_HEAD;
-        if (m_freeList.Count > 0) {
+        if (m_freeList.Size() > 0) {
             id = m_freeList.PopBack();
             m_next[id] = id;
             m_prev[id] = id;
             m_value[id] = value;
         } else {
-            id = m_value.Count;
+            id = m_value.Size();
             m_next.PushBack(id);
             m_prev.PushBack(id);
             m_value.PushBack(value);

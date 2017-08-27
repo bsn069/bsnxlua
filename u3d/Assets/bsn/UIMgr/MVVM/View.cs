@@ -11,7 +11,9 @@ namespace NBsn.NMVVM
 public interface I_View
 {
 	void Show(Action actionOnShowAfter);
+	void Show();
 	void Hide(Action actionOnHideAfter);	
+	void Hide();	
 	ViewModel GetVM();
 }
 
@@ -76,6 +78,11 @@ public abstract class View<T> : MonoBehaviour, I_View where T:ViewModel
 	#endregion
 
 	#region show
+	public void Show()
+	{
+		Show(null);
+	}	
+
 	public virtual void Show(Action actionOnShowAfter)
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.Show()", typeof(T));
@@ -110,6 +117,11 @@ public abstract class View<T> : MonoBehaviour, I_View where T:ViewModel
 	#endregion
 
 	#region hide
+	public void Hide()
+	{
+		Hide(null);
+	}	
+	
 	public virtual void Hide(Action actionOnHideAfter)
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.View<{0}>.Hide()", typeof(T));

@@ -1,5 +1,9 @@
 using System;
 using System.Runtime.InteropServices;
+using UnityEngine;
+using System.Collections;
+using System;
+
 namespace NBsn.NContainer {
 
 public class Vector<T> {
@@ -95,7 +99,7 @@ public class Vector<T> {
             Marshal.Copy(buffer, 0, pointer, buffer.Length);
             m_size = count;
         } catch (Exception e) {
-            Log.Assert(false, e.Message);
+            Debug.Log(e.Message);
         } finally {
             if (handle.IsAllocated) handle.Free();
         }
@@ -110,7 +114,7 @@ public class Vector<T> {
             Marshal.Copy(pointer, destination, 0, destination.Length);
             return destination;
         } catch (Exception e) {
-            Log.Error(e.Message);
+            Debug.Log(e.Message);
         } finally {
             if (handle.IsAllocated) handle.Free();
         }
