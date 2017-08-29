@@ -74,7 +74,7 @@ public class Heap<T> where T : IComparable<T> {
     }
 
     private int GetDominating(int newNode, int dominatingNode) {
-        if (newNode < m_heap.Count && !Dominates(m_heap[dominatingNode], m_heap[newNode]))
+        if (newNode < Size() && !Dominates(m_heap[dominatingNode], m_heap[newNode]))
             return newNode;
         else
             return dominatingNode;

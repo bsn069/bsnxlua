@@ -51,11 +51,13 @@ public class LoginVM : ViewModel
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.LoginVM.Login() Name={0}, Pwd={1}", Name, Pwd);
 
-		var pView = NBsn.C_Global.Instance.UIMgr.GetView("UIMsg");
+		var pView = NBsn.C_Global.Instance.UIMgr.GetView("UIUpdate");
 		pView.Show(null);
-		var pVM = pView.GetVM() as MsgVM;
-		pVM.Name.Value = "aaaaaaaaa";
-		pVM.Desc.Value = "aaaaaaaaa";
+		// var pView = NBsn.C_Global.Instance.UIMgr.GetView("UIMsg");
+		// pView.Show(null);
+		// var pVM = pView.GetVM() as MsgVM;
+		// pVM.Name.Value = "aaaaaaaaa";
+		// pVM.Desc.Value = "aaaaaaaaa";
 	}
 	#endregion
 }
