@@ -4,9 +4,6 @@ using System.IO;
 using System;
 using UnityEngine;
 
-namespace NBsn 
-{
-
 public class C_EventMgr 
 {
     public bool Add(int nEventId, Action pAction)
@@ -298,8 +295,22 @@ public class C_EventMgr
         pDelegateAction(p1, p2);
     }
 
-     public bool Add<P1, P2, P3>(int nEventId, Action<P1, P2, P3> pAction)
+    public bool Add<P1, P2, P3>(int nEventId, Action<P1, P2, P3> pAction)
     {
+        if (pAction == null) 
+        {
+#if UNITY_EDITOR
+            Debug.LogErrorFormat(
+                "nEventId={0} P1={1}, P2={2}, P3={3} pAction=null"
+                , nEventId
+                , typeof(P1).GetType().Name
+                , typeof(P2).GetType().Name
+                , typeof(P3).GetType().Name
+            );
+#endif
+            return false;
+        }
+
         Delegate pDelegate;
         if (!m_id2Delegate.TryGetValue(nEventId, out pDelegate)) 
         {
@@ -406,6 +417,21 @@ public class C_EventMgr
         p.TestP0();
         p.TestP1();
         p.TestP2();
+        p.TestP3();
+    }
+
+    private void TestP3()
+    {
+        Add<int, string, uint>(31, P3_1);
+        Del<int, string, uint>(31, P3_1);
+
+        Add<int, string, byte>(32, null);
+        Del<int, string, byte>(32, null);
+    }
+
+    private void P3_1(int i, string j, uint k)
+    {
+        Debug.LogFormat("exec P3_1 {0} {1} {2}", i, j, k);
     }
 
     private void TestP2()
@@ -474,6 +500,4 @@ public class C_EventMgr
 #endif
 
     Dictionary<int, Delegate> m_id2Delegate = new Dictionary<int, Delegate>();
-}
-
 }
