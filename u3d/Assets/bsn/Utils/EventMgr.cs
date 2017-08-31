@@ -6,8 +6,25 @@ using UnityEngine;
 
 public class C_EventMgr 
 {
+    public static C_EventMgr Instance 
+	{
+		get { return m_instance; }
+	}
+
+    #region p0
     public bool Add(int nEventId, Action pAction)
     {
+        if (pAction == null) 
+        {
+#if UNITY_EDITOR
+            Debug.LogErrorFormat(
+                "Add(nEventId={0}, pAction=null)"
+                , nEventId
+            );
+#endif
+            return false;
+        }
+
         Delegate pDelegate;
         if (!m_id2Delegate.TryGetValue(nEventId, out pDelegate)) 
         {
@@ -19,10 +36,9 @@ public class C_EventMgr
             if (pDelegate.GetType() != pAction.GetType())
             {
                 Debug.LogErrorFormat(
-                    "nEventId={0} pAction={1} pDelegate={2} type error"
+                    "Add(nEventId={0}, pAction) pDelegate={1} not match"
                     , nEventId
-                    , pAction.GetType().Name
-                    , pDelegate.GetType().Name
+                    , pDelegate.GetType()
                 );
                 return false;
             }
@@ -35,6 +51,17 @@ public class C_EventMgr
 
     public bool Del(int nEventId, Action pAction)
     {
+        if (pAction == null) 
+        {
+#if UNITY_EDITOR
+            Debug.LogErrorFormat(
+                "Add(nEventId={0}, pAction=null)"
+                , nEventId
+            );
+#endif
+            return false;
+        }
+
         Delegate pDelegate;
         if (!m_id2Delegate.TryGetValue(nEventId, out pDelegate)) 
         {
@@ -99,9 +126,23 @@ public class C_EventMgr
         var pDelegateAction = (Action)pDelegate;
         pDelegateAction();
     }
+    #endregion
 
+    #region p1
     public bool Add<P1>(int nEventId, Action<P1> pAction)
     {
+        if (pAction == null) 
+        {
+#if UNITY_EDITOR
+            Debug.LogErrorFormat(
+                "Add<P1={1}>(nEventId={0}, pAction=null)"
+                , nEventId
+                , typeof(P1)
+            );
+#endif
+            return false;
+        }
+
         Delegate pDelegate;
         if (!m_id2Delegate.TryGetValue(nEventId, out pDelegate)) 
         {
@@ -113,10 +154,10 @@ public class C_EventMgr
             if (pDelegate.GetType() != pAction.GetType())
             {
                 Debug.LogErrorFormat(
-                    "nEventId={0} pAction={1} pDelegate={2} type error"
+                    "Add<P1={2}>(nEventId={0}, pAction) pDelegate={1} not match"
                     , nEventId
-                    , pAction.GetType().Name
-                    , pDelegate.GetType().Name
+                    , pDelegate.GetType()
+                    , typeof(P1)
                 );
                 return false;
             }
@@ -129,6 +170,18 @@ public class C_EventMgr
 
     public bool Del<P1>(int nEventId, Action<P1> pAction)
     {
+        if (pAction == null) 
+        {
+#if UNITY_EDITOR
+            Debug.LogErrorFormat(
+                "Add<P1={1}>(nEventId={0}, pAction=null)"
+                , nEventId
+                , typeof(P1)
+            );
+#endif
+            return false;
+        }
+
         Delegate pDelegate;
         if (!m_id2Delegate.TryGetValue(nEventId, out pDelegate)) 
         {
@@ -196,9 +249,24 @@ public class C_EventMgr
         var pDelegateAction = (Action<P1>)pDelegate;
         pDelegateAction(p1);
     }
+    #endregion
 
+    #region p2
     public bool Add<P1, P2>(int nEventId, Action<P1, P2> pAction)
     {
+        if (pAction == null) 
+        {
+#if UNITY_EDITOR
+            Debug.LogErrorFormat(
+                "Add<P1={1}, P2={2}>(nEventId={0}, pAction=null)"
+                , nEventId
+                , typeof(P1)
+                , typeof(P2)
+            );
+#endif
+            return false;
+        }
+
         Delegate pDelegate;
         if (!m_id2Delegate.TryGetValue(nEventId, out pDelegate)) 
         {
@@ -210,10 +278,11 @@ public class C_EventMgr
             if (pDelegate.GetType() != pAction.GetType())
             {
                 Debug.LogErrorFormat(
-                    "nEventId={0} pAction={1} pDelegate={2} type error"
+                    "Add<P1={2}, P2={3}>(nEventId={0}, pAction) pDelegate={1} not match"
                     , nEventId
-                    , pAction.GetType().Name
-                    , pDelegate.GetType().Name
+                    , pDelegate.GetType()
+                    , typeof(P1)
+                    , typeof(P2)
                 );
                 return false;
             }
@@ -226,6 +295,19 @@ public class C_EventMgr
 
     public bool Del<P1, P2>(int nEventId, Action<P1, P2> pAction)
     {
+        if (pAction == null) 
+        {
+#if UNITY_EDITOR
+            Debug.LogErrorFormat(
+                "Add<P1={1}, P2={2}>(nEventId={0}, pAction=null)"
+                , nEventId
+                , typeof(P1)
+                , typeof(P2)
+            );
+#endif
+            return false;
+        }
+
         Delegate pDelegate;
         if (!m_id2Delegate.TryGetValue(nEventId, out pDelegate)) 
         {
@@ -294,18 +376,20 @@ public class C_EventMgr
         var pDelegateAction = (Action<P1, P2>)pDelegate;
         pDelegateAction(p1, p2);
     }
+    #endregion
 
+    #region p3
     public bool Add<P1, P2, P3>(int nEventId, Action<P1, P2, P3> pAction)
     {
         if (pAction == null) 
         {
 #if UNITY_EDITOR
             Debug.LogErrorFormat(
-                "nEventId={0} P1={1}, P2={2}, P3={3} pAction=null"
+                "Add<P1={1}, P2={2}, P3={3}>(nEventId={0}, pAction=null)"
                 , nEventId
-                , typeof(P1).GetType().Name
-                , typeof(P2).GetType().Name
-                , typeof(P3).GetType().Name
+                , typeof(P1)
+                , typeof(P2)
+                , typeof(P3)
             );
 #endif
             return false;
@@ -322,10 +406,12 @@ public class C_EventMgr
             if (pDelegate.GetType() != pAction.GetType())
             {
                 Debug.LogErrorFormat(
-                    "nEventId={0} pAction={1} pDelegate={2} type error"
+                    "Add<P1={2}, P2={3}, P3={4}>(nEventId={0}, pAction) pDelegate={1} not match"
                     , nEventId
-                    , pAction.GetType().Name
-                    , pDelegate.GetType().Name
+                    , pDelegate.GetType()
+                    , typeof(P1)
+                    , typeof(P2)
+                    , typeof(P3)
                 );
                 return false;
             }
@@ -338,6 +424,20 @@ public class C_EventMgr
 
     public bool Del<P1, P2, P3>(int nEventId, Action<P1, P2, P3> pAction)
     {
+        if (pAction == null) 
+        {
+#if UNITY_EDITOR
+            Debug.LogErrorFormat(
+                "Del<P1={1}, P2={2}, P3={3}>(nEventId={0}, pAction=null)"
+                , nEventId
+                , typeof(P1)
+                , typeof(P2)
+                , typeof(P3)
+            );
+#endif
+            return false;
+        }
+
         Delegate pDelegate;
         if (!m_id2Delegate.TryGetValue(nEventId, out pDelegate)) 
         {
@@ -392,9 +492,11 @@ public class C_EventMgr
             if (pDelegate == null)
             {
                 Debug.LogErrorFormat(
-                    "nEventId={0} pDelegate={1} is null p1={2} p2={3} p3={4}"
+                    "Exec<P1={1}, P2={2}, P3={3}>(nEventId={0}, p1={4}, p2={5}, p3={6}) pDelegate == null"
                     , nEventId
-                    , pDelegate.GetType().Name
+                    , typeof(P1)
+                    , typeof(P2)
+                    , typeof(P3)
                     , p1
                     , p2
                     , p3
@@ -405,10 +507,28 @@ public class C_EventMgr
 #endif
 
         var pDelegateAction = (Action<P1, P2, P3>)pDelegate;
+        if (pDelegateAction == null) {
+#if UNITY_EDITOR
+            Debug.LogErrorFormat(
+                "Exec<P1={2}, P2={4}, P3={6}>(nEventId={0}, p1={3}, p2={5}, p3={7}) pDelegate == {1}"
+                , nEventId
+                , pDelegate.GetType()
+                , typeof(P1)
+                , p1
+                , typeof(P2)
+                , p2
+                , typeof(P3)
+                , p3
+            );
+#endif
+            return;
+        }
+
         pDelegateAction(p1, p2, p3);
     }
+    #endregion
 
-
+    #region test
 #if UNITY_EDITOR
     [UnityEditor.MenuItem("Bsn/Test/EventMgr")]
     public static void Test()
@@ -425,13 +545,26 @@ public class C_EventMgr
         Add<int, string, uint>(31, P3_1);
         Del<int, string, uint>(31, P3_1);
 
+        Add<int, string, uint>(31, P3_1);
+        Add<int, string, uint>(31, P3_1);
+        Del<int, string, uint>(31, P3_1);
+        Del<int, string, uint>(31, P3_1);
+
         Add<int, string, byte>(32, null);
         Del<int, string, byte>(32, null);
+
+        Add<int, string, uint>(33, P3_1);
+        Add<string, int, uint>(33, P3_2);
     }
 
     private void P3_1(int i, string j, uint k)
     {
         Debug.LogFormat("exec P3_1 {0} {1} {2}", i, j, k);
+    }
+
+    private void P3_2(string i, int j, uint k)
+    {
+        Debug.LogFormat("exec P3_2 {0} {1} {2}", i, j, k);
     }
 
     private void TestP2()
@@ -498,6 +631,8 @@ public class C_EventMgr
         Debug.LogFormat("exec {0}", "P0");
     }
 #endif
+    #endregion
 
+    protected static C_EventMgr m_instance = new C_EventMgr();
     Dictionary<int, Delegate> m_id2Delegate = new Dictionary<int, Delegate>();
 }
