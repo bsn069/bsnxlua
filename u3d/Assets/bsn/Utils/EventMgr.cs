@@ -4,6 +4,8 @@ using System.IO;
 using System;
 using UnityEngine;
 
+namespace NBsn {
+
 public class C_EventMgr 
 {
     public static C_EventMgr Instance 
@@ -635,4 +637,6 @@ public class C_EventMgr
 
     protected static C_EventMgr m_instance = new C_EventMgr();
     Dictionary<int, Delegate> m_id2Delegate = new Dictionary<int, Delegate>();
+}
+
 }
