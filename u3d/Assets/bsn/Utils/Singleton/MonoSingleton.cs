@@ -17,7 +17,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
     {
         if (ms_instance != null)
         {
-            Log.Error("[MonoSingleton]Duplicate {0}", ms_instance.GetType().ToString());
+            Debug.LogErrorFormat("[MonoSingleton]Duplicate {0}", ms_instance.GetType().ToString());
             return;
         }
         ms_instance = this as T;

@@ -51,8 +51,8 @@ namespace NBsn
             {
                 string top = m_nameStack.Count > 0 ? m_nameStack.Peek() : null;
                 if (top == null || !top.Equals(name))
-                {
-                    Log.Error("BeginSample({0}) and EndSample({1}) don't match", top, name);
+                {                    
+                    UnityEngine.Debug.LogErrorFormat("BeginSample({0}) and EndSample({1}) don't match", top, name);
                     return;
                 }
             }

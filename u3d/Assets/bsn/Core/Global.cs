@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-// using LuaInterface;
 using System.Runtime.InteropServices;
 using System;
 using XLua;
@@ -14,9 +13,15 @@ public class C_Global : IDisposable
 		get { return m_instance; }
 	}
 
+	#region member
 	public NBsn.C_Log Log 
 	{
 		get { return m_Log; }
+	}
+
+	public NBsn.C_EventMgr EventMgr
+	{
+		get { return m_EventMgr; }
 	}
 
 	public NBsn.C_Lua Lua
@@ -58,9 +63,7 @@ public class C_Global : IDisposable
 	{
 		get { return m_tfMain; }
 	}
-
-    public event System.Action OnUpdate;
-    public event System.Action OnLateUpdate;
+	#endregion
 
 #if UNITY_EDITOR
 	public static void EditorInit()
@@ -90,18 +93,12 @@ public class C_Global : IDisposable
 	#region updater
 	public void Update()
 	{
-		if (OnUpdate != null)
-		{
-			OnUpdate();
-		}
+		EventMgr.Exec((int)E_EventId.Global_Update);
 	}
 
 	public void LateUpdate()
 	{
-		if (OnLateUpdate != null)
-		{
-			OnLateUpdate();
-		}
+		EventMgr.Exec((int)E_EventId.Global_LateUpdate);
 	}
 	#endregion
 
@@ -118,6 +115,9 @@ public class C_Global : IDisposable
 
 		m_Log = new NBsn.C_Log();
 		Log.Init();
+
+		m_EventMgr = new NBsn.C_EventMgr();		
+		EventMgr.Init();
 
 		NBsn.C_PathConfig.Init();
 
@@ -143,11 +143,11 @@ public class C_Global : IDisposable
 		Lua.Init();
 		Lua.DoString("require('main')");
 
-		C_ResLoadParam pResLoadParam = new C_ResLoadParam();
-		pResLoadParam.strPath = @"atlas\red";
-		pResLoadParam.strSuffix = "prefab";
-		var a = ResMgr.Load<Sprite>(pResLoadParam);
-		Log.Info(a); 
+		// C_ResLoadParam pResLoadParam = new C_ResLoadParam();
+		// pResLoadParam.strPath = @"atlas\red";
+		// pResLoadParam.strSuffix = "prefab";
+		// var a = ResMgr.Load<Sprite>(pResLoadParam);
+		// Log.Info(a); 
 	}
 
 	public void UnInit() 
@@ -157,13 +157,16 @@ public class C_Global : IDisposable
 		Lua.UnInit();
 		m_Lua = null;
 
-		UIMgr.UnInit();
-		m_UIMgr = null;		
+		if	(UIMgr != null)
+		{
+			UIMgr.UnInit();
+			m_UIMgr = null;		
+		}
 
 		AtlasMgr.UnInit();
 		m_AtlasMgr = null;		
 
-		if (m_tfMain != null)
+		if (ResMgr != null)
 		{
 			ResMgr.UnInit();
 			m_ResMgr = null;		
@@ -174,6 +177,9 @@ public class C_Global : IDisposable
 			Coroutine.UnInit();	
 			m_Coroutine = null;
 		}
+
+		EventMgr.UnInit();
+		m_EventMgr = null;
 
 		Log.UnInit();
 		m_Log = null;	
@@ -202,6 +208,7 @@ public class C_Global : IDisposable
 	protected NBsn.C_AtlasMgr	m_AtlasMgr 	= null;
 	protected NBsn.C_ResMgr		m_ResMgr 	= null;
 	protected NBsn.C_UIMgr		m_UIMgr 	= null;
+	protected NBsn.C_EventMgr	m_EventMgr 	= null;
 
 	protected NBsn.M_Main 	m_Main 		= null;
 	protected GameObject 	m_goMain 	= null;

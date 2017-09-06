@@ -118,7 +118,7 @@ public static class C_PathConfig
 
 
 	#region
-	private static string	m_strPlatformABPath = null;
+    //private static string	m_strPlatformABPath = null;
 	private static string	m_strABLocalFullPath = null;
 	private static string	m_strResLocalFullPath = null;
 

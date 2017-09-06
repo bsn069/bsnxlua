@@ -20,13 +20,13 @@ public class C_Lua
 	{
 		m_Lua = new LuaEnv();
 		m_Lua.AddLoader(Require);
-		NBsn.C_Global.Instance.OnUpdate += Update;
+		NBsn.C_Global.Instance.EventMgr.Add((int)E_EventId.Global_LateUpdate, Update);
 	}
 
 	public void UnInit() 
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Lua.UnInit()");
-		NBsn.C_Global.Instance.OnUpdate -= Update;
+		NBsn.C_Global.Instance.EventMgr.Del((int)E_EventId.Global_LateUpdate, Update);
 		m_Lua.Dispose();
 		m_Lua = null;
 	}

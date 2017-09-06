@@ -224,7 +224,7 @@ public static class StringEx
         if (bResult == false)
         {
             resultValue = defaultValue;
-            Log.Error("failed to ToInt: {0}", str);
+            Debug.LogErrorFormat("failed to ToInt: {0}", str);
         }
         return bResult;
 	}
@@ -235,7 +235,7 @@ public static class StringEx
         if (bResult == false) 
         {
             resultValue = defaultValue;
-            Log.Error("failed to ToByte: {0}", s);
+            Debug.LogErrorFormat("failed to ToByte: {0}", s);
         }
 
         return bResult;
@@ -247,7 +247,7 @@ public static class StringEx
         if (bResult == false)
         {
             resultValue = defaultValue;
-            Log.Error("failed to ToUint: {0}", s);
+            Debug.LogErrorFormat("failed to ToUint: {0}", s);
         }
 
         return bResult;
@@ -259,7 +259,7 @@ public static class StringEx
         if (bResult == false)
         {
             resultValue = defaultValue;
-            Log.Error("failed to ToFloat: {0}", s);
+            Debug.LogErrorFormat("failed to ToFloat: {0}", s);
         }
 
         return bResult;
@@ -269,7 +269,7 @@ public static class StringEx
         bool bResult = double.TryParse(s, out resultValue);
         if (bResult == false) {
             resultValue = defaultValue;
-            Log.Error("failed to ToDouble: {0}", s);
+            Debug.LogErrorFormat("failed to ToDouble: {0}", s);
         }
 
         return bResult;
@@ -281,7 +281,7 @@ public static class StringEx
         if (bResult == false)
         {
             resultValue = defaultValue;
-            Log.Error("failed to ToBool: {0}", s);
+            Debug.LogErrorFormat("failed to ToBool: {0}", s);
         }
 
         return bResult;
@@ -298,7 +298,7 @@ public static class StringEx
         catch
         {
             bResult = false;
-            Log.Error("failed to ToEnum: {0}", s);
+            Debug.LogErrorFormat("failed to ToEnum: {0}", s);
         }
 
         return bResult;
@@ -310,7 +310,7 @@ public static class StringEx
         if (bResult == false)
         {
             resultValue = defaultValue;
-            Log.Error("failed to ToInt64: {0}", s);
+            Debug.LogErrorFormat("failed to ToInt64: {0}", s);
         }
 
         return bResult;
@@ -322,19 +322,7 @@ public static class StringEx
         if (bResult == false)
         {
             resultValue = defaultValue;
-            Log.Error("failed to ToUint64: {0}", s);
-        }
-
-        return bResult;
-    }
-
-	public static bool ToNumber<T>(string s, T defaultValue, out T resultValue)
-    {
-		bool bResult = T.TryParse(s, out resultValue);
-        if (bResult == false)
-        {
-            resultValue = defaultValue;
-            Log.Error("failed to ToNumber<{1}>: {0}", s, typeof(T));
+            Debug.LogErrorFormat("failed to ToUint64: {0}", s);
         }
 
         return bResult;

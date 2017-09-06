@@ -6,13 +6,8 @@ using UnityEngine;
 
 namespace NBsn {
 
-public class C_EventMgr 
+public class C_EventMgr : I_Init
 {
-    public static C_EventMgr Instance 
-	{
-		get { return m_instance; }
-	}
-
     #region p0
     public bool Add(int nEventId, Action pAction)
     {
@@ -635,8 +630,21 @@ public class C_EventMgr
 #endif
     #endregion
 
-    protected static C_EventMgr m_instance = new C_EventMgr();
-    Dictionary<int, Delegate> m_id2Delegate = new Dictionary<int, Delegate>();
+	#region init
+	public bool Init()
+	{
+		m_id2Delegate = new Dictionary<int, Delegate>();
+		return true;
+	}
+
+	public void UnInit()
+	{
+		m_id2Delegate.Clear();
+	}
+	#endregion
+
+    Dictionary<int, Delegate> m_id2Delegate = null;
 }
+
 
 }

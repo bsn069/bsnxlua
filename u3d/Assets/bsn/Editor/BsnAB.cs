@@ -24,7 +24,7 @@ public static class C_BsnAB
     [MenuItem("Bsn/Bsn/Set AB Name/Atlas")]
 	private static void SetAtlasABName()
 	{
-		var strABResPath = NBsn.C_PathConfig.AssetsABResPath + Path.DirectorySeparatorChar;
+        //var strABResPath = NBsn.C_PathConfig.AssetsABResPath + Path.DirectorySeparatorChar;
 
 		var listAtlasFileFullPaths = NBsn.NEditor.C_Path.GetABResAtlasFileFullPaths();
 		List<string> listAssetsPaths = listAtlasFileFullPaths.FullPaths2AssetsPaths();
@@ -43,7 +43,7 @@ public static class C_BsnAB
 	[MenuItem("Bsn/Bsn/Set AB Name/Prefab")]
 	private static void SetPrefabABName()
 	{
-		var strABResPath = NBsn.C_PathConfig.AssetsABResPath + Path.DirectorySeparatorChar;
+        //var strABResPath = NBsn.C_PathConfig.AssetsABResPath + Path.DirectorySeparatorChar;
 
 		var listPrefabFileFullPaths = NBsn.NEditor.C_Path.GetABResPrebabFileFullPaths();
 		List<string> listAssetsPaths = listPrefabFileFullPaths.FullPaths2AssetsPaths();
@@ -62,7 +62,7 @@ public static class C_BsnAB
 	[MenuItem("Bsn/Bsn/Set AB Name/Lua")]
 	private static void SetLuaABName()
 	{
-		var strABResPath = NBsn.C_PathConfig.AssetsABResPath + Path.DirectorySeparatorChar;
+        //var strABResPath = NBsn.C_PathConfig.AssetsABResPath + Path.DirectorySeparatorChar;
 
 		string strABResLuaFullPath = Application.dataPath.PathFormat().PathCombine(NBsn.C_PathConfig.ABResDir).PathCombine(NBsn.C_PathConfig.ABResLuaDir);
 
