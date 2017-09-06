@@ -45,15 +45,26 @@ public class C_Lua
 		NBsn.C_Global.Instance.Log.InfoFormat("Require({0})", strRequireParam);
 
 		var strFilePath = strRequireParam.PathReplaceToDirectorySeparatorChar('.');
+		NBsn.C_Global.Instance.Log.InfoFormat("strFilePath({0})", strFilePath);
 
-		NBsn.C_ResLoadParam pResLoadParam = new NBsn.C_ResLoadParam();
-		pResLoadParam.strSuffix = "txt";
-		pResLoadParam.strPath = NBsn.C_PathConfig.ABResLuaDir.PathCombine(strFilePath);
-		TextAsset textAsset = NBsn.C_Global.Instance.ResMgr.Load<TextAsset>(pResLoadParam);
+#if UNITY_EDITOR
+		var strAssetsPath = string.Format("{0}.lua", strFilePath);
+		TextAsset textAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(strAssetsPath);
 		if (textAsset == null) {
             return null;
         }
 		return textAsset.bytes;
+#else
+#endif
+
+		// NBsn.C_ResLoadParam pResLoadParam = new NBsn.C_ResLoadParam();
+		// pResLoadParam.strSuffix = "txt";
+		// pResLoadParam.strPath = NBsn.C_PathConfig.ABResLuaDir.PathCombine(strFilePath);
+		// TextAsset textAsset = NBsn.C_Global.Instance.ResMgr.Load<TextAsset>(pResLoadParam);
+		// if (textAsset == null) {
+        //     return null;
+        // }
+		// return textAsset.bytes;
 	}
 
 	protected LuaEnv m_Lua = null;

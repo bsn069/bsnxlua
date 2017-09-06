@@ -83,6 +83,11 @@
      <Compile Include="Assets\bsn\Utils\Container\MapHelper.cs" />
      <Compile Include="Assets\bsn\Utils\Container\Table.cs" />
      <Compile Include="Assets\bsn\Utils\Container\Vector.cs" />
+     <Compile Include="Assets\bsn\Utils\Event\EventId.cs" />
+     <Compile Include="Assets\bsn\Utils\Event\EventMgr.cs" />
+     <Compile Include="Assets\bsn\Utils\Ex\ProfilerEx.cs" />
+     <Compile Include="Assets\bsn\Utils\Ex\StringEx.cs" />
+     <Compile Include="Assets\bsn\Utils\Http.cs" />
      <Compile Include="Assets\bsn\Utils\IInit.cs" />
      <Compile Include="Assets\bsn\Utils\IObjectPool.cs" />
      <Compile Include="Assets\bsn\Utils\Log.cs" />
@@ -91,8 +96,10 @@
      <Compile Include="Assets\bsn\Utils\Path.cs" />
      <Compile Include="Assets\bsn\Utils\Platform.cs" />
      <Compile Include="Assets\bsn\Utils\PropertyBinder.cs" />
-     <Compile Include="Assets\bsn\Utils\StringEx.cs" />
+     <Compile Include="Assets\bsn\Utils\Singleton\MonoSingleton.cs" />
+     <Compile Include="Assets\bsn\Utils\Singleton\Singleton.cs" />
      <Compile Include="Assets\bsn\Utils\Timer.cs" />
+     <Compile Include="Assets\bsn\Utils\Yielders.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -261,6 +268,7 @@
      <None Include="Assets\NGUI\Examples\Models\Orc\Orc Skin.shader" />
      <None Include="Assets\XLua\Src\Editor\Template\TemplateCommon.lua.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
+     <None Include="Assets\ServerRes\Lua\main.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 1.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (TextureClip).shader" />
