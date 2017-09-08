@@ -1,0 +1,12 @@
+ui = bsn.ui or {}
+bsn.ui = ui
+
+local fl_oUIMgr = CS.NBsn.C_Global.Instance.UIMgr
+
+function ui:GetUI(strUIName)
+	return fl_oUIMgr:GetUI(strUIName)
+end
+
+function ui:GetView(strUIName)
+	return fl_oUIMgr:GetView(strUIName)
+end

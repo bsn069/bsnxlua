@@ -5,6 +5,10 @@ using System.Runtime.InteropServices;
 using System;
 using XLua;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace NBsn {
 
 public class C_Lua 
@@ -40,21 +44,27 @@ public class C_Lua
 		}
 	}
 
+	/*
+	strRequireParam x.yy.zzz
+	 */
 	private byte[] Require(ref string strRequireParam)
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("Require({0})", strRequireParam);
 
-		var strFilePath = strRequireParam.PathReplaceToDirectorySeparatorChar('.');
-		NBsn.C_Global.Instance.Log.InfoFormat("strFilePath({0})", strFilePath);
+		var strRequirePath = strRequireParam.PathReplaceToDirectorySeparatorChar('.');
+		NBsn.C_Global.Instance.Log.InfoFormat("strRequirePath={0}", strRequirePath);
 
 #if UNITY_EDITOR
-		var strAssetsPath = string.Format("{0}.lua", strFilePath);
-		TextAsset textAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(strAssetsPath);
+		var strRequirePathFile = string.Format("{0}.txt", strRequirePath);
+		var strFilePath = mc_strPathRoot.PathCombine(strRequirePathFile);
+		TextAsset textAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(strFilePath);
 		if (textAsset == null) {
+			NBsn.C_Global.Instance.Log.ErrorFormat("strFilePath={0}", strFilePath);
             return null;
         }
 		return textAsset.bytes;
 #else
+		return null;
 #endif
 
 		// NBsn.C_ResLoadParam pResLoadParam = new NBsn.C_ResLoadParam();
@@ -68,6 +78,8 @@ public class C_Lua
 	}
 
 	protected LuaEnv m_Lua = null;
+	// lua文件根目录
+	protected readonly string mc_strPathRoot = NBsn.C_PathConfig.AssetsDir.PathCombine("ServerRes").PathCombine("Lua").Unique(false);
 }
 
 }

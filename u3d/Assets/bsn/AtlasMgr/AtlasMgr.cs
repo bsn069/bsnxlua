@@ -41,7 +41,7 @@ public class C_AtlasMgr: I_Init
 	public bool Init() 
 	{
 		NBsn.C_Global.Instance.Log.Info("NBsn.C_AtlasMgr.Init()");
-		GetSprite("common", "zhanchangshuxing_huo");
+		// GetSprite("common", "zhanchangshuxing_huo");
 		return true;
 	}
 

@@ -342,6 +342,8 @@
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
     <None Include="Assets\Plugins\readme.txt" />
     <None Include="Assets\Resources\readme.txt" />
+    <None Include="Assets\ServerRes\Lua\main.txt" />
+    <None Include="Assets\ServerRes\Lua\ui\ui.txt" />
     <None Include="Assets\StreamingAssets\readme.txt" />
     <None Include="Assets\XLua\CHANGELOG.txt" />
     <None Include="Assets\XLua\Resources\perf\memory.lua.txt" />
