@@ -7,6 +7,8 @@ using XLua;
 
 #if UNITY_EDITOR
 using UnityEditor;
+#else
+using System.IO;
 #endif
 
 namespace NBsn {
@@ -54,9 +56,10 @@ public class C_Lua
 		var strRequirePath = strRequireParam.PathReplaceToDirectorySeparatorChar('.');
 		NBsn.C_Global.Instance.Log.InfoFormat("strRequirePath={0}", strRequirePath);
 
-#if UNITY_EDITOR
 		var strRequirePathFile = string.Format("{0}.txt", strRequirePath);
 		var strFilePath = mc_strPathRoot.PathCombine(strRequirePathFile);
+
+#if UNITY_EDITOR
 		TextAsset textAsset = AssetDatabase.LoadAssetAtPath<TextAsset>(strFilePath);
 		if (textAsset == null) {
 			NBsn.C_Global.Instance.Log.ErrorFormat("strFilePath={0}", strFilePath);
@@ -64,7 +67,8 @@ public class C_Lua
         }
 		return textAsset.bytes;
 #else
-		return null;
+		StreamReader sr = new StreamReader(strFilePath);
+		return sr.ReadToEnd().UTF8Bytes();
 #endif
 
 		// NBsn.C_ResLoadParam pResLoadParam = new NBsn.C_ResLoadParam();
@@ -79,7 +83,11 @@ public class C_Lua
 
 	protected LuaEnv m_Lua = null;
 	// lua文件根目录
+#if UNITY_EDITOR
 	protected readonly string mc_strPathRoot = NBsn.C_PathConfig.AssetsDir.PathCombine("ServerRes").PathCombine("Lua").Unique(false);
+#else
+	protected readonly string mc_strPathRoot = Application.persistentDataPath.PathCombine("ServerRes").PathCombine("Lua").Unique(false);
+#endif
 }
 
 }

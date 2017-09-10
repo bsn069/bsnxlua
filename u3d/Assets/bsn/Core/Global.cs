@@ -106,6 +106,7 @@ public class C_Global : IDisposable
 	// 游戏逻辑初始化
 	public void Init(GameObject goMain, NBsn.M_Main Main) 
 	{
+		NBsn.CPlatform.Info();
 		if (goMain != null)
 		{
 			m_goMain    = goMain;

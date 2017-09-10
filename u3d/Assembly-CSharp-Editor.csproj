@@ -188,6 +188,7 @@
      <None Include="Assets\XLua\Src\Editor\Template\LuaDelegateWrap.tpl.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
      <None Include="Assets\XLua\Resources\tdr\tdr.lua.txt" />
+     <None Include="Assets\ServerRes\Lua\ui\ui.txt" />
      <None Include="Assets\Editor Default Resources\readme.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
