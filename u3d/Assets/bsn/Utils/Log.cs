@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-namespace NBsn {
+namespace NBsn
+{
 
 public class C_Log {
 	public void InfoFormat(string format, params object[] args) 

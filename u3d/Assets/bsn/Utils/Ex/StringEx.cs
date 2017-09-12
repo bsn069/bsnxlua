@@ -111,6 +111,11 @@ public static class StringEx
 		return Path.Combine(strPath1, strPath2);
 	}
 
+    public static string PathCombine(this string strPath1, params string[] strPaths)
+    {
+        return Path.Combine(strPath1, strPaths.Aggregate(Path.Combine));
+    }
+
 	// Assets路径strPath下的相对目录
 	// 返回Assets路径的Assets后去除文件的路径 (Assets/*/? => *)
     public static string PathAssetsRelativeDir(this string strPath) 
