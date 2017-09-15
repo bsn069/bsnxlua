@@ -70,23 +70,22 @@ public class C_Lua
 		StreamReader sr = new StreamReader(strFilePath);
 		return sr.ReadToEnd().UTF8Bytes();
 #endif
-
-		// NBsn.C_ResLoadParam pResLoadParam = new NBsn.C_ResLoadParam();
-		// pResLoadParam.strSuffix = "txt";
-		// pResLoadParam.strPath = NBsn.C_PathConfig.ABResLuaDir.PathCombine(strFilePath);
-		// TextAsset textAsset = NBsn.C_Global.Instance.ResMgr.Load<TextAsset>(pResLoadParam);
-		// if (textAsset == null) {
-        //     return null;
-        // }
-		// return textAsset.bytes;
 	}
 
 	protected LuaEnv m_Lua = null;
 	// lua文件根目录
 #if UNITY_EDITOR
-	protected readonly string mc_strPathRoot = NBsn.C_PathConfig.AssetsDir.PathCombine("server_res").PathCombine("lua").Unique(false);
+	protected readonly string mc_strPathRoot = 
+		NBsn.C_PathConfig.AssetsDir
+		.PathCombine(NBsn.C_PathConfig.ServerResDirName)
+		.PathCombine(NBsn.C_PathConfig.LuaDirName)
+		.Unique(false);
 #else
-	protected readonly string mc_strPathRoot = Application.persistentDataPath.PathCombine("server_res").PathCombine("lua").Unique(false);
+	protected readonly string mc_strPathRoot = 
+		Application.persistentDataPath
+		.PathCombine(NBsn.C_PathConfig.ServerResDirName)
+		.PathCombine(NBsn.C_PathConfig.LuaDirName)
+		.Unique(false);
 #endif
 }
 
