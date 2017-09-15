@@ -27,16 +27,29 @@ public class C_Log {
 	}
 
 	#region init
-	public void Init() 
+	public bool Init() 
 	{
 		InfoFormat("NBsn.C_Log.Init()");
+		m_LogFile = new C_LogFile();
+		if (!m_LogFile.Init("log"))
+		{
+			return false;
+		}
+		return true;
 	}
 
 	public void UnInit() 
 	{
 		InfoFormat("NBsn.C_Log.UnInit()");
+		if (m_LogFile != null)
+		{
+			m_LogFile.UnInit();
+			m_LogFile = null;
+		}
 	}
 	#endregion
+
+	protected C_LogFile m_LogFile = null;
 }
 
 }

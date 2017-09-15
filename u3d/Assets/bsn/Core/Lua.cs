@@ -26,19 +26,19 @@ public class C_Lua
 	{
 		m_Lua = new LuaEnv();
 		m_Lua.AddLoader(Require);
-		NBsn.C_Global.Instance.EventMgr.Add((int)E_EventId.Global_LateUpdate, Update);
+		NBsn.C_Global.Instance.EventMgr.Add((int)E_EventId.Global_LateUpdate, LateUpdate);
 	}
 
 	public void UnInit() 
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Lua.UnInit()");
-		NBsn.C_Global.Instance.EventMgr.Del((int)E_EventId.Global_LateUpdate, Update);
+		NBsn.C_Global.Instance.EventMgr.Del((int)E_EventId.Global_LateUpdate, LateUpdate);
 		m_Lua.Dispose();
 		m_Lua = null;
 	}
 	#endregion
 
-	private void Update()
+	private void LateUpdate()
 	{
 		if (m_Lua != null)
 		{
@@ -84,9 +84,9 @@ public class C_Lua
 	protected LuaEnv m_Lua = null;
 	// lua文件根目录
 #if UNITY_EDITOR
-	protected readonly string mc_strPathRoot = NBsn.C_PathConfig.AssetsDir.PathCombine("ServerRes").PathCombine("Lua").Unique(false);
+	protected readonly string mc_strPathRoot = NBsn.C_PathConfig.AssetsDir.PathCombine("server_res").PathCombine("lua").Unique(false);
 #else
-	protected readonly string mc_strPathRoot = Application.persistentDataPath.PathCombine("ServerRes").PathCombine("Lua").Unique(false);
+	protected readonly string mc_strPathRoot = Application.persistentDataPath.PathCombine("server_res").PathCombine("lua").Unique(false);
 #endif
 }
 
