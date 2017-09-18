@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace NBsn {
 
-public static class StringEx  
+public static class DateTimeEx  
 {
     public static string FormatDateAsFileNameString(this DateTime dt)
     {

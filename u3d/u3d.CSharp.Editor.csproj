@@ -143,6 +143,7 @@
     <Compile Include="Assets\bsn\Editor\PList.cs" />
     <Compile Include="Assets\bsn\Editor\PlistAtlas.cs" />
     <Compile Include="Assets\bsn\Editor\Prefab.cs" />
+    <Compile Include="Assets\Editor\Unity-Resource-Checker\ResourceChecker.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Editor\InvDatabaseInspector.cs" />
     <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Editor\InvFindItem.cs" />
     <Compile Include="Assets\NGUI\Scripts\Editor\ActiveAnimationEditor.cs" />
@@ -288,8 +289,6 @@
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
     <None Include="Assets\Plugins\readme.txt" />
     <None Include="Assets\Resources\readme.txt" />
-    <None Include="Assets\ServerRes\Lua\main.txt" />
-    <None Include="Assets\ServerRes\Lua\ui\ui.txt" />
     <None Include="Assets\StreamingAssets\readme.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\Bangers - OFL.txt" />
@@ -328,6 +327,10 @@
     <None Include="Assets\codeandweb.com\Editor\SettingsTexturePackerImporter.txt" />
     <None Include="Assets\codeandweb.com\Readme.txt" />
     <None Include="Assets\readme.txt" />
+    <None Include="Assets\server_res\file_ver.txt" />
+    <None Include="Assets\server_res\lua\main.txt" />
+    <None Include="Assets\server_res\lua\ui\ui.txt" />
+    <None Include="Assets\server_res\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

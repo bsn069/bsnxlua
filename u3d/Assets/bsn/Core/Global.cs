@@ -144,6 +144,8 @@ public class C_Global : IDisposable
 		Lua.Init();
 		Lua.DoString("require('main')");
 
+        NBsn.NUpdateRes.C_UpdateRes.Run();
+
 		// C_ResLoadParam pResLoadParam = new C_ResLoadParam();
 		// pResLoadParam.strPath = @"atlas\red";
 		// pResLoadParam.strSuffix = "prefab";
