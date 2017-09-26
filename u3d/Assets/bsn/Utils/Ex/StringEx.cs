@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NBsn {
 
@@ -333,6 +334,170 @@ public static class StringEx
         return bResult;
     }
 	#endregion
+
+        #region path file
+    /*
+    */
+    public static bool PathFile(
+        this string strFilePath
+        , Action<FileStream> cb
+        , FileMode fileMode = FileMode.OpenOrCreate
+        , FileAccess fileAccess = FileAccess.ReadWrite
+        , FileShare fileShare = FileShare.ReadWrite
+    )
+    {
+        bool bResult = true;
+        try 
+        {
+            using (FileStream filestream = new FileStream(strFilePath, fileMode, fileAccess, fileShare)) {
+                cb(filestream);
+                filestream.Flush();
+            }
+        } 
+        catch (Exception e) 
+        {
+            Debug.LogException(e);
+            bResult = false;
+        }
+        return bResult;
+    }
+
+    /*
+    */
+    public static bool PathFileBinaryWriter(
+        this string strFilePath
+        , Action<BinaryWriter> cb
+        , FileMode fileMode = FileMode.OpenOrCreate
+        , FileAccess fileAccess = FileAccess.Write
+        , FileShare fileShare = FileShare.ReadWrite
+    )
+    {
+        return strFilePath.PathFile(
+            (fileStream)=>{
+                BinaryWriter binaryWriter = new  BinaryWriter(fileStream);
+                cb(binaryWriter);
+                binaryWriter.Flush();
+                binaryWriter.Close();
+            }
+            , fileMode
+            , fileAccess
+            , fileShare
+        );
+    }
+
+    /*
+    */
+    public static bool PathFileWrite(
+        this string strFilePath
+        , byte[] byData
+        , FileMode fileMode = FileMode.OpenOrCreate
+        , FileAccess fileAccess = FileAccess.Write
+        , FileShare fileShare = FileShare.ReadWrite
+    )
+    {
+        return strFilePath.PathFile(
+            (fileStream)=>{
+                fileStream.Write(byData, 0, byData.Length);
+            }
+            , fileMode
+            , fileAccess
+            , fileShare
+        );
+    }
+
+    /*
+    */
+    public static bool PathFileBinaryReader(
+        this string strFilePath
+        , Action<BinaryReader> cb
+        , FileMode fileMode = FileMode.Open
+        , FileAccess fileAccess = FileAccess.Read
+        , FileShare fileShare = FileShare.ReadWrite
+    )
+    {
+        return strFilePath.PathFile(
+            (fileStream)=>{
+                BinaryReader binaryReader = new  BinaryReader(fileStream);
+                cb(binaryReader);
+                binaryReader.Close();
+            }
+            , fileMode
+            , fileAccess
+            , fileShare
+        );
+    }
+
+    /*
+    */
+    public static bool PathFileStreamReader(
+        this string strFilePath
+        , Action<StreamReader> cb
+        , FileMode fileMode = FileMode.Open
+        , FileAccess fileAccess = FileAccess.Read
+        , FileShare fileShare = FileShare.ReadWrite
+    )
+    {
+        return strFilePath.PathFile(
+            (fileStream)=>{
+                StreamReader stream = new StreamReader(fileStream, System.Text.Encoding.UTF8);
+                cb(stream);
+                stream.Close();
+            }
+            , fileMode
+            , fileAccess
+            , fileShare
+        );
+    }
+
+    /*
+    */
+    public static bool PathFileStreamWriter(
+        this string strFilePath
+        , Action<StreamWriter> cb
+        , FileMode fileMode = FileMode.Open
+        , FileAccess fileAccess = FileAccess.Read
+        , FileShare fileShare = FileShare.ReadWrite
+    )
+    {
+        return strFilePath.PathFile(
+            (fileStream)=>{
+                StreamWriter stream = new StreamWriter(fileStream, System.Text.Encoding.UTF8);
+                cb(stream);
+                stream.Close();
+            }
+            , fileMode
+            , fileAccess
+            , fileShare
+        );
+    }
+
+    /*
+    */
+    public static bool PathDirCreate(this string strDirPath)
+    {
+        bool bResult = true;
+        try 
+        {
+            if (!Directory.Exists(strDirPath))
+            {
+                Directory.CreateDirectory(strDirPath);
+            }
+        } 
+        catch (Exception e) 
+        {
+            Debug.LogException(e);
+            bResult = false;
+        }
+        return bResult;
+    }
+
+    /*
+    */
+    public static void PathFileWriteAllBytes(this string strFilePath, byte[] byData)
+    {
+        File.WriteAllBytes(strFilePath, byData);
+    }
+    #endregion
 }  
 
 }

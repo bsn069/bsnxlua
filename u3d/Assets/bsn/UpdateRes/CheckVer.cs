@@ -8,7 +8,7 @@ namespace NBsn.NUpdateRes
 {
 
 
-public class C_CheckVer : IDisposable
+public class C_CheckVer
 {
     public int          m_nTimeOutSec      = 5;
     public string       m_strVerFileName   = "check_ver.txt";

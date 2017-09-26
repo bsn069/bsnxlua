@@ -56,8 +56,8 @@ public class C_LogFile
        }
        catch (System.Exception ex)
        {
-           m_streamWriter = null;
-           Log.Exception(ex);
+           m_streamWriter = null;           
+           Debug.LogException(ex);
        }
    }
 
@@ -94,7 +94,7 @@ public class C_LogFile
        }
        catch (System.Exception ex)
        {
-           Log.Exception(ex); 
+           Debug.LogException(ex); 
        }
        //finally
        //{
@@ -124,7 +124,7 @@ public class C_LogFile
    private void CleanupLogsOlderThan(int days)
    {
        DateTime timePointForDeleting = DateTime.Now.Subtract(TimeSpan.FromDays(days));
-       string timeStrForDeleting = LogUtil.FormatDateAsFileNameString(timePointForDeleting);
+       string timeStrForDeleting = DateTimeEx.FormatDateAsFileNameString(timePointForDeleting);
 
        DirectoryInfo logDirInfo = new DirectoryInfo(m_strDirPath);
        DirectoryInfo[] dirsByDate = logDirInfo.GetDirectories();
@@ -142,7 +142,7 @@ public class C_LogFile
        foreach (var item in toBeDeleted)
        {
            Directory.Delete(item, true);
-           Log.Info("[ Log Cleanup ]: {0}", item);
+           Debug.LogFormat("[ Log Cleanup ]: {0}", item);
        }
    }
 

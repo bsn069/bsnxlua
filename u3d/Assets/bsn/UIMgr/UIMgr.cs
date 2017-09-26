@@ -26,6 +26,21 @@ public class C_UIMgr
 		return pGo.GetComponent<NBsn.NMVVM.I_View>();
 	}
 
+    /*
+	strUIName UILogin
+	*/
+	public NBsn.NMVVM.ViewModel GetVM(string strUIName)
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_UIMgr.GetView() strUIName={0}", strUIName);
+
+		var pView = GetView(strUIName);
+		if (pView == null)
+		{
+			return null;
+		}
+        return pView.GetVM();
+	}
+
 	/*
 	strUIName UILogin
 	*/

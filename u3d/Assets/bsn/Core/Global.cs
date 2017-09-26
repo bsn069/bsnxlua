@@ -140,11 +140,18 @@ public class C_Global : IDisposable
 			UIMgr.Init(m_tfMain);
 		}
 
-		m_Lua	= new NBsn.C_Lua();
-		Lua.Init();
-		Lua.DoString("require('main')");
+        var pView = UIMgr.GetView("UIUpdate") as NBsn.NMVVM.UpdateV;
+        pView.Show();
+        //var pVM = pView.VM;
+        //pVM.TextCenter.Value = "";
+ 
 
-        NBsn.NUpdateRes.C_UpdateRes.Run();
+        var pUpdateRes = new NBsn.NUpdateRes.C_UpdateRes();
+        pUpdateRes.GetVerInfo();
+        //m_Lua	= new NBsn.C_Lua();
+        //Lua.Init();
+        //Lua.DoString("require('main')");
+
 
 		// C_ResLoadParam pResLoadParam = new C_ResLoadParam();
 		// pResLoadParam.strPath = @"atlas\red";
