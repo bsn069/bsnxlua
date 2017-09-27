@@ -224,18 +224,7 @@ public static class StringEx
 	#endregion
 
 	#region
-	public static bool ToInt(this string str, int defaultValue, out int resultValue)
-	{
-        bool bResult = int.TryParse(str, out resultValue);
-        if (bResult == false)
-        {
-            resultValue = defaultValue;
-            Debug.LogErrorFormat("failed to ToInt: {0}", str);
-        }
-        return bResult;
-	}
-
-	public static bool ToByte(string s, byte defaultValue, out byte resultValue) 
+	public static bool ToByte(this string s, byte defaultValue, out byte resultValue) 
     {
         bool bResult = byte.TryParse(s, out resultValue);
         if (bResult == false) 
@@ -247,7 +236,7 @@ public static class StringEx
         return bResult;
     }
 
-    public static bool ToUint(string s, uint defaultValue, out uint resultValue)
+    public static bool ToUint(this string s, uint defaultValue, out uint resultValue)
     {
         bool bResult = uint.TryParse(s, out resultValue);
         if (bResult == false)
@@ -259,58 +248,78 @@ public static class StringEx
         return bResult;
     }
 
-    public static bool ToFloat(string s, float defaultValue, out float resultValue)
+    public static bool ToUint16(this string s, UInt16 defaultValue, out UInt16 resultValue)
     {
-        bool bResult = float.TryParse(s, out resultValue);
+        bool bResult = UInt16.TryParse(s, out resultValue);
         if (bResult == false)
         {
             resultValue = defaultValue;
-            Debug.LogErrorFormat("failed to ToFloat: {0}", s);
+            Debug.LogErrorFormat("failed to ToUInt16: {0}", s);
         }
 
         return bResult;
     }
 
-    public static bool ToDouble(string s, double defaultValue, out double resultValue) {
-        bool bResult = double.TryParse(s, out resultValue);
-        if (bResult == false) {
-            resultValue = defaultValue;
-            Debug.LogErrorFormat("failed to ToDouble: {0}", s);
-        }
-
-        return bResult;
-    }
-
-    public static bool ToBool(string s, bool defaultValue, out bool resultValue)
+    public static bool ToUint32(this string s, UInt32 defaultValue, out UInt32 resultValue)
     {
-        bool bResult = bool.TryParse(s, out resultValue);
+        bool bResult = UInt32.TryParse(s, out resultValue);
         if (bResult == false)
         {
             resultValue = defaultValue;
-            Debug.LogErrorFormat("failed to ToBool: {0}", s);
+            Debug.LogErrorFormat("failed to ToUInt32: {0}", s);
         }
 
         return bResult;
     }
 
-    public static bool ToEnum<T>(string s, bool bIngnoreCase, T defaultValue, out T resultValue)
+    public static bool ToUint64(this string s, UInt64 defaultValue, out UInt64 resultValue)
     {
-        bool bResult = true;
-        resultValue = defaultValue;
-        try
+        bool bResult = UInt64.TryParse(s, out resultValue);
+        if (bResult == false)
         {
-            resultValue = (T)Enum.Parse(typeof(T), s, bIngnoreCase);
-        }
-        catch
-        {
-            bResult = false;
-            Debug.LogErrorFormat("failed to ToEnum: {0}", s);
+            resultValue = defaultValue;
+            Debug.LogErrorFormat("failed to ToUint64: {0}", s);
         }
 
         return bResult;
     }
 
-    public static bool ToInt64(string s, Int64 defaultValue, out Int64 resultValue)
+	public static bool ToInt(this string str, int defaultValue, out int resultValue)
+	{
+        bool bResult = int.TryParse(str, out resultValue);
+        if (bResult == false)
+        {
+            resultValue = defaultValue;
+            Debug.LogErrorFormat("failed to ToInt: {0}", str);
+        }
+        return bResult;
+	}
+
+    public static bool ToInt16(this string s, Int16 defaultValue, out Int16 resultValue)
+    {
+        bool bResult = Int16.TryParse(s, out resultValue);
+        if (bResult == false)
+        {
+            resultValue = defaultValue;
+            Debug.LogErrorFormat("failed to ToInt16: {0}", s);
+        }
+
+        return bResult;
+    }
+
+    public static bool ToInt32(this string s, Int32 defaultValue, out Int32 resultValue)
+    {
+        bool bResult = Int32.TryParse(s, out resultValue);
+        if (bResult == false)
+        {
+            resultValue = defaultValue;
+            Debug.LogErrorFormat("failed to ToInt32: {0}", s);
+        }
+
+        return bResult;
+    }
+
+    public static bool ToInt64(this string s, Int64 defaultValue, out Int64 resultValue)
     {
         bool bResult = Int64.TryParse(s, out resultValue);
         if (bResult == false)
@@ -322,13 +331,52 @@ public static class StringEx
         return bResult;
     }
 
-    public static bool ToUint64(string s, UInt64 defaultValue, out UInt64 resultValue)
+	public static bool ToFloat(this string s, float defaultValue, out float resultValue)
     {
-        bool bResult = UInt64.TryParse(s, out resultValue);
+        bool bResult = float.TryParse(s, out resultValue);
         if (bResult == false)
         {
             resultValue = defaultValue;
-            Debug.LogErrorFormat("failed to ToUint64: {0}", s);
+            Debug.LogErrorFormat("failed to ToFloat: {0}", s);
+        }
+
+        return bResult;
+    }
+
+    public static bool ToDouble(this string s, double defaultValue, out double resultValue) {
+        bool bResult = double.TryParse(s, out resultValue);
+        if (bResult == false) {
+            resultValue = defaultValue;
+            Debug.LogErrorFormat("failed to ToDouble: {0}", s);
+        }
+
+        return bResult;
+    }
+
+    public static bool ToBool(this string s, bool defaultValue, out bool resultValue)
+    {
+        bool bResult = bool.TryParse(s, out resultValue);
+        if (bResult == false)
+        {
+            resultValue = defaultValue;
+            Debug.LogErrorFormat("failed to ToBool: {0}", s);
+        }
+
+        return bResult;
+    }
+
+    public static bool ToEnum<T>(this string s, bool bIngnoreCase, T defaultValue, out T resultValue)
+    {
+        bool bResult = true;
+        resultValue = defaultValue;
+        try
+        {
+            resultValue = (T)Enum.Parse(typeof(T), s, bIngnoreCase);
+        }
+        catch
+        {
+            bResult = false;
+            Debug.LogErrorFormat("failed to ToEnum: {0}", s);
         }
 
         return bResult;

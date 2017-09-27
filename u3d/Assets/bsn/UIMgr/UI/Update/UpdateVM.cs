@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +11,8 @@ public class UpdateVM : ViewModel
 	public readonly BindableProperty<string> TextCenter = new BindableProperty<string>();
 	public readonly BindableProperty<string> TextName = new BindableProperty<string>();
 	public readonly BindableProperty<string> TextDesc = new BindableProperty<string>();
-	public readonly BindableProperty<string> TextBinVer = new BindableProperty<string>();
-	public readonly BindableProperty<string> TextResVer = new BindableProperty<string>();
+	public readonly BindableProperty<string> TextLocalVer = new BindableProperty<string>();
+	public readonly BindableProperty<string> TextServerVer = new BindableProperty<string>();
 	public readonly BindableProperty<uint> SliderValue = new BindableProperty<uint>(); 
 
 	#region init
@@ -23,17 +23,14 @@ public class UpdateVM : ViewModel
 		TextCenter.Value = "0%";	
 		TextName.Value = "";	
 		TextDesc.Value = "";	
-        TextBinVer.Value = string.Format(
-            "����汾: {0}.{1}"
-            , 0
-            , 0
-        );	
+        var strServerVer = "服务端版本:0.0.0";	
+		NBsn.C_Global.Instance.Log.InfoFormat("strServerVer={0}", strServerVer);
+        TextServerVer.Value = strServerVer;
 
-        TextResVer.Value = string.Format(
-            "��Դ�汾: {0}.{1}"
-            , 0
-            , 0
-        );	
+        var strLocalVer = "客户端版本:0.0.0";	
+        UnityEngine.Debug.Log(strLocalVer);
+		NBsn.C_Global.Instance.Log.InfoFormat("strLocalVer={0}", strLocalVer);
+        TextLocalVer.Value = strLocalVer;	
 
 		SliderValue.Value = 1;	
 	}

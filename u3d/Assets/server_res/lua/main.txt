@@ -1,6 +1,6 @@
 bsn = bsn or {}
 
-require "ui.ui"
+-- require "ui.ui"
 
 
 print("need update from lua")

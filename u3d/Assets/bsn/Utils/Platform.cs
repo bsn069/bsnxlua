@@ -7,7 +7,7 @@ using System.IO;
 namespace NBsn 
 {
 
-public static class CPlatform 
+public static class C_Platform 
 {
 	public static void Info()
 	{
@@ -70,8 +70,8 @@ public static class CPlatform
 
 	private static string[] ms_platformNames = new string[]
 	{
-		"Win"
-		, "Android"
+		"win"
+		, "android"
 	};
 } 
 

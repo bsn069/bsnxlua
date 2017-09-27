@@ -26,6 +26,13 @@ public static class C_Config
 		get { return ".txt";}
 	}
 
+	// ServerResDirName在http服务器的根目录 /结尾
+	public static string ServerResHttpUrl
+	{
+		get { return "http://localhost:10001/";}
+	}
+
+
 	#region
 	// private static NBsn.E_ResLoadType ms_eResLoadType = NBsn.E_ResLoadType.EditorABOut;
 	private static NBsn.E_ResLoadType ms_eResLoadType = NBsn.E_ResLoadType.EditorABRes;

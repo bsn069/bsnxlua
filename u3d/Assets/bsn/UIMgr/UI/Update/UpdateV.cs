@@ -15,8 +15,8 @@ public class UpdateV: View<UpdateVM>
 	public Text 	m_textCenter;
 	public Text 	m_textName;
 	public Text 	m_textDesc;
-	public Text 	m_textBinVer;
-	public Text 	m_textResVer;
+	public Text 	m_textLocalVer;
+	public Text 	m_textServerVer;
 	#endregion
 
 	public UpdateVM VM 
@@ -32,8 +32,8 @@ public class UpdateV: View<UpdateVM>
 		Binder.Add<string>("TextCenter", VMOnTextCenterChanged);
 		Binder.Add<string>("TextName", VMOnTextNameChanged);
 		Binder.Add<string>("TextDesc", VMOnTextDescChanged);
-		Binder.Add<string>("TextBinVer", VMOnTextBinVerChanged);
-		Binder.Add<string>("TextResVer", VMOnTextResVerChanged);
+		Binder.Add<string>("TextLocalVer", VMOnTextLocalVerChanged);
+		Binder.Add<string>("TextServerVer", VMOnTextServerVerChanged);
 		Binder.Add<uint>("SliderValue", VMOnSliderValueChanged);
 
 		var vm = new UpdateVM();
@@ -72,18 +72,18 @@ public class UpdateV: View<UpdateVM>
 		m_textDesc.text = newValue;
 	}
 
-    private void VMOnTextBinVerChanged(string oldValue, string newValue)
+    private void VMOnTextLocalVerChanged(string oldValue, string newValue)
 	{
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.UpdateV.VMOnTextBinVerChanged() oldValue={0} newValue={1}", oldValue, newValue);
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.UpdateV.VMOnTextLocalVerChanged() oldValue={0} newValue={1}", oldValue, newValue);
 
-		m_textBinVer.text = newValue;
+		m_textLocalVer.text = newValue;
 	}
 
-    private void VMOnTextResVerChanged(string oldValue, string newValue)
+    private void VMOnTextServerVerChanged(string oldValue, string newValue)
 	{
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.UpdateV.VMOnTextResVerChanged() oldValue={0} newValue={1}", oldValue, newValue);
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.NMVVM.UpdateV.VMOnTextServerVerChanged() oldValue={0} newValue={1}", oldValue, newValue);
 
-		m_textResVer.text = newValue;
+		m_textServerVer.text = newValue;
 	}
 
 	private void VMOnSliderValueChanged(uint oldValue, uint newValue)

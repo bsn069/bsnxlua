@@ -106,7 +106,7 @@ public class C_Global : IDisposable
 	// 游戏逻辑初始化
 	public void Init(GameObject goMain, NBsn.M_Main Main) 
 	{
-		NBsn.CPlatform.Info();
+		NBsn.C_Platform.Info();
 		if (goMain != null)
 		{
 			m_goMain    = goMain;
@@ -140,16 +140,17 @@ public class C_Global : IDisposable
 			UIMgr.Init(m_tfMain);
 		}
 
-        var pView = UIMgr.GetView("UIUpdate") as NBsn.NMVVM.UpdateV;
-        pView.Show();
-        //var pVM = pView.VM;
-        //pVM.TextCenter.Value = "";
- 
+        m_Lua	= new NBsn.C_Lua();
+        Lua.Init();
 
-        var pUpdateRes = new NBsn.NUpdateRes.C_UpdateRes();
-        pUpdateRes.GetVerInfo();
-        //m_Lua	= new NBsn.C_Lua();
-        //Lua.Init();
+		Coroutine.Start(StartApp());
+        // var pView = UIMgr.GetView("UIUpdate") as NBsn.NMVVM.UpdateV;
+        // pView.Show();
+        // //var pVM = pView.VM;
+        // //pVM.TextCenter.Value = "";
+
+        // var pUpdateRes = new NBsn.NUpdateRes.C_UpdateRes();
+        // pUpdateRes.GetVerInfo();
         //Lua.DoString("require('main')");
 
 
@@ -199,6 +200,22 @@ public class C_Global : IDisposable
 		m_goMain    = null;
 	}
 	#endregion
+
+	private IEnumerator StartApp()
+    {
+		var pView = UIMgr.GetView("UIUpdate") as NBsn.NMVVM.UpdateV;
+        pView.Show();
+
+        var pUpdateRes = new NBsn.NUpdateRes.C_UpdateRes();
+		yield return Coroutine.Start(pUpdateRes.Run());
+#if UNITY_EDITOR
+		if (pUpdateRes.IsSuccess())
+		{
+			yield break;
+		}
+#endif
+        Lua.DoString("require('main')");
+	}
 
 	#region
 	public C_Global() 

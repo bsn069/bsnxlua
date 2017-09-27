@@ -51,7 +51,7 @@ public class C_ABOut : I_ResLoad, I_Init
 
 		if (NBsn.C_Config.ResLoadType == NBsn.E_ResLoadType.EditorABOut) 
 		{
-			var strPlatformName = NBsn.CPlatform.Name();
+			var strPlatformName = NBsn.C_Platform.Name();
 			m_strABResRootPath = Application.dataPath.PathCombine(NBsn.C_PathConfig.AssetsLatePlatformABOutPath(strPlatformName)).PathFormat();
 		}
 		NBsn.C_Global.Instance.Log.InfoFormat("m_strABResRootPath={0}", m_strABResRootPath);

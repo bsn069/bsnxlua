@@ -19,13 +19,13 @@ public static class CPlatform
 		{
 			case BuildTarget.Android: 
 				{
-					strPlatform = NBsn.CPlatform.GetName(1);
+					strPlatform = NBsn.C_Platform.GetName(1);
 				} 
 				break;               
 			case BuildTarget.StandaloneWindows:
 			case BuildTarget.StandaloneWindows64: 
 				{
-					strPlatform = NBsn.CPlatform.GetName(0);
+					strPlatform = NBsn.C_Platform.GetName(0);
 				}
 				break;              
 			default: 
