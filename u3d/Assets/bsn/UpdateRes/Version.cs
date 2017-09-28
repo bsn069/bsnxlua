@@ -13,7 +13,10 @@ public class C_Version
 	public void FromString(string strVer)
 	{
 		var strArr = strVer.Split('.');
-		
+        for (int i=0; i < strArr.Length; ++i) {
+            UnityEngine.Debug.LogFormat("[{0}] {1}", strArr[i], strArr[i].Length);
+        }
+
 		strArr[0].ToUint16(0,out m_binVer);
 		strArr[1].ToUint32(0,out m_date);
 		strArr[2].ToUint16(0,out m_dayIndex);

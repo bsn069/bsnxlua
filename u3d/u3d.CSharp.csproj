@@ -429,7 +429,6 @@
     <None Include="Assets\server_res\lua\main.txt" />
     <None Include="Assets\server_res\lua\ui\ui.txt" />
     <None Include="Assets\server_res\readme.txt" />
-    <None Include="Assets\server_res\win\ver.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

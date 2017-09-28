@@ -16,6 +16,12 @@ public static class CommonEx
         return val;
 	}
 
+    public static string Base64String(this byte[] me)
+	{
+        string val = Convert.ToBase64String(me);
+        return val;
+	}
+
 	// 返回全路径的Assets路径
     // path ["H:/dev/swordm3d-code/trunk/client/swordm3d/Assets/_Game/Resources/Packages/UI/EquipAvartarTip.prefab", ...]
     // ret ["Assets/_Game/Resources/Packages/UI/EquipAvartarTip.prefab", ...]

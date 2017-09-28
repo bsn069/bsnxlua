@@ -8,17 +8,31 @@ namespace NBsn
 
 public static class C_PathConfig 
 {
-	// lua文件根目录名
-	public static string LuaDirName
-	{
-		get { return "lua"; }
-	}
-
 	// 从服务器下载的资源存放根目录名
 	public static string ServerResDirName
 	{
 		get { return "server_res"; }
 	}
+
+    // lua文件根目录名
+	public static string LuaDirName
+	{
+		get { return "lua"; }
+	}
+
+    // Assets目录下的lua目录路径
+    static string m_strAssetsLuaDirPath = ServerResDirName.PathCombine(LuaDirName).Unique(false);
+    public static string AssetsLuaDirPath
+	{
+		get { return m_strAssetsLuaDirPath; }
+	}
+
+    // 版本文件名
+	public static string VerFileName
+	{
+		get { return "ver.bin"; }
+	}
+
 
 
 
