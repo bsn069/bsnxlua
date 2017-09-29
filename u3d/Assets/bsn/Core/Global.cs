@@ -214,6 +214,8 @@ public class C_Global : IDisposable
 			yield break;
 		}
 #endif
+        ResMgr.InitAfterUpdateRes();
+
         Lua.DoString("require('main')");
 	}
 

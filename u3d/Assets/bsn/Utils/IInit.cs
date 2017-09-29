@@ -14,5 +14,9 @@ public interface I_Init
 	void UnInit(); 
 }
 
+public interface I_InitAfterUpdateRes
+{
+	bool InitAfterUpdateRes();
+}
 }
 

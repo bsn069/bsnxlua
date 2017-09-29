@@ -12,6 +12,10 @@ public class C_Resources : I_ResLoad, I_Init
 {
 	public T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object
 	{
+		NBsn.C_Global.Instance.Log.InfoFormat(
+            "NBsn.C_Resources.Load(p.strPath={0})"
+            , p.strPath
+        ); 
 		return Load<T>(p.strPath);
 	}
 

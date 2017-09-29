@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public class C_ABOut : I_ResLoad, I_Init
+public class C_ABOut : I_ResLoad, I_Init, I_InitAfterUpdateRes
 {
 	public T Load<T>(C_ResLoadParam p)  where T : UnityEngine.Object
 	{
@@ -60,6 +60,12 @@ public class C_ABOut : I_ResLoad, I_Init
 		var ab = AssetBundle.LoadFromFile(strLoadPath);
 		m_abManifest = ab.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
 		ab.Unload(false);
+		return true;
+	}
+
+    public bool InitAfterUpdateRes() 
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABOut.InitAfterUpdateRes()");
 		return true;
 	}
 

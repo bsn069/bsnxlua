@@ -24,16 +24,31 @@ public static class C_Ver
     [MenuItem("Bsn/Ver/Win", false, 2)]
 	public static void WinVer()
 	{
-        var strVer = File.ReadAllText(VerPath());
-        var strLuaVer = File.ReadAllText(LuaVerPath());
+        var utf8WithoutBom = new System.Text.UTF8Encoding(false);
+        var strVer = File.ReadAllText(VerPath(), utf8WithoutBom);
+        var strLuaVer = File.ReadAllText(LuaVerPath(), utf8WithoutBom);
 
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine();
         sb.Append(strVer);
         sb.Append(strLuaVer);
 
         File.Delete(WinVerPath());
-        File.WriteAllText(WinVerPath(), sb.ToString(), System.Text.Encoding.UTF8);
+        File.WriteAllText(WinVerPath(), sb.ToString(), utf8WithoutBom);
+	}
+
+    [MenuItem("Bsn/Ver/Android", false, 3)]
+	public static void AndroidVer()
+	{
+        var utf8WithoutBom = new System.Text.UTF8Encoding(false);
+        var strVer = File.ReadAllText(VerPath(), utf8WithoutBom);
+        var strLuaVer = File.ReadAllText(LuaVerPath(), utf8WithoutBom);
+
+        StringBuilder sb = new StringBuilder();
+        sb.Append(strVer);
+        sb.Append(strLuaVer);
+
+        File.Delete(AndriodVerPath());
+        File.WriteAllText(AndriodVerPath(), sb.ToString(), utf8WithoutBom);
 	}
 
     public static string VerPath()
@@ -61,19 +76,27 @@ public static class C_Ver
             ;
 	}
 
+    public static string AndriodVerPath()
+	{
+        return Application.dataPath.PathFormat()
+            .PathCombine(C_PathConfig.ServerResDirName)
+            .PathCombine(C_Platform.GetName(1))
+            .PathCombine(C_PathConfig.VerFileName)
+            ;
+	}
+
     public static void LuaVer(ref Dictionary<string, string> luaFile2Base64Md5)
 	{
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine(C_PathConfig.LuaDirName);
         sb.AppendLine(luaFile2Base64Md5.Count.ToString());
         foreach (var item in luaFile2Base64Md5) {
             sb.Append(item.Key);
             sb.Append(',');
             sb.AppendLine(item.Value);            
         }
-
+        var utf8WithoutBom = new System.Text.UTF8Encoding(false);
         File.Delete(LuaVerPath());
-        File.WriteAllText(LuaVerPath(), sb.ToString(), System.Text.Encoding.UTF8);
+        File.WriteAllText(LuaVerPath(), sb.ToString(), utf8WithoutBom);
 	}
 
     public static void GetLuaFileInfo(ref Dictionary<string, string> file2Base64Md5)

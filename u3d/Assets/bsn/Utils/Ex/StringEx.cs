@@ -383,7 +383,7 @@ public static class StringEx
     }
 	#endregion
 
-        #region path file
+    #region path file
     /*
     */
     public static bool PathFile(
@@ -537,13 +537,6 @@ public static class StringEx
             bResult = false;
         }
         return bResult;
-    }
-
-    /*
-    */
-    public static void PathFileWriteAllBytes(this string strFilePath, byte[] byData)
-    {
-        File.WriteAllBytes(strFilePath, byData);
     }
     #endregion
 }  

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace NBsn 
 {
 
-public class C_ResMgr: I_ResLoad, I_Init
+public class C_ResMgr: I_ResLoad, I_Init, I_InitAfterUpdateRes
 {
 	public T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object
 	{
@@ -81,6 +81,15 @@ public class C_ResMgr: I_ResLoad, I_Init
 		iInit = m_iResLoad as I_Init;
 		return iInit.Init();
 	}
+
+    public bool InitAfterUpdateRes() 
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ResMgr.InitAfterUpdateRes()");
+
+		var iInit = m_iResLoad as I_InitAfterUpdateRes;
+		return iInit.InitAfterUpdateRes();
+	}
+
 
 	public void UnInit() 
 	{

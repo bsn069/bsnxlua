@@ -33,8 +33,16 @@ public static class C_PathConfig
 		get { return "ver.bin"; }
 	}
 
-
-
+    // server资源路径
+	// pc C:/Users/butao/AppData/LocalLow/DefaultCompany/bsnxlua/server_res 
+    public static string ServerResPath
+	{
+		get { return m_strServerResPath; }
+	}
+ 	static string m_strServerResPath = 
+		Application.persistentDataPath.PathFormat()
+		.PathCombine(ServerResDirName)
+		.Unique(false);
 
 
 	public static string AssetsDir

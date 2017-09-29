@@ -12,7 +12,7 @@ using UnityEditor;
 namespace NBsn 
 {
 
-public class C_ABRes: I_ResLoad, I_Init
+public class C_ABRes: I_ResLoad, I_Init, I_InitAfterUpdateRes
 {
 	public T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object
 	{
@@ -29,6 +29,12 @@ public class C_ABRes: I_ResLoad, I_Init
 	public bool Init() 
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("mc_strPathFormat={0}", mc_strPathFormat);
+		return true;
+	}
+
+    public bool InitAfterUpdateRes() 
+	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABRes.InitAfterUpdateRes()");
 		return true;
 	}
 
