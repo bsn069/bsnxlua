@@ -46,7 +46,9 @@ public class UpdateV: View<UpdateVM>
 	{
 		NBsn.C_Global.Instance.Log.Info("NBsn.NMVVM.LoginV.UIOnClickHide()");
 
-		Hide();
+					var pView = NBsn.C_Global.Instance.UIMgr.GetView("UILogin");
+		pView.Show(null);
+		//Hide();
 	}
 	#endregion
 

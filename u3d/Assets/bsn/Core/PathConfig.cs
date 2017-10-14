@@ -21,11 +21,12 @@ public static class C_PathConfig
 	}
 
     // Assets目录下的lua目录路径
-    static string m_strAssetsLuaDirPath = ServerResDirName.PathCombine(LuaDirName).Unique(false);
+	// server_res/lua
     public static string AssetsLuaDirPath
 	{
 		get { return m_strAssetsLuaDirPath; }
 	}
+    static string m_strAssetsLuaDirPath = ServerResDirName.PathCombine(LuaDirName).Unique(false);
 
     // 版本文件名
 	public static string VerFileName
@@ -44,7 +45,6 @@ public static class C_PathConfig
 		.PathCombine(ServerResDirName)
 		.Unique(false);
 
-
 	public static string AssetsDir
 	{
 		get { return "Assets"; }
@@ -55,6 +55,40 @@ public static class C_PathConfig
 	{
 		get { return "ABRes"; }
 	}
+
+    // ServerResDirName下各平台下ab资源http目录名
+	// pc assets/abres 
+    public static string ServerResABResHttpDirName
+	{
+		get { return m_strServerResABResHttpDirName; }
+	}
+ 	static string m_strServerResABResHttpDirName = 
+			string.Format("{0}/{1}", AssetsDir, ABResDir)
+			.ToLower()
+			.Unique(false);
+
+	// ServerResDirName下ab资源http目录
+	// pc win/assets/abres 
+    public static string ServerResABResHttpDir
+	{
+		get { return m_strServerResABResHttpDir; }
+	}
+ 	static string m_strServerResABResHttpDir = 
+			string.Format("{0}/{1}", NBsn.C_Platform.Name().ToLower(), ServerResABResHttpDirName)
+			.Unique(false);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// ABRes下的存放图集的目录
 	public static string ABResAtlasDir

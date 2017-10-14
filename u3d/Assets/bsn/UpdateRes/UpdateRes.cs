@@ -37,12 +37,14 @@ public class C_UpdateRes
         }
 		yield return NBsn.C_Global.Instance.Coroutine.Start(GetServerVer(serverVerDownloadFileName));
         yield return NBsn.C_Global.Instance.Coroutine.Start(DownloadServerLuaFile());
+        yield return NBsn.C_Global.Instance.Coroutine.Start(DownloadABMainFile());
         yield return NBsn.C_Global.Instance.Coroutine.Start(DownloadABFile());
         yield return NBsn.C_Global.Instance.Coroutine.Start(SaveServerVerFile(serverVerDownloadFileName));
 	}
 
     C_Version   m_pLocalVer = new C_Version();
     Dictionary<string, string> m_LocalLuaFile2Base64Md5 = new Dictionary<string, string>();
+    Dictionary<string, string> m_LocalABFile2Base64Md5 = new Dictionary<string, string>();
 	private IEnumerator GetLocalVer()
 	{
 		m_pUpdateVM.TextCenter.Value = "获取本地版本信息";
@@ -79,6 +81,7 @@ public class C_UpdateRes
         yield return Yielders.EndOfFrame;
 
         ParseLuaVer(sr, ref m_LocalLuaFile2Base64Md5);
+        ParseABVer(sr, ref m_LocalABFile2Base64Md5);
         yield return Yielders.EndOfFrame;
 	}
 
@@ -103,6 +106,7 @@ public class C_UpdateRes
 
     private C_Version   m_pServerVer    = new C_Version();
     private Dictionary<string, string> m_ServerLuaFile2Base64Md5 = new Dictionary<string, string>();
+    private Dictionary<string, string> m_ServerABFile2Base64Md5 = new Dictionary<string, string>();
     private IEnumerator GetServerVer(string serverVerDownloadFileName)
 	{
 		m_pUpdateVM.TextCenter.Value = "获取服务器版本";
@@ -134,6 +138,7 @@ public class C_UpdateRes
         yield return Yielders.EndOfFrame;
 
         ParseLuaVer(sr, ref m_ServerLuaFile2Base64Md5);
+        ParseABVer(sr, ref m_ServerABFile2Base64Md5);
         yield return Yielders.EndOfFrame;
 	}
 
@@ -168,22 +173,53 @@ public class C_UpdateRes
         }
 	}
 
-    private IEnumerator DownloadABFile()
+    private IEnumerator DownloadABMainFile()
 	{
 		m_pUpdateVM.TextCenter.Value = "下载服务器AB文件信息";
         yield return Yielders.EndOfFrame;
 
         var strHttpFilePath = string.Format(
-			"{0}/AB"
+			"{0}/{0}"
 			, NBsn.C_Platform.Name()
 		); 
         var strLocalFilePath = mc_strPathRoot
-            .PathCombine("AB")
+            .PathCombine(NBsn.C_Platform.Name())
             .PathFormat()
             ;
         yield return NBsn.C_Global.Instance.Coroutine.Start(
             DownloadServerFile(strHttpFilePath, strLocalFilePath)
         );
+	}
+
+	private IEnumerator DownloadABFile()
+	{
+		m_pUpdateVM.TextCenter.Value = "下载服务器.ab文件";
+        yield return Yielders.EndOfFrame;
+
+        string strBase64Md5;
+        foreach (var item in m_ServerABFile2Base64Md5) 
+        {
+            if (m_LocalABFile2Base64Md5.TryGetValue(item.Key, out strBase64Md5)) 
+            {
+                if (strBase64Md5 == item.Value) 
+                {
+                    continue;
+                }
+            }
+
+            var strHttpFilePath = NBsn.C_PathConfig.ServerResABResHttpDir + "/" + item.Key;
+            var strLocalFilePath = mc_strPathRoot
+                .PathCombine(NBsn.C_PathConfig.ServerResABResHttpDirName)
+                .PathCombine(item.Key)
+                .PathFormat()
+                ;
+            yield return NBsn.C_Global.Instance.Coroutine.Start(
+                DownloadServerFile(strHttpFilePath, strLocalFilePath)
+            );
+            if (m_bError) {
+                break;
+            }
+        }
 	}
 
     private IEnumerator SaveServerVerFile(string serverVerDownloadFileName)
@@ -268,6 +304,24 @@ public class C_UpdateRes
             strTemp = sr.ReadLine();
             var strArr = strTemp.Split(',');
             luaFile2Base64Md5.Add(strArr[0], strArr[1]);
+        }
+	}
+
+    public static void ParseABVer(
+        StringReader sr
+        , ref Dictionary<string, string> abFile2Base64Md5
+    )
+	{
+		NBsn.C_Global.Instance.Log.Info("C_UpdateRes.ParseABVer"); 
+
+        var strTemp = sr.ReadLine();
+        UInt32 u32Count;
+        strTemp.ToUint32(0, out u32Count);
+
+        for (UInt32 i = 0; i < u32Count; i++) {
+            strTemp = sr.ReadLine();
+            var strArr = strTemp.Split(',');
+            abFile2Base64Md5.Add(strArr[0], strArr[1]);
         }
 	}
 
