@@ -33,7 +33,7 @@ public static class C_PathConfig
 		get { return "ver.bin"; }
 	}
 
-    // server资源路径
+    // 非编辑器server资源路径
 	// pc C:/Users/butao/AppData/LocalLow/DefaultCompany/bsnxlua/server_res 
     public static string ServerResPath
 	{
@@ -68,31 +68,41 @@ public static class C_PathConfig
 		get { return "Prefab"; }
 	}
 
-	// ABRes下的存放lua的目录
-	public static string ABResLuaDir
-	{
-		get { return "Lua"; }
-	}
+    // AB输出Assets下的目录
+    // strPlatform="win" server_res/win
+    public static string AssetsLatePlatformABOutPath(string strPlatform)
+    {
+        return ServerResDirName.PathCombine(strPlatform);
+    }
 
-	// ab资源存放目录
-	// win Assets/ABRes
-	public static string AssetsABResPath
-	{
-		get { return AssetsDir.PathCombine(ABResDir); }
-	}
+        // ab资源存放目录
+        // win Assets/ABRes
+        public static string AssetsABResPath
+        {
+            get { return AssetsDir.PathCombine(ABResDir); }
+        }
 
-	// AB根目录名
-	public static string ABRootDir
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // AB根目录名
+        public static string ABRootDir
 	{
 		get { return "AB"; }
 	}
 
-	// AB输出Assets下的目录
-	// strPlatform="Win" ABOut/Win/AB
-	public static string AssetsLatePlatformABOutPath(string strPlatform) 
-	{
-		return "ABOut".PathCombine(strPlatform).PathCombine(ABRootDir);
-	}
+
 
 	// Assets上层全路径
 	// pc F:/github/bsnxlua/u3d

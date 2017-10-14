@@ -13,7 +13,7 @@ namespace NBsn.NEditor
 
 public static class C_Ver
 {
-    [MenuItem("Bsn/Ver/Lua", false, 1)]
+    [MenuItem("Bsn/Bsn/3Ver/Lua", false, 1)]
 	public static void LuaVer()
 	{
         var luaFile2Base64Md5 = new Dictionary<string, string>();
@@ -21,7 +21,7 @@ public static class C_Ver
         LuaVer(ref luaFile2Base64Md5);
 	}
 
-    [MenuItem("Bsn/Ver/Win", false, 2)]
+    [MenuItem("Bsn/Bsn/3Ver/Win", false, 2)]
 	public static void WinVer()
 	{
         var utf8WithoutBom = new System.Text.UTF8Encoding(false);
@@ -32,11 +32,45 @@ public static class C_Ver
         sb.Append(strVer);
         sb.Append(strLuaVer);
 
+
+            string strDirFullPath = Application.dataPath.PathCombine(
+                NBsn.C_PathConfig.ServerResDirName
+                , NBsn.C_Platform.GetName(0)
+            );
+            int nBaseLength = strDirFullPath.PathCombine(NBsn.C_PathConfig.AssetsABResPath).Length + 1;
+
+            string strABFullPath = NBsn.C_PathConfig.AssetsDir.PathCombine(
+    NBsn.C_PathConfig.ServerResDirName
+    , NBsn.C_Platform.GetName(0)
+    , NBsn.C_Platform.GetName(0)
+);
+
+            var ab = AssetBundle.LoadFromFile(strABFullPath);
+        var abManifest = ab.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
+        var allAB = abManifest.GetAllAssetBundles();
+            sb.AppendLine(allAB.Length.ToString());
+        foreach (var item in allAB)
+        {
+            string strFilePath = strDirFullPath.PathCombine(item);
+            var byData = File.ReadAllBytes(strFilePath);
+            var byMd5 = NBsn.NCryptography.C_MD5.Compute(byData);
+            var strMd5 = byMd5.Base64String();
+            strFilePath = strFilePath.Substring(nBaseLength)
+                .Replace(Path.DirectorySeparatorChar, '/')
+                ;
+            Debug.LogFormat("{0} {1}", strFilePath, strMd5);
+
+                sb.Append(strFilePath);
+                sb.Append(',');
+                sb.AppendLine(strMd5);
+            }
+        ab.Unload(true);
+
         File.Delete(WinVerPath());
         File.WriteAllText(WinVerPath(), sb.ToString(), utf8WithoutBom);
 	}
 
-    [MenuItem("Bsn/Ver/Android", false, 3)]
+    [MenuItem("Bsn/Bsn/3Ver/Android", false, 3)]
 	public static void AndroidVer()
 	{
         var utf8WithoutBom = new System.Text.UTF8Encoding(false);

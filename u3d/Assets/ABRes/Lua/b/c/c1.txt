@@ -1,3 +1,0 @@
-print('c1(') 
-require 'b.c.c2'
-print('c1)')
