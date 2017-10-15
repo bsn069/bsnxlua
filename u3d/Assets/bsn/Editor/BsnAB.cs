@@ -23,6 +23,7 @@ public static class C_BsnAB
     [MenuItem("Bsn/Bsn/1Set AB Name/Atlas", false, 2)]
 	private static void SetAtlasABName()
 	{
+		var nPrefixLength = NBsn.C_PathConfig.ServerResABResHttpDirName.Length + 1;
 		var listAtlasFileFullPaths = NBsn.NEditor.C_Path.GetABResAtlasFileFullPaths();
 		List<string> listAssetsPaths = listAtlasFileFullPaths.FullPaths2AssetsPaths();
         foreach (var strAssetsPath in listAssetsPaths)
@@ -38,7 +39,7 @@ public static class C_BsnAB
                 continue;
             }
 
-			var strABPath = strAssetsPath + NBsn.C_Config.ABSuffix;
+			var strABPath = strAssetsPath.Substring(nPrefixLength) + NBsn.C_Config.ABSuffix;
             importer.SetAssetBundleNameAndVariant(strABPath, null);
         }
     }
@@ -46,6 +47,7 @@ public static class C_BsnAB
 	[MenuItem("Bsn/Bsn/1Set AB Name/Prefab", false, 3)]
 	private static void SetPrefabABName()
 	{
+		var nPrefixLength = NBsn.C_PathConfig.ServerResABResHttpDirName.Length + 1;
 		var listPrefabFileFullPaths = NBsn.NEditor.C_Path.GetABResPrebabFileFullPaths();
 		List<string> listAssetsPaths = listPrefabFileFullPaths.FullPaths2AssetsPaths();
         foreach (var strAssetsPath in listAssetsPaths) {
@@ -55,7 +57,7 @@ public static class C_BsnAB
                 continue;
             }
 
-			var strABPath = strAssetsPath + NBsn.C_Config.ABSuffix;
+			var strABPath = strAssetsPath.Substring(nPrefixLength) + NBsn.C_Config.ABSuffix;
             importer.SetAssetBundleNameAndVariant(strABPath, null);
         }
     }

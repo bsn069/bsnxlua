@@ -207,9 +207,9 @@ public class C_UpdateRes
                 }
             }
 
-            var strHttpFilePath = NBsn.C_PathConfig.ServerResABResHttpDir + "/" + item.Key;
+            var strHttpFilePath = NBsn.C_Platform.Name() + "/" + item.Key;
             var strLocalFilePath = mc_strPathRoot
-                .PathCombine(NBsn.C_PathConfig.ServerResABResHttpDirName)
+				.PathCombine("ab")
                 .PathCombine(item.Key)
                 .PathFormat()
                 ;

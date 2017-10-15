@@ -47,14 +47,18 @@ public static class C_PathConfig
 
 	public static string AssetsDir
 	{
-		get { return "Assets"; }
+		get { return "m_strAssetsDir"; }
 	}
+	private static string m_strAssetsDir = "Assets";
 
-	// 此目录下的文件 会被打包
+	// 编辑器此目录下的文件 会被打成ab
+	// app的所有ab存放在小写的此目录
 	public static string ABResDir
 	{
-		get { return "ABRes"; }
+		get { return m_strABResDir; }
 	}
+	private static string m_strABResDir = "ABRes";
+		
 
     // ServerResDirName下各平台下ab资源http目录名
 	// pc assets/abres 
