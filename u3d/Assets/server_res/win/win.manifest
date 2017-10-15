@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 527038939
+CRC: 2181382799
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -35,5 +35,9 @@ AssetBundleManifest:
         Dependency_0: atlas/uipack.png.ab
     Info_9:
       Name: prefab/ui/uiupdate1.prefab.ab
+      Dependencies:
+        Dependency_0: atlas/common.png.ab
+    Info_10:
+      Name: prefab/ui/uiupdate.prefab.ab
       Dependencies:
         Dependency_0: atlas/common.png.ab

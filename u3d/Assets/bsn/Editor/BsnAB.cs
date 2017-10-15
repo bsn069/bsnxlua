@@ -51,6 +51,22 @@ public static class C_BsnAB
 		var listPrefabFileFullPaths = NBsn.NEditor.C_Path.GetABResPrebabFileFullPaths();
 		List<string> listAssetsPaths = listPrefabFileFullPaths.FullPaths2AssetsPaths();
         foreach (var strAssetsPath in listAssetsPaths) {
+			Debug.LogFormat("SetPrefabABName strAssetsPath={0}", strAssetsPath); 
+            var importer = AssetImporter.GetAtPath(strAssetsPath);
+            if (importer == null) {
+                Debug.LogErrorFormat("basePath={0} importer == null", strAssetsPath);
+                continue;
+            }
+
+			var strABPath = strAssetsPath.Substring(nPrefixLength) + NBsn.C_Config.ABSuffix;
+            importer.SetAssetBundleNameAndVariant(strABPath, null);
+        }
+
+		nPrefixLength = (NBsn.C_PathConfig.AssetsDir + @"\Resources\").Length;
+		listAssetsPaths.Clear();
+		listAssetsPaths.Add(NBsn.C_PathConfig.AssetsDir + @"\Resources\Prefab\UI\UIUpdate.prefab");
+        foreach (var strAssetsPath in listAssetsPaths) {
+			Debug.LogFormat("SetPrefabABName strAssetsPath={0}", strAssetsPath); 
             var importer = AssetImporter.GetAtPath(strAssetsPath);
             if (importer == null) {
                 Debug.LogErrorFormat("basePath={0} importer == null", strAssetsPath);

@@ -69,51 +69,47 @@ public class C_ABApp : I_ResLoad, I_Init, I_InitAfterUpdateRes
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABApp.Load({0}, {1})", strPath, strSuffix); 
 		
-		strPath = (strPath + "." + strSuffix).ToLower();
-		AssetBundle ab = LoadAB(strPath);
+		var strABPath = (strPath + "." + strSuffix).ToLower() + NBsn.C_Config.ABSuffix;
+		AssetBundle ab = LoadAB(strABPath);
 		if (ab == null) 
         {
 			return null;
 		}
 
-		var index = strPath.LastIndexOf(Path.DirectorySeparatorChar);
-		var strResName = strPath.Substring(index+1);
+		var index = strPath.LastIndexOf('/');
+		var strResName = strABPath.Substring(index+1);
 		NBsn.C_Global.Instance.Log.InfoFormat("strResName={0}", strResName);
 		return ab.LoadAsset<T>(strResName);
 	}
 
 	#region 
-	private string m_strPathFormat = (NBsn.C_PathConfig.ServerResABResHttpDirName + "/{0}" + NBsn.C_Config.ABSuffix).Unique(false);
-		
 	private Dictionary<string, AssetBundle> m_abCache = new Dictionary<string, AssetBundle>();
 	private AssetBundleManifest             m_abManifest = null;
 	#endregion
 
-	private AssetBundle LoadAB(string strResPath) 
+	// strABPath */*/*.ab
+	private AssetBundle LoadAB(string strABPath) 
     {
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABApp.LoadAB({0})", strResPath);
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABApp.LoadAB({0})", strABPath);
 
 		AssetBundle ab;
-		if (!m_abCache.TryGetValue(strResPath, out ab)) 
+		if (!m_abCache.TryGetValue(strABPath, out ab)) 
         {
-			var strABName = string.Format(m_strPathFormat, strResPath);
-			NBsn.C_Global.Instance.Log.InfoFormat("strABName={0}", strABName);
-			var arrDepd = m_abManifest.GetDirectDependencies(strABName);
+			var arrDepd = m_abManifest.GetDirectDependencies(strABPath);
 			for(int i = 0; i < arrDepd.Length; ++i) 
             {
 				var strDepABName = arrDepd[i];
 				NBsn.C_Global.Instance.Log.InfoFormat("i={1} strDepABName={0}", strDepABName, i);
-				strDepABName = strDepABName.Substring(13);
-				strDepABName = strDepABName.Substring(0, strDepABName.Length - 3);
 				LoadAB(strDepABName);
 			}
 
-			var strLoadPath = NBsn.C_PathConfig.ServerResPath.PathCombine(strABName).PathFormat();
+			var strLoadPath = NBsn.C_PathConfig.APPABResRootPath
+				.PathCombine(strABPath.PathFormat());
 			NBsn.C_Global.Instance.Log.InfoFormat("strLoadPath={0}", strLoadPath);
 			ab = AssetBundle.LoadFromFile(strLoadPath);
 			if (ab != null) 
             {
-				m_abCache.Add(strResPath, ab);
+				m_abCache.Add(strABPath, ab);
 			}
 		}
 		return ab;

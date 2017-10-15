@@ -33,19 +33,19 @@ public static class C_Ver
         sb.Append(strLuaVer);
 
 
-            string strDirFullPath = Application.dataPath.PathCombine(
-                NBsn.C_PathConfig.ServerResDirName
-                , NBsn.C_Platform.GetName(0)
-            );
-            int nBaseLength = strDirFullPath.PathCombine(NBsn.C_PathConfig.AssetsABResPath).Length + 1;
+        string strDirFullPath = Application.dataPath.PathCombine(
+            NBsn.C_PathConfig.ServerResDirName
+            , NBsn.C_Platform.GetName(0)
+        );
+        int nBaseLength = strDirFullPath.Length + 1;
 
-            string strABFullPath = NBsn.C_PathConfig.AssetsDir.PathCombine(
-    NBsn.C_PathConfig.ServerResDirName
-    , NBsn.C_Platform.GetName(0)
-    , NBsn.C_Platform.GetName(0)
-);
+        string strABFullPath = NBsn.C_PathConfig.AssetsDir.PathCombine(
+			NBsn.C_PathConfig.ServerResDirName
+			, NBsn.C_Platform.GetName(0)
+			, NBsn.C_Platform.GetName(0)
+		);
 
-            var ab = AssetBundle.LoadFromFile(strABFullPath);
+        var ab = AssetBundle.LoadFromFile(strABFullPath);
         var abManifest = ab.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
         var allAB = abManifest.GetAllAssetBundles();
             sb.AppendLine(allAB.Length.ToString());
@@ -60,10 +60,10 @@ public static class C_Ver
                 ;
             Debug.LogFormat("{0} {1}", strFilePath, strMd5);
 
-                sb.Append(strFilePath);
-                sb.Append(',');
-                sb.AppendLine(strMd5);
-            }
+            sb.Append(strFilePath);
+            sb.Append(',');
+            sb.AppendLine(strMd5);
+        }
         ab.Unload(true);
 
         File.Delete(WinVerPath());

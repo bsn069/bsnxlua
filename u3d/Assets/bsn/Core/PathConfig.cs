@@ -47,18 +47,33 @@ public static class C_PathConfig
 
 	public static string AssetsDir
 	{
-		get { return "m_strAssetsDir"; }
+		get { return m_strAssetsDir; }
 	}
 	private static string m_strAssetsDir = "Assets";
 
 	// 编辑器此目录下的文件 会被打成ab
-	// app的所有ab存放在小写的此目录
 	public static string ABResDir
 	{
 		get { return m_strABResDir; }
 	}
 	private static string m_strABResDir = "ABRes";
 		
+	// app的所有ab存放在ServerResDirName下的此目录
+	public static string APPABResDir
+	{
+		get { return m_strAPPABResDir; }
+	}
+	private static string m_strAPPABResDir = "abres";
+
+	// 非编辑器ab资源根路径
+	// pc C:/Users/butao/AppData/LocalLow/DefaultCompany/bsnxlua/server_res/abres 
+	public static string APPABResRootPath
+	{
+		get { return m_strAPPABResRootPath; }
+	}
+	private static string m_strAPPABResRootPath = NBsn.C_PathConfig.ServerResPath
+		.PathCombine(NBsn.C_PathConfig.APPABResDir)
+		.Unique(false);
 
     // ServerResDirName下各平台下ab资源http目录名
 	// pc assets/abres 
@@ -81,6 +96,35 @@ public static class C_PathConfig
 			string.Format("{0}/{1}", NBsn.C_Platform.Name().ToLower(), ServerResABResHttpDirName)
 			.Unique(false);
 
+	// ABRes下的存放prefab的目录
+	public static string ABResPrefabDir
+	{
+		get { return "Prefab"; }
+	}
+
+
+	/////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -100,11 +144,7 @@ public static class C_PathConfig
 		get { return "Atlas"; }
 	}
 
-	// ABRes下的存放prefab的目录
-	public static string ABResPrefabDir
-	{
-		get { return "Prefab"; }
-	}
+
 
     // AB输出Assets下的目录
     // strPlatform="win" server_res/win

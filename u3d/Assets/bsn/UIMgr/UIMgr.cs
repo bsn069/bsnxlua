@@ -110,7 +110,7 @@ public class C_UIMgr
 
 	private Transform 	m_tfUI = null;
 	private Camera 		m_Camera = null;
-	private string 		m_strPathSuffix = "Prefab".PathCombine("UI") + Path.DirectorySeparatorChar;
+	private string 		m_strPathSuffix = NBsn.C_PathConfig.ABResPrefabDir + "/UI/";
 	private NBsn.NContainer.Map<string, GameObject> m_mapUIs = new NBsn.NContainer.Map<string, GameObject>();
 }
 
