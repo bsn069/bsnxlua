@@ -63,6 +63,11 @@ public class C_Global : IDisposable
 	{
 		get { return m_tfMain; }
 	}
+
+	public NBsn.C_Gesture Gesture 
+	{
+		get { return m_Gesture; }
+	}
 	#endregion
 
 #if UNITY_EDITOR
@@ -143,6 +148,9 @@ public class C_Global : IDisposable
         m_Lua	= new NBsn.C_Lua();
         Lua.Init();
 
+		m_Gesture = new NBsn.C_Gesture();
+		Gesture.Init();
+
 		Coroutine.Start(StartApp());
         // var pView = UIMgr.GetView("UIUpdate") as NBsn.NMVVM.UpdateV;
         // pView.Show();
@@ -165,6 +173,9 @@ public class C_Global : IDisposable
 	{
 		Log.Info("NBsn.C_Global.UnInit()"); 
 
+		Gesture.UnInit();
+		m_Gesture = null;
+		
 		Lua.UnInit();
 		m_Lua = null;
 
@@ -244,6 +255,8 @@ public class C_Global : IDisposable
 	protected Transform 	m_tfMain 	= null;
 
 	protected NBsn.C_Lua 	m_Lua 		= null;
+
+	protected NBsn.C_Gesture m_Gesture	= null;
 	#endregion
 }
 

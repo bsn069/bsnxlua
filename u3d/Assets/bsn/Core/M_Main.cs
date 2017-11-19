@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using HedgehogTeam.EasyTouch;
 
 namespace NBsn 
 {
@@ -14,6 +15,10 @@ public class M_Main : MonoBehaviour
 		NBsn.C_Global.Instance.Init(gameObject, this);
 	}
 
+	void OnEnable(){
+				
+	}
+
 	void Update()
 	{
 		NBsn.C_Global.Instance.Update();
@@ -22,6 +27,10 @@ public class M_Main : MonoBehaviour
 	void LateUpdate()
 	{
 		NBsn.C_Global.Instance.LateUpdate();
+	}
+
+	void OnDisable(){
+	
 	}
 
 	void OnDestroy() 

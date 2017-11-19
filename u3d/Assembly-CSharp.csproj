@@ -56,6 +56,7 @@
      <Compile Include="Assets\bsn\Config.cs" />
      <Compile Include="Assets\bsn\Core\Coroutine.cs" />
      <Compile Include="Assets\bsn\Core\Define.cs" />
+     <Compile Include="Assets\bsn\Core\Gesture.cs" />
      <Compile Include="Assets\bsn\Core\Global.cs" />
      <Compile Include="Assets\bsn\Core\Lua.cs" />
      <Compile Include="Assets\bsn\Core\M_Main.cs" />
