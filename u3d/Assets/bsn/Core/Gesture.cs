@@ -2,16 +2,25 @@
 using UnityEngine.UI;
 using System.Collections;
 using HedgehogTeam.EasyTouch;
+using System;
 
 namespace NBsn 
 {
 
 public class C_Gesture
 {
-	public void Init(){
-		SetSecret();
+	public bool Init(Action cb, params EasyTouch.SwipeDirection[] secret)
+	{
+		m_index = 0;
+		if (secret == null || secret.Length < 1)
+		{
+			return false;
+		}
+		m_Secret = secret;
+		m_cb = cb;
 		EasyTouch.On_SwipeStart += On_SwipeStart;
-		EasyTouch.On_SwipeEnd += On_SwipeEnd;		
+		EasyTouch.On_SwipeEnd += On_SwipeEnd;	
+		return true;	
 	}
 
 		
@@ -82,11 +91,16 @@ public class C_Gesture
 	private void Success()
 	{
 		NBsn.C_Global.Instance.Log.Info("Success");
+		if (m_cb != null)
+		{
+			m_cb();
+		}
 	}
 
 	private EasyTouch.SwipeDirection[] m_Secret = null;
 	private int m_index = 0;
-	private float m_fLastInputTime = 0;		
+	private float m_fLastInputTime = 0;	
+	private Action m_cb = null;	
 }
 
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using System;
 using XLua;
+using HedgehogTeam.EasyTouch;
 
 namespace NBsn {
 
@@ -64,9 +65,9 @@ public class C_Global : IDisposable
 		get { return m_tfMain; }
 	}
 
-	public NBsn.C_Gesture Gesture 
+	public NBsn.C_Gesture LuaConsoleGesture 
 	{
-		get { return m_Gesture; }
+		get { return m_LuaConsoleGesture; }
 	}
 	#endregion
 
@@ -148,8 +149,17 @@ public class C_Global : IDisposable
         m_Lua	= new NBsn.C_Lua();
         Lua.Init();
 
-		m_Gesture = new NBsn.C_Gesture();
-		Gesture.Init();
+		m_LuaConsoleGesture = new NBsn.C_Gesture();
+		LuaConsoleGesture.Init(
+			()=>{
+				var pView = UIMgr.GetView("UILuaConsole") as NBsn.NMVVM.LuaConsoleV;
+        		pView.Show();	
+			}
+			, EasyTouch.SwipeDirection.Right
+			, EasyTouch.SwipeDirection.Down
+			, EasyTouch.SwipeDirection.Left
+			, EasyTouch.SwipeDirection.Up
+		);
 
 		Coroutine.Start(StartApp());
         // var pView = UIMgr.GetView("UIUpdate") as NBsn.NMVVM.UpdateV;
@@ -173,8 +183,8 @@ public class C_Global : IDisposable
 	{
 		Log.Info("NBsn.C_Global.UnInit()"); 
 
-		Gesture.UnInit();
-		m_Gesture = null;
+		LuaConsoleGesture.UnInit();
+		m_LuaConsoleGesture = null;
 		
 		Lua.UnInit();
 		m_Lua = null;
@@ -256,7 +266,7 @@ public class C_Global : IDisposable
 
 	protected NBsn.C_Lua 	m_Lua 		= null;
 
-	protected NBsn.C_Gesture m_Gesture	= null;
+	protected NBsn.C_Gesture m_LuaConsoleGesture	= null;
 	#endregion
 }
 

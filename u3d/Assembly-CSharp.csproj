@@ -71,6 +71,8 @@
      <Compile Include="Assets\bsn\UIMgr\MVVM\ViewModel.cs" />
      <Compile Include="Assets\bsn\UIMgr\UI\Login\LoginV.cs" />
      <Compile Include="Assets\bsn\UIMgr\UI\Login\LoginVM.cs" />
+     <Compile Include="Assets\bsn\UIMgr\UI\LuaConsole\LuaConsoleV.cs" />
+     <Compile Include="Assets\bsn\UIMgr\UI\LuaConsole\LuaConsoleVM.cs" />
      <Compile Include="Assets\bsn\UIMgr\UI\Msg\MsgV.cs" />
      <Compile Include="Assets\bsn\UIMgr\UI\Msg\MsgVM.cs" />
      <Compile Include="Assets\bsn\UIMgr\UI\Update\UpdateV.cs" />
