@@ -78,6 +78,7 @@ public class C_ABApp : I_ResLoad, I_Init, I_InitAfterUpdateRes
 
 		var index = strPath.LastIndexOf('/');
 		var strResName = strABPath.Substring(index+1);
+		strResName = strResName.Substring(0, strResName.Length - 3);
 		NBsn.C_Global.Instance.Log.InfoFormat("strResName={0}", strResName);
 		return ab.LoadAsset<T>(strResName);
 	}

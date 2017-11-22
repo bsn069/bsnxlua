@@ -8,7 +8,8 @@ using UnityEngine;
 namespace NBsn.NUpdateRes 
 {
 
-public class C_Ver {
+public class C_Ver 
+{
     public C_Version   m_pVer  = new C_Version();
     public Dictionary<string, string> m_lua = new Dictionary<string, string>();
 

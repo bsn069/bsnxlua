@@ -17,8 +17,16 @@ public class C_Lua
 {
 	public object[] DoString(string strLua) 
 	{
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Lua.DoString({0})", strLua); 
-		return m_Lua.DoString(strLua);
+		try
+		{
+			NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Lua.DoString({0})", strLua); 
+			return m_Lua.DoString(strLua);	
+		}
+		catch (LuaException e)
+		{
+			NBsn.C_Global.Instance.Log.Error(e); 
+			return null;
+		}
 	}
 
 	#region init

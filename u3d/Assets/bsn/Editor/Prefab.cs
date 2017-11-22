@@ -13,6 +13,43 @@ namespace NBsn.NEditor
 
 public static class C_Prefab 
 {
+	[MenuItem("Assets/Bsn/Prefab/Check Unity Font")]  
+	static void Check()  
+	{  
+		string[] tmpFilePathArray = Directory.GetFiles(Application.dataPath, "*.*", SearchOption.AllDirectories);  
+
+		EditorUtility.DisplayProgressBar("CheckUnityFont", "CheckUnityFont", 0f);  
+
+		for (int i=0;i<tmpFilePathArray.Length;i++)  
+		{  
+			EditorUtility.DisplayProgressBar("CheckUnityFont", "CheckUnityFont",( i*1.0f)/tmpFilePathArray.Length);  
+
+			string tmpFilePath = tmpFilePathArray[i];  
+
+			if(tmpFilePath.EndsWith(".prefab"))  
+			{  
+				StreamReader tmpStreamReader = new StreamReader(tmpFilePath);  
+				string tmpContent = tmpStreamReader.ReadToEnd();  
+				if(tmpContent.Contains("mFont: {fileID: 0}"))  
+				{  
+					Debug.LogError(tmpFilePath);  
+				}  
+			}  
+
+			if (tmpFilePath.EndsWith(".prefab"))  
+			{  
+				StreamReader tmpStreamReader = new StreamReader(tmpFilePath);  
+				string tmpContent = tmpStreamReader.ReadToEnd();  
+				if (tmpContent.Contains("guid: 0000000000000000d000000000000000"))  
+				{  
+					Debug.LogError(tmpFilePath);  
+				}  
+			}  
+		}  
+
+		EditorUtility.ClearProgressBar();  
+	}  
+
    	[MenuItem("Assets/Bsn/Prefab/Check by Use ?")]
 	private static void OnSearchForReferences()
 	{

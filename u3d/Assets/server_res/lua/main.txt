@@ -1,6 +1,6 @@
 bsn = bsn or {}
 
--- require "ui.ui"
+require "ui.ui"
 
 
 print("need update from lua")
@@ -9,6 +9,6 @@ for i,v in pairs(CS) do
 	print(i,v)
 end
 
--- local l_oLoginView = ui:GetView("UILogin")
--- l_oLoginView:Show(nil)
+local l_oLoginView = ui:GetView("UILuaConsole")
+l_oLoginView:Show(nil)
 
