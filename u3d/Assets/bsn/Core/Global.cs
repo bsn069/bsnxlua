@@ -40,6 +40,11 @@ public class C_Global : IDisposable
 		get { return m_ResMgr; }
 	}
 
+	public NBsn.C_ABMgr ABMgr
+	{
+		get { return m_ABMgr; }
+	}
+
 	public NBsn.C_UIMgr UIMgr
 	{
 		get { return m_UIMgr; }
@@ -134,6 +139,9 @@ public class C_Global : IDisposable
 			Coroutine.Init(m_Main);
 		}
 
+		m_ABMgr = new NBsn.C_ABMgr();
+		ABMgr.Init();
+
 		m_ResMgr = new NBsn.C_ResMgr();
 		ResMgr.Init();
 
@@ -204,6 +212,12 @@ public class C_Global : IDisposable
 			m_ResMgr = null;		
 		}
 
+		if (ABMgr != null)
+		{
+			ABMgr.UnInit();
+			m_ABMgr = null;		
+		}
+
 		if (Coroutine != null)
 		{
 			Coroutine.UnInit();	
@@ -257,6 +271,7 @@ public class C_Global : IDisposable
 	protected NBsn.C_Coroutine 	m_Coroutine = null;
 	protected NBsn.C_AtlasMgr	m_AtlasMgr 	= null;
 	protected NBsn.C_ResMgr		m_ResMgr 	= null;
+	protected NBsn.C_ABMgr		m_ABMgr 	= null;
 	protected NBsn.C_UIMgr		m_UIMgr 	= null;
 	protected NBsn.C_EventMgr	m_EventMgr 	= null;
 

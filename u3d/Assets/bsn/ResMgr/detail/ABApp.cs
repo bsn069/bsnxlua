@@ -65,11 +65,18 @@ public class C_ABApp : I_ResLoad, I_Init, I_InitAfterUpdateRes
 		
 	}
 
+	// strPath Prefab/UI/UIUpdate
+	// strSuffix prefab
 	public T Load<T>(string strPath, string strSuffix)  where T : UnityEngine.Object
 	{
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABApp.Load({0}, {1})", strPath, strSuffix); 
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABApp.Load<T>({0}, {1})", strPath, strSuffix);
 		
-		var strABPath = (strPath + "." + strSuffix).ToLower() + NBsn.C_Config.ABSuffix;
+		var strResPath = (strPath + "." + strSuffix).ToLower();
+		NBsn.C_Global.Instance.Log.InfoFormat("strResPath={0}", strResPath);
+
+		var strABPath = strResPath + NBsn.C_Config.ABSuffix;
+		NBsn.C_Global.Instance.Log.InfoFormat("strABPath={0}", strABPath);
+
 		AssetBundle ab = LoadAB(strABPath);
 		if (ab == null) 
         {
@@ -77,8 +84,7 @@ public class C_ABApp : I_ResLoad, I_Init, I_InitAfterUpdateRes
 		}
 
 		var index = strPath.LastIndexOf('/');
-		var strResName = strABPath.Substring(index+1);
-		strResName = strResName.Substring(0, strResName.Length - 3);
+		var strResName = strResPath.Substring(index+1);
 		NBsn.C_Global.Instance.Log.InfoFormat("strResName={0}", strResName);
 		return ab.LoadAsset<T>(strResName);
 	}

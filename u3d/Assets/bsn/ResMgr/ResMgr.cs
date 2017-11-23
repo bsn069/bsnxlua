@@ -10,6 +10,11 @@ namespace NBsn
 
 public class C_ResMgr: I_ResLoad, I_Init, I_InitAfterUpdateRes
 {
+	public enum E_ResType
+	{
+		
+	}
+
 	public T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object
 	{
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ResMgr.Load({0})", p);
@@ -25,9 +30,7 @@ public class C_ResMgr: I_ResLoad, I_Init, I_InitAfterUpdateRes
 			GameObject go = ret as GameObject;
 			if (go != null)
 			{
-				go = (GameObject)UnityEngine.Object.Instantiate(go);
-				go.name = go.name.Replace("(Clone)", "");
-				return go as T;
+				return go.Clone<T>();
 			}
 			return null;
 		}

@@ -54,6 +54,7 @@
      <Compile Include="Assets\bsn\AtlasMgr\AtlasMgr.cs" />
      <Compile Include="Assets\bsn\AtlasMgr\Detail\Atlas.cs" />
      <Compile Include="Assets\bsn\Config.cs" />
+     <Compile Include="Assets\bsn\Core\ABMgr.cs" />
      <Compile Include="Assets\bsn\Core\Coroutine.cs" />
      <Compile Include="Assets\bsn\Core\Define.cs" />
      <Compile Include="Assets\bsn\Core\Gesture.cs" />
@@ -98,6 +99,7 @@
      <Compile Include="Assets\bsn\Utils\Event\EventId.cs" />
      <Compile Include="Assets\bsn\Utils\Event\EventMgr.cs" />
      <Compile Include="Assets\bsn\Utils\Ex\DateTimeEx.cs" />
+     <Compile Include="Assets\bsn\Utils\Ex\GameObjectEx.cs" />
      <Compile Include="Assets\bsn\Utils\Ex\ProfilerEx.cs" />
      <Compile Include="Assets\bsn\Utils\Ex\StringEx.cs" />
      <Compile Include="Assets\bsn\Utils\Http.cs" />
