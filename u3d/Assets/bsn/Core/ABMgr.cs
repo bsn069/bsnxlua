@@ -11,16 +11,33 @@ namespace NBsn
 
 public class C_ABMgr
 {
-	public bool Init()
+	public bool Init(string strABResRootPath)
 	{
+		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABMgr.Init({0})", strABResRootPath); 
+		if (strABResRootPath == null)
+		{
+			string strRootPath;
+			#if UNITY_EDITOR
+				strRootPath = NBsn.C_PathConfig.EditorAssetsFullPath;
+			#else
+				strRootPath = NBsn.C_PathConfig.PersistentDataFullPath;
+			#endif
+			m_ABResRootPath = strRootPath.PathCombine(NBsn.C_PathConfig.AssetsABResDirPath).Unique(false);
+		}
+		else 
+		{
+			m_ABResRootPath = strABResRootPath.Unique(false);
+		}
+		NBsn.C_Global.Instance.Log.InfoFormat("m_ABResRootPath={0}", m_ABResRootPath); 
 		return true;
 	}
 
 	public void UnInit() 
 	{
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABMgr.UnInit()"); 
+		NBsn.C_Global.Instance.Log.Info("NBsn.C_ABMgr.UnInit()"); 
 		m_abCache.Clear();
 		m_abManifest = null;
+		m_ABResRootPath = null;
 	}
 
 	/*
@@ -59,9 +76,9 @@ public class C_ABMgr
 	/*
 	strABManifestPath lower path
 	*/
-    public bool LoadABManifest(string strABManifestPath) 
+    public bool LoadABManifest() 
 	{
-		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABMgr.LoadABManifest({0})", strABManifestPath);
+		NBsn.C_Global.Instance.Log.Info("NBsn.C_ABMgr.LoadABManifest()");
 
         if (m_abManifest != null) 
         {
@@ -69,6 +86,8 @@ public class C_ABMgr
             return true;
         }
 
+		var strABManifestPath = m_ABResRootPath.PathCombine(NBsn.C_PathConfig.ABResDirName);
+		NBsn.C_Global.Instance.Log.InfoFormat("strABManifestPath={0}", strABManifestPath);
         if (!File.Exists(strABManifestPath)) 
         {
 			NBsn.C_Global.Instance.Log.ErrorFormat("file not exist strABManifestPath={0}", strABManifestPath);
@@ -119,8 +138,7 @@ public class C_ABMgr
 			GetAB(strDepABPath);
 		}
 
-		var strGetABPath = NBsn.C_PathConfig.APPABResRootPath
-			.PathCombine(strABPath.PathFormat());
+		var strGetABPath = m_ABResRootPath.PathCombine(strABPath.PathFormat());
 		NBsn.C_Global.Instance.Log.InfoFormat("strGetABPath={0}", strGetABPath);
 		ab = AssetBundle.LoadFromFile(strGetABPath);
 		if (ab == null)
@@ -136,6 +154,7 @@ public class C_ABMgr
 	#region 
 	private Dictionary<string, AssetBundle> m_abCache = new Dictionary<string, AssetBundle>();
 	private AssetBundleManifest             m_abManifest = null;
+	private string 							m_ABResRootPath = null;
 	#endregion
 }
 

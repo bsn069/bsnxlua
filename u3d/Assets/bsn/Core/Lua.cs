@@ -15,6 +15,16 @@ namespace NBsn {
 
 public class C_Lua 
 {
+	public void Get<TKey, TValue>(TKey key, out TValue value)
+	{
+		m_G.Get(key, out value);
+	}
+
+	public LuaTable NewTable()
+	{
+		return m_Lua.NewTable();
+	}
+
 	public object[] DoString(string strLua) 
 	{
 		try
@@ -33,6 +43,7 @@ public class C_Lua
 	public void Init() 
 	{
 		m_Lua = new LuaEnv();
+		m_G = m_Lua.Global;
 		m_Lua.AddLoader(Require);
 		NBsn.C_Global.Instance.EventMgr.Add((int)E_EventId.Global_LateUpdate, LateUpdate);
 	}
@@ -81,18 +92,17 @@ public class C_Lua
 	}
 
 	protected LuaEnv m_Lua = null;
+	protected LuaTable m_G = null;
 	// lua文件根目录
 #if UNITY_EDITOR
 	protected readonly string mc_strPathRoot = 
 		NBsn.C_PathConfig.AssetsDir
-		.PathCombine(NBsn.C_PathConfig.ServerResDirName)
-		.PathCombine(NBsn.C_PathConfig.LuaDirName)
+		.PathCombine(NBsn.C_PathConfig.AssetsLuaDirPath)
 		.Unique(false);
 #else
 	protected readonly string mc_strPathRoot = 
-		Application.persistentDataPath
-		.PathCombine(NBsn.C_PathConfig.ServerResDirName)
-		.PathCombine(NBsn.C_PathConfig.LuaDirName)
+		NBsn.C_PathConfig.PersistentDataFullPath
+		.PathCombine(NBsn.C_PathConfig.AssetsLuaDirPath)
 		.Unique(false);
 #endif
 }

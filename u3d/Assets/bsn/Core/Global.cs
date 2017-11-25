@@ -77,7 +77,8 @@ public class C_Global : IDisposable
 	#endregion
 
 #if UNITY_EDITOR
-	public static void EditorInit()
+	#region editor 
+	public static void EditorBegin()
 	{
 		var pGlobal = NBsn.C_Global.Instance;
 		if (pGlobal != null)
@@ -86,19 +87,51 @@ public class C_Global : IDisposable
 		}
 		new NBsn.C_Global();
 		pGlobal = NBsn.C_Global.Instance;
-		pGlobal.Init(null, null);
+		pGlobal.EditorInit();
 	}
 
-	public static void EditorUnInit()
+	public static void EditorEnd()
 	{
 		var pGlobal = NBsn.C_Global.Instance;
 		if (pGlobal == null)
 		{
 			return;
 		}
-		pGlobal.UnInit();
+		pGlobal.EditorUnInit();
 		pGlobal.Dispose();
 	}
+	#endregion
+
+	#region editor init
+	private void EditorInit() 
+	{
+		NBsn.C_Platform.Info();
+
+		m_Log = new NBsn.C_Log();
+		Log.Init();
+		NBsn.C_PathConfig.Debug();
+
+		m_EventMgr = new NBsn.C_EventMgr();		
+		EventMgr.Init();
+
+        m_Lua	= new NBsn.C_Lua();
+        Lua.Init();
+	}
+
+	private void EditorUnInit() 
+	{
+		Log.Info("NBsn.C_Global.EditorUnInit()"); 
+		
+		Lua.UnInit();
+		m_Lua = null;
+
+		EventMgr.UnInit();
+		m_EventMgr = null;	
+
+		Log.UnInit();
+		m_Log = null;	
+	}
+	#endregion
 #endif
 
 	#region updater
@@ -111,36 +144,33 @@ public class C_Global : IDisposable
 	{
 		EventMgr.Exec((int)E_EventId.Global_LateUpdate);
 	}
-	#endregion
+	#endregion	
 
 	#region game init
 	// 游戏逻辑初始化
 	public void Init(GameObject goMain, NBsn.M_Main Main) 
 	{
 		NBsn.C_Platform.Info();
-		if (goMain != null)
-		{
-			m_goMain    = goMain;
-			m_Main      = Main;
-			m_tfMain    = m_goMain.transform;
-		}
+
+		m_goMain    = goMain;
+		m_Main      = Main;
+		m_tfMain    = m_goMain.transform;
 
 		m_Log = new NBsn.C_Log();
 		Log.Init();
+		NBsn.C_PathConfig.Debug();
 
 		m_EventMgr = new NBsn.C_EventMgr();		
 		EventMgr.Init();
 
-		NBsn.C_PathConfig.Init();
+        m_Lua	= new NBsn.C_Lua();
+        Lua.Init();
 
-		if (m_Main != null)
-		{
-			m_Coroutine = new NBsn.C_Coroutine();
-			Coroutine.Init(m_Main);
-		}
+		m_Coroutine = new NBsn.C_Coroutine();
+		Coroutine.Init(m_Main);
 
 		m_ABMgr = new NBsn.C_ABMgr();
-		ABMgr.Init();
+		ABMgr.Init(null);
 
 		m_ResMgr = new NBsn.C_ResMgr();
 		ResMgr.Init();
@@ -148,26 +178,23 @@ public class C_Global : IDisposable
 		m_AtlasMgr = new NBsn.C_AtlasMgr();
 		AtlasMgr.Init();
 
-		if (m_tfMain != null)
-		{
-			m_UIMgr = new NBsn.C_UIMgr();
-			UIMgr.Init(m_tfMain);
-		}
+		m_UIMgr = new NBsn.C_UIMgr();
+		UIMgr.Init(m_tfMain);
 
-        m_Lua	= new NBsn.C_Lua();
-        Lua.Init();
 
 		m_LuaConsoleGesture = new NBsn.C_Gesture();
 		LuaConsoleGesture.Init(
 			()=>{
 				var pView = UIMgr.GetView("UILuaConsole") as NBsn.NMVVM.LuaConsoleV;
-        		pView.Show();	
+				pView.Show();	
 			}
 			, EasyTouch.SwipeDirection.Right
 			, EasyTouch.SwipeDirection.Down
 			, EasyTouch.SwipeDirection.Left
 			, EasyTouch.SwipeDirection.Up
 		);
+
+		ABMgr.LoadABManifest();
 
 		Coroutine.Start(StartApp());
         // var pView = UIMgr.GetView("UIUpdate") as NBsn.NMVVM.UpdateV;
@@ -197,32 +224,20 @@ public class C_Global : IDisposable
 		Lua.UnInit();
 		m_Lua = null;
 
-		if	(UIMgr != null)
-		{
-			UIMgr.UnInit();
-			m_UIMgr = null;		
-		}
+		UIMgr.UnInit();
+		m_UIMgr = null;		
 
 		AtlasMgr.UnInit();
 		m_AtlasMgr = null;		
 
-		if (ResMgr != null)
-		{
-			ResMgr.UnInit();
-			m_ResMgr = null;		
-		}
+		ResMgr.UnInit();
+		m_ResMgr = null;		
 
-		if (ABMgr != null)
-		{
-			ABMgr.UnInit();
-			m_ABMgr = null;		
-		}
+		ABMgr.UnInit();
+		m_ABMgr = null;		
 
-		if (Coroutine != null)
-		{
-			Coroutine.UnInit();	
-			m_Coroutine = null;
-		}
+		Coroutine.UnInit();	
+		m_Coroutine = null;
 
 		EventMgr.UnInit();
 		m_EventMgr = null;

@@ -1,0 +1,14 @@
+g_tTemp = {
+	['Assets/Resources/Prefab/UI/UIUpdate.prefab'] =
+	{
+		strAssetsName = 'UIUpdate.prefab',
+		strEditorAssetsLoadType = 'Resources',
+		strAssetBundleOutPath = 'ui/1.ab',
+	},
+	['Assets/ABRes/Prefab/UI/UILuaConsole.prefab'] =
+	{
+		strAssetsName = 'UILuaConsole.prefab',
+		strEditorAssetsLoadType = 'AssetDatabase',
+		strAssetBundleOutPath = 'ui/1.ab',
+	},
+}

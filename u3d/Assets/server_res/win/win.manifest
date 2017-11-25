@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 4065768893
+CRC: 1156782820
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -17,27 +17,27 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: atlas/uipack.png.ab
     Info_4:
-      Name: prefab/ui/uiluaconsole.prefab.ab
-      Dependencies: {}
-    Info_5:
       Name: prefab/ui/uimsg 1.prefab.ab
       Dependencies:
         Dependency_0: atlas/common.png.ab
-    Info_6:
+    Info_5:
       Name: prefab/ui/uimsg.prefab.ab
       Dependencies: {}
-    Info_7:
+    Info_6:
       Name: prefab/ui/uiscreen.prefab.ab
       Dependencies: {}
-    Info_8:
+    Info_7:
       Name: prefab/ui/uitextinput.prefab.ab
       Dependencies:
         Dependency_0: atlas/uipack.png.ab
-    Info_9:
+    Info_8:
       Name: prefab/ui/uiupdate1.prefab.ab
       Dependencies:
         Dependency_0: atlas/common.png.ab
+    Info_9:
+      Name: prefab/global.prefab.ab
+      Dependencies: {}
     Info_10:
-      Name: prefab/ui/uiupdate.prefab.ab
+      Name: ui/1.ab
       Dependencies:
         Dependency_0: atlas/common.png.ab

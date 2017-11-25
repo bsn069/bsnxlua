@@ -8,19 +8,65 @@ namespace NBsn
 
 public static class C_PathConfig 
 {
-	// 从服务器下载的资源存放根目录名
+	public static string AssetsDir
+	{
+		get { return m_strAssetsDir; }
+	}
+	static string m_strAssetsDir = "Assets";
+
+	// 从服务器下载的资源存放目录名
 	public static string ServerResDirName
 	{
-		get { return "server_res"; }
+		get { return m_strServerResDirName; }
 	}
+	static string m_strServerResDirName = "server_res";
 
-    // lua文件根目录名
+    // lua文件目录名
 	public static string LuaDirName
 	{
 		get { return "lua"; }
 	}
+	static string m_strLuaDirName = "lua";
 
-    // Assets目录下的lua目录路径
+	// ab文件目录名
+	public static string ABResDirName
+	{
+		get { return m_strABResDirName; }
+	}
+	static string m_strABResDirName = "abres";
+
+	// 平台目录名
+	// pc win	
+    public static string PlatformDirName
+	{
+		get { return m_strPlatformDirName; }
+	}
+ 	static string m_strPlatformDirName = NBsn.C_Platform.Name().Unique(false);
+
+    // 版本文件名
+	public static string VerFileName
+	{
+		get { return "ver.bin"; }
+	}
+	static string m_strVerFileName = "ver.bin";
+
+	// 编辑器中Assets全路径 Application.dataPath
+	// E:/github/bsnxlua/u3d/Assets
+    public static string EditorAssetsFullPath
+	{
+		get { return m_strEditorAssetsFullPath; }
+	}
+    static string m_strEditorAssetsFullPath = Application.dataPath.PathFormat().Unique(false);
+
+	// 持久化数据全路径 Application.persistentDataPath
+	// C:/Users/Administrator/AppData/LocalLow/DefaultCompany/bsnxlua
+    public static string PersistentDataFullPath
+	{
+		get { return m_strPersistentDataFullPath; }
+	}
+    static string m_strPersistentDataFullPath = Application.persistentDataPath.PathFormat().Unique(false);
+
+   	// Assets目录下的lua目录路径
 	// server_res/lua
     public static string AssetsLuaDirPath
 	{
@@ -28,11 +74,46 @@ public static class C_PathConfig
 	}
     static string m_strAssetsLuaDirPath = ServerResDirName.PathCombine(LuaDirName).Unique(false);
 
-    // 版本文件名
-	public static string VerFileName
+   	// Assets目录下的平台目录路径
+	// pc server_res/win
+    public static string AssetsPlatformDirPath
 	{
-		get { return "ver.bin"; }
+		get { return m_strAssetsPlatformDirPath; }
 	}
+ 	static string m_strAssetsPlatformDirPath = ServerResDirName.PathCombine(PlatformDirName).Unique(false);
+
+	// Assets目录下的ab资源目录路径
+	// pc server_res/win/abres
+    public static string AssetsABResDirPath
+	{
+		get { return m_strAssetsABResDirPath; }
+	}
+ 	static string m_strAssetsABResDirPath = AssetsPlatformDirPath.PathCombine(ABResDirName).Unique(false);
+
+	public static void Debug() 
+	{
+		NBsn.C_Global.Instance.Log.Info("NBsn.CPathConfig.Debug()"); 
+
+		NBsn.C_Global.Instance.Log.InfoFormat("Application.persistentDataPath={0}", Application.persistentDataPath);
+		NBsn.C_Global.Instance.Log.InfoFormat("Application.dataPath={0}", Application.dataPath);
+		NBsn.C_Global.Instance.Log.InfoFormat("Application.streamingAssetsPath={0}", Application.streamingAssetsPath);
+		NBsn.C_Global.Instance.Log.InfoFormat("Application.temporaryCachePath={0}", Application.temporaryCachePath);
+
+		NBsn.C_Global.Instance.Log.InfoFormat("EditorAssetsFullPath={0}", EditorAssetsFullPath);
+		NBsn.C_Global.Instance.Log.InfoFormat("PersistentDataFullPath={0}", PersistentDataFullPath);
+
+		NBsn.C_Global.Instance.Log.InfoFormat("AssetsPlatformDirPath={0}", AssetsPlatformDirPath);
+		NBsn.C_Global.Instance.Log.InfoFormat("AssetsABResDirPath={0}", AssetsABResDirPath);
+
+		NBsn.C_Global.Instance.Log.InfoFormat("AssetsLuaDirPath={0}", AssetsLuaDirPath);
+	}
+
+
+
+
+
+
+
 
     // 非编辑器server资源路径
 	// pc C:/Users/butao/AppData/LocalLow/DefaultCompany/bsnxlua/server_res 
@@ -45,11 +126,7 @@ public static class C_PathConfig
 		.PathCombine(ServerResDirName)
 		.Unique(false);
 
-	public static string AssetsDir
-	{
-		get { return m_strAssetsDir; }
-	}
-	private static string m_strAssetsDir = "Assets";
+
 
 	// 编辑器此目录下的文件 会被打成ab
 	public static string ABResDir
@@ -179,75 +256,6 @@ public static class C_PathConfig
 	{
 		get { return "AB"; }
 	}
-
-
-
-	// Assets上层全路径
-	// pc F:/github/bsnxlua/u3d
-	public static string AssetsUpFullPath() 
-	{
-		return Application.dataPath.PathUpDir().PathFormat();
-	}
-
-
-
-
-
-
-
-
-	// AB根目录 本地全路径
-	// pc F:/github/bsnxlua/u3d/Assets/ABOut/Win/AB/
-	public static string ABLocalFullPath 
-	{
-		get { return m_strABLocalFullPath; }
-	}
-
-	// 资源根目录 本地全路径
-	// pc editor F:/github/bsnxlua/u3d/Assets/
-	public static string ResLocalFullPath 
-	{
-		get { return m_strResLocalFullPath; }
-	}
-
-	public static void Init() 
-	{
-		NBsn.C_Global.Instance.Log.Info("NBsn.CPathConfig.Init()"); 
-
-		NBsn.C_Global.Instance.Log.InfoFormat("Application.persistentDataPath={0}", Application.persistentDataPath);
-		NBsn.C_Global.Instance.Log.InfoFormat("Application.dataPath={0}", Application.dataPath);
-		NBsn.C_Global.Instance.Log.InfoFormat("Application.streamingAssetsPath={0}", Application.streamingAssetsPath);
-		NBsn.C_Global.Instance.Log.InfoFormat("Application.temporaryCachePath={0}", Application.temporaryCachePath);
-
-
-
-		// NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Config.PlatformABPathFormat={0}", NBsn.C_Config.PlatformABPathFormat); 
-		// m_strPlatformABPath = string.Format(
-		// 	NBsn.C_Config.PlatformABPathFormat
-		// 	, NBsn.CPlatform.Name()
-		// 	);
-
-		// NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Config.ResLoadType={0}", NBsn.C_Config.ResLoadType); 
-		// if (NBsn.C_Config.ResLoadType == NBsn.E_ResLoadType.AppAB) 
-		// {
-		// 	// m_strResLocalFullPath   = Application.persistentDataPath + "/" + NBsn.C_Config.ServerResLocalDirName + "/";
-		// }
-		// else 
-		// {
-		// 	m_strResLocalFullPath   = Application.dataPath + "/";
-		// }
-		// NBsn.C_Global.Instance.Log.InfoFormat("ResLocalFullPath={0}", ResLocalFullPath);
- 
-		// NBsn.C_Global.Instance.Log.InfoFormat("ABLocalFullPath={0}", ABLocalFullPath);
-	}
-
-
-	#region
-    //private static string	m_strPlatformABPath = null;
-	private static string	m_strABLocalFullPath = null;
-	private static string	m_strResLocalFullPath = null;
-
-	#endregion
 
 
 }
