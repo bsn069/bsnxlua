@@ -7,98 +7,59 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using UnityEditor.SceneManagement;
+using XLua;
 
 namespace NBsn.NEditor 
 {
 
 public static class C_BsnAB
 {
-    [MenuItem("Bsn/Bsn/1Set AB Name/All", false, 1)]
-	private static void SetAllABName()
+    [MenuItem("BsnBuild/1Set AB Name", false, 101)]
+	private static void SetABName()
 	{
-		SetAtlasABName();
-		SetPrefabABName();
-	}
+		NBsn.C_Global.EditorBegin();
+		LuaTable table = NBsn.C_Global.Instance.Lua.NewTable();
+		NBsn.C_Global.Instance.Lua.DoString("require 'editor.ab_config'");
+		NBsn.C_Global.Instance.Lua.Get("g_tTemp", out table);
+		table.ForEach<string, LuaTable>((strPath, tb)=>{
+			string strAB;
+			tb.Get("strAssetBundleOutPath", out strAB);
+			NBsn.C_Global.Instance.Log.InfoFormat("{0} -> {1}", strPath, strAB);
 
-    [MenuItem("Bsn/Bsn/1Set AB Name/Atlas", false, 2)]
-	private static void SetAtlasABName()
-	{
-		var nPrefixLength = NBsn.C_PathConfig.ServerResABResHttpDirName.Length + 1;
-		var listAtlasFileFullPaths = NBsn.NEditor.C_Path.GetABResAtlasFileFullPaths();
-		List<string> listAssetsPaths = listAtlasFileFullPaths.FullPaths2AssetsPaths();
-        foreach (var strAssetsPath in listAssetsPaths)
-        {
-            if (strAssetsPath.PathExtension() == ".tpsheet")
-            {
-                continue;
-            }
-
+			var strAssetsPath = strPath.PathFormat();
             var importer = AssetImporter.GetAtPath(strAssetsPath);
             if (importer == null) {
                 Debug.LogErrorFormat("basePath={0} importer == null", strAssetsPath);
-                continue;
+                return;
             }
 
-			var strABPath = strAssetsPath.Substring(nPrefixLength) + NBsn.C_Config.ABSuffix;
+			var strABPath = strAB;
             importer.SetAssetBundleNameAndVariant(strABPath, null);
-        }
-    }
-    
-	[MenuItem("Bsn/Bsn/1Set AB Name/Prefab", false, 3)]
-	private static void SetPrefabABName()
-	{
-		var nPrefixLength = NBsn.C_PathConfig.ServerResABResHttpDirName.Length + 1;
-		var listPrefabFileFullPaths = NBsn.NEditor.C_Path.GetABResPrebabFileFullPaths();
-		List<string> listAssetsPaths = listPrefabFileFullPaths.FullPaths2AssetsPaths();
-        foreach (var strAssetsPath in listAssetsPaths) {
-			Debug.LogFormat("SetPrefabABName strAssetsPath={0}", strAssetsPath); 
-            var importer = AssetImporter.GetAtPath(strAssetsPath);
-            if (importer == null) {
-                Debug.LogErrorFormat("basePath={0} importer == null", strAssetsPath);
-                continue;
-            }
+		});
 
-			var strABPath = strAssetsPath.Substring(nPrefixLength) + NBsn.C_Config.ABSuffix;
-            importer.SetAssetBundleNameAndVariant(strABPath, null);
-        }
-
-		nPrefixLength = (NBsn.C_PathConfig.AssetsDir + @"\Resources\").Length;
-		listAssetsPaths.Clear();
-		listAssetsPaths.Add(NBsn.C_PathConfig.AssetsDir + @"\Resources\Prefab\UI\UIUpdate.prefab");
-        foreach (var strAssetsPath in listAssetsPaths) {
-			Debug.LogFormat("SetPrefabABName strAssetsPath={0}", strAssetsPath); 
-            var importer = AssetImporter.GetAtPath(strAssetsPath);
-            if (importer == null) {
-                Debug.LogErrorFormat("basePath={0} importer == null", strAssetsPath);
-                continue;
-            }
-
-			var strABPath = strAssetsPath.Substring(nPrefixLength) + NBsn.C_Config.ABSuffix;
-            importer.SetAssetBundleNameAndVariant(strABPath, null);
-        }
+		NBsn.C_Global.EditorEnd();
     }
 
-
-	[MenuItem("Bsn/Bsn/2Make AB/Win64", false, 1)]
+	[MenuItem("BsnBuild/2Make AB/Win64", false, 201)]
 	private static void MakeABWin64() 
     {
         MakeAB(BuildTarget.StandaloneWindows64);
     }
 
-	[MenuItem("Bsn/Bsn/2Make AB/Android", false, 2)]
+	[MenuItem("BsnBuild/2Make AB/Android", false, 202)]
 	private static void MakeABAndroid() 
     {
         MakeAB(BuildTarget.Android);
     }
 
-    public static void MakeAB(BuildTarget buildTarget) {
+	public static void MakeAB(BuildTarget buildTarget) {
         Debug.LogFormat("buildTarget={0}", buildTarget); 
 
 		var strOutFullPath = GetABFullPath(buildTarget);
 		MakeAB(buildTarget, strOutFullPath);
     } 
 
-    public static void MakeAB(BuildTarget buildTarget, string strOutFullPath) {
+	public static void MakeAB(BuildTarget buildTarget, string strOutFullPath) {
         Debug.LogFormat("buildTarget={0} strOutFullPath={1}", buildTarget, strOutFullPath); 
 
         Directory.CreateDirectory(strOutFullPath);
@@ -109,8 +70,11 @@ public static class C_BsnAB
         Debug.LogFormat("buildTarget={0}", buildTarget); 
 
 		var strPlatform = NBsn.NEditor.CPlatform.Name(buildTarget);
-		var strPlatformABOutAssetsPath = NBsn.C_PathConfig.AssetsLatePlatformABOutPath(strPlatform);
-		var strOutFullPath = Application.dataPath.PathCombine(strPlatformABOutAssetsPath).PathFormat();
+		var strOutFullPath = NBsn.C_PathConfig.EditorAssetsFullPath.PathCombine(
+			NBsn.C_PathConfig.ServerResDirName
+			, strPlatform
+			, NBsn.C_PathConfig.ABResDirName
+			).PathFormat();
 		return strOutFullPath;
     } 
 }

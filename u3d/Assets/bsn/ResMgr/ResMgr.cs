@@ -5,15 +5,93 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-namespace NBsn 
-{
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-public class C_ResMgr: I_ResLoad, I_Init, I_InitAfterUpdateRes
-{
-	public enum E_ResType
-	{
-		
+namespace NBsn {
+
+public class C_ResMgr: I_ResLoad, I_Init, I_InitAfterUpdateRes {
+	/*
+	strAssetPath Assets下的路径
+		Resources/Prefab/UI/UIUpdate.prefab
+	 */
+	public T LoadAsset<T>(string strAssetPath)  where T : UnityEngine.Object {
+		NBsn.C_Global.Instance.Log.InfoFormat(
+			"NBsn.C_ResMgr.LoadAsset<{1}>({0})"
+			, strAssetPath
+			, typeof(T)
+		);
+
+		T ret = null;
+		switch (NBsn.C_Config.ResLoadType) {
+#if UNITY_EDITOR
+			case NBsn.E_ResLoadType.EditorABRes: {
+				ret = AssetDatabase.LoadAssetAtPath<T>(strAssetPath);
+			}
+			break;
+			case NBsn.E_ResLoadType.EditorABOut: {
+				ret = NBsn.C_Global.Instance.ABMgr.LoadAsset<T>(strAssetPath);
+			}
+			break;
+#endif
+			case NBsn.E_ResLoadType.AppAB: {
+				ret = NBsn.C_Global.Instance.ABMgr.LoadAsset<T>(strAssetPath);
+			}
+			break;
+			default: {
+				NBsn.C_Global.Instance.Log.ErrorFormat("ResLoadType={0}", NBsn.C_Config.ResLoadType);
+			}
+			break;
+		}
+
+		if (strAssetPath.StartsWith("Resources/")) {
+			var strResPath = strAssetPath.Substring("Resources/".Length);
+			ret = Resources.Load<T>(strResPath);
+		}
+
+		return null;
 	}
+
+/*
+	strAssetPath Assets下的路径
+		Resources/Prefab/UI/UIUpdate.prefab
+	 */
+	public UnityEngine.Object[] LoadAll(string strAssetPath)  {
+		NBsn.C_Global.Instance.Log.InfoFormat(
+			"NBsn.C_ResMgr.LoadAll({0})"
+			, strAssetPath
+		);
+
+		UnityEngine.Object[] ret = null;
+		switch (NBsn.C_Config.ResLoadType) {
+#if UNITY_EDITOR
+			case NBsn.E_ResLoadType.EditorABRes: {
+				ret = AssetDatabase.LoadAllAssetsAtPath(strAssetPath);
+			}
+			break;
+			case NBsn.E_ResLoadType.EditorABOut: {
+				ret = NBsn.C_Global.Instance.ABMgr.LoadAll(strAssetPath);
+			}
+			break;
+#endif
+			case NBsn.E_ResLoadType.AppAB: {
+				ret = NBsn.C_Global.Instance.ABMgr.LoadAll(strAssetPath);
+			}
+			break;
+			default: {
+				NBsn.C_Global.Instance.Log.ErrorFormat("ResLoadType={0}", NBsn.C_Config.ResLoadType);
+			}
+			break;
+		}
+
+		return null;
+	}
+
+
+
+
+
 
 	public T Load<T>(C_ResLoadParam p) where T : UnityEngine.Object
 	{

@@ -13,7 +13,7 @@ namespace NBsn.NEditor
 
 public static class C_Ver
 {
-    [MenuItem("Bsn/Bsn/3Ver/Lua", false, 1)]
+    [MenuItem("Bsn/Bsnbak/3Ver/Lua", false, 1)]
 	public static void LuaVer()
 	{
         var luaFile2Base64Md5 = new Dictionary<string, string>();
@@ -21,7 +21,7 @@ public static class C_Ver
         LuaVer(ref luaFile2Base64Md5);
 	}
 
-    [MenuItem("Bsn/Bsn/3Ver/Win", false, 2)]
+    [MenuItem("Bsn/Bsnbak/3Ver/Win", false, 2)]
 	public static void WinVer()
 	{
         var utf8WithoutBom = new System.Text.UTF8Encoding(false);
@@ -70,7 +70,7 @@ public static class C_Ver
         File.WriteAllText(WinVerPath(), sb.ToString(), utf8WithoutBom);
 	}
 
-    [MenuItem("Bsn/Bsn/3Ver/Android", false, 3)]
+    [MenuItem("Bsn/Bsnbak/3Ver/Android", false, 3)]
 	public static void AndroidVer()
 	{
         var utf8WithoutBom = new System.Text.UTF8Encoding(false);

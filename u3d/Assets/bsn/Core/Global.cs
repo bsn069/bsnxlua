@@ -181,7 +181,6 @@ public class C_Global : IDisposable
 		m_UIMgr = new NBsn.C_UIMgr();
 		UIMgr.Init(m_tfMain);
 
-
 		m_LuaConsoleGesture = new NBsn.C_Gesture();
 		LuaConsoleGesture.Init(
 			()=>{
@@ -195,6 +194,7 @@ public class C_Global : IDisposable
 		);
 
 		ABMgr.LoadABManifest();
+		ABMgr.LoadRes2ABId();
 
 		Coroutine.Start(StartApp());
         // var pView = UIMgr.GetView("UIUpdate") as NBsn.NMVVM.UpdateV;

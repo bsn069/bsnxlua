@@ -24,7 +24,7 @@ public static class C_PathConfig
     // lua文件目录名
 	public static string LuaDirName
 	{
-		get { return "lua"; }
+		get { return m_strLuaDirName; }
 	}
 	static string m_strLuaDirName = "lua";
 
@@ -46,9 +46,15 @@ public static class C_PathConfig
     // 版本文件名
 	public static string VerFileName
 	{
-		get { return "ver.bin"; }
+		get { return m_strVerFileName; }
 	}
 	static string m_strVerFileName = "ver.bin";
+
+	public static string AssetBundleExtName
+	{
+		get { return m_strAssetBundleExtName; }
+	}
+	static string m_strAssetBundleExtName = ".ab";
 
 	// 编辑器中Assets全路径 Application.dataPath
 	// E:/github/bsnxlua/u3d/Assets
