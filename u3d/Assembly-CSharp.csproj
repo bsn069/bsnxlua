@@ -80,6 +80,7 @@
      <Compile Include="Assets\bsn\UIMgr\UI\Update\UpdateV.cs" />
      <Compile Include="Assets\bsn\UIMgr\UI\Update\UpdateVM.cs" />
      <Compile Include="Assets\bsn\UIMgr\UIMgr.cs" />
+     <Compile Include="Assets\bsn\UIMgr\UIPath.cs" />
      <Compile Include="Assets\bsn\UpdateRes\CheckVer.cs" />
      <Compile Include="Assets\bsn\UpdateRes\UpdateRes.cs" />
      <Compile Include="Assets\bsn\UpdateRes\Ver.cs" />

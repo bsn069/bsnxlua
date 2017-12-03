@@ -5,21 +5,17 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-namespace NBsn 
-{
+namespace NBsn {
 
-public class C_UIMgr
-{	
+public class C_UIMgr {	
 	/*
 	strUIName UILogin
 	*/
-	public NBsn.NMVVM.I_View GetView(string strUIName)
-	{
+	public NBsn.NMVVM.I_View GetView(string strUIName) {
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_UIMgr.GetView() strUIName={0}", strUIName);
 
 		GameObject pGo = GetUI(strUIName);
-		if (pGo == null)
-		{
+		if (pGo == null) {
 			return null;
 		}
 

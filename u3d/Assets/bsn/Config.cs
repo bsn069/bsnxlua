@@ -37,7 +37,7 @@ public static class C_Config
 #if !UNITY_EDITOR
         NBsn.E_ResLoadType.AppAB;
 #else
-        NBsn.E_ResLoadType.EditorABRes;
+        NBsn.E_ResLoadType.EditorRes;
 #endif
 	#endregion
 }

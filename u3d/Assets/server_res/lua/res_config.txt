@@ -1,24 +1,24 @@
 g_tTemp = {
-	['Assets/Resources/Prefab/UI/UIUpdate.prefab'] =
+	['Resources/Prefab/UI/UIUpdate.prefab'] =
 	{
 		strAssetsName = 'UIUpdate.prefab',
 		strEditorAssetsLoadType = 'Resources',
 		strAssetBundleOutPath = 'ui/1.ab',
 	},
-	['Assets/ABRes/Prefab/UI/UILuaConsole.prefab'] =
+	['ABRes/Prefab/UI/UILuaConsole.prefab'] =
 	{
 		strAssetsName = 'UILuaConsole.prefab',
 		strEditorAssetsLoadType = 'AssetDatabase',
 		strAssetBundleOutPath = 'ui/1.ab',
 	},
 
-	['Assets/ABRes/Atlas/common.png'] =
+	['ABRes/Atlas/common.png'] =
 	{
 		strAssetsName = 'common.png',
 		strEditorAssetsLoadType = 'AssetDatabase',
 		strAssetBundleOutPath = 'atlas/1.ab',
 	},
-	['Assets/ABRes/Atlas/uipack.png'] =
+	['ABRes/Atlas/uipack.png'] =
 	{
 		strAssetsName = 'uipack.png',
 		strEditorAssetsLoadType = 'AssetDatabase',

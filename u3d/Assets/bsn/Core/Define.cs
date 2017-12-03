@@ -4,8 +4,8 @@ namespace NBsn
 
 public enum E_ResLoadType 
 {
-	EditorABRes = 0, // 编辑器原资源
-	EditorABOut = 1, // 编辑器使用ab
+	EditorRes = 0, // 编辑器原资源
+	EditorAB = 1, // 编辑器使用ab
 	AppAB = 2, // 使用ab
 }
 
