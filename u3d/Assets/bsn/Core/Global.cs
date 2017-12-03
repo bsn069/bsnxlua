@@ -251,8 +251,7 @@ public class C_Global : IDisposable
 	}
 	#endregion
 
-	private IEnumerator StartApp()
-    {
+	private IEnumerator StartApp() {
 		var pView = UIMgr.GetView("UIUpdate") as NBsn.NMVVM.UpdateV;
         pView.Show();
 
@@ -264,19 +263,19 @@ public class C_Global : IDisposable
 			yield break;
 		}
 #endif
+        UIMgr.InitAfterUpdateRes();
         ResMgr.InitAfterUpdateRes();
+        ABMgr.InitAfterUpdateRes();
 
         Lua.DoString("require('main')");
 	}
 
 	#region
-	public C_Global() 
-	{
+	public C_Global() {
 		m_instance = this;
 	}
 
-	public void Dispose() 
-	{
+	public void Dispose() {
 		m_instance = null;
 	}
 

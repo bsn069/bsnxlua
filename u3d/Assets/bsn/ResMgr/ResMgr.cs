@@ -11,7 +11,7 @@ using UnityEditor;
 
 namespace NBsn {
 
-public class C_ResMgr: I_Init, I_InitAfterUpdateRes {
+public class C_ResMgr {
 	/*
 	strAssetPath Assets下的路径
 		Resources/Prefab/UI/UIUpdate.prefab
@@ -68,7 +68,7 @@ public class C_ResMgr: I_Init, I_InitAfterUpdateRes {
 
 		return null;
 	}
-
+	
 	/*
 	strAssetPath Assets下的路径
 		Resources/Prefab/UI/UIUpdate.prefab
@@ -122,7 +122,6 @@ public class C_ResMgr: I_Init, I_InitAfterUpdateRes {
 
 		return null;
 	}
-
 	public bool Init() {
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ResMgr.Init()");
 

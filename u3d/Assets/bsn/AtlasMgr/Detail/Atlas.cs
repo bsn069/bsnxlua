@@ -5,30 +5,24 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-namespace NBsn 
-{
+namespace NBsn {
 
-public class C_Atlas
-{	
-	public string Name
-	{
+public class C_Atlas {	
+	public string Name 	{
 		get { return m_strName; }
 	}
 
-	public Sprite GetSprite(string strSpriteName)
-	{
+	public Sprite GetSprite(string strSpriteName) {
 		Sprite ret = null;
 		m_mapSprites.TryGetValue(strSpriteName, out ret);
 		return ret;
 	}
 
-    public C_Atlas(string strName) 
-	{
+    public C_Atlas(string strName) {
 		m_strName = strName;
     }
 
-	public void AddSprite(string strSpriteName, Sprite pSprite)
-	{
+	public void AddSprite(string strSpriteName, Sprite pSprite) {
 		// NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_Atlas.AddSprite({0}, {1})", strSpriteName, pSprite);
 
 		m_mapSprites.Add(strSpriteName, pSprite);

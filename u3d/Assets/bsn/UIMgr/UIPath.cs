@@ -13,7 +13,14 @@ public class C_UIPath {
 		return true;
 	}
 
-	public string GetUIPath() {
+	/*
+	strUIName UILogin
+	*/
+	public string GetUIPath(string strUIName) {
+		string strUIPath;
+		if (m_name2Path.TryGetValue(strUIName, out strUIPath)) {
+			return strUIPath;
+		}
 		return null;
 	}
 

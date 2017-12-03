@@ -62,12 +62,6 @@
      <Compile Include="Assets\bsn\Core\Lua.cs" />
      <Compile Include="Assets\bsn\Core\M_Main.cs" />
      <Compile Include="Assets\bsn\Core\PathConfig.cs" />
-     <Compile Include="Assets\bsn\ResMgr\detail\ABApp.cs" />
-     <Compile Include="Assets\bsn\ResMgr\detail\ABOut.cs" />
-     <Compile Include="Assets\bsn\ResMgr\detail\ABRes.cs" />
-     <Compile Include="Assets\bsn\ResMgr\detail\EditorAB.cs" />
-     <Compile Include="Assets\bsn\ResMgr\detail\IResLoad.cs" />
-     <Compile Include="Assets\bsn\ResMgr\detail\Resources.cs" />
      <Compile Include="Assets\bsn\ResMgr\ResMgr.cs" />
      <Compile Include="Assets\bsn\UIMgr\MVVM\View.cs" />
      <Compile Include="Assets\bsn\UIMgr\MVVM\ViewModel.cs" />

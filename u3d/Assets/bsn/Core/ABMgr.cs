@@ -59,11 +59,9 @@ public class C_ABMgr
 		return ab.LoadAllAssets();
 	}
 
-	public bool Init(string strABResRootPath)
-	{
+	public bool Init(string strABResRootPath) {
 		NBsn.C_Global.Instance.Log.InfoFormat("NBsn.C_ABMgr.Init({0})", strABResRootPath); 
-		if (strABResRootPath == null)
-		{
+		if (strABResRootPath == null) {
 			string strRootPath;
 			#if UNITY_EDITOR
 				strRootPath = NBsn.C_PathConfig.EditorAssetsFullPath;
@@ -71,21 +69,22 @@ public class C_ABMgr
 				strRootPath = NBsn.C_PathConfig.PersistentDataFullPath;
 			#endif
 			m_ABResRootPath = strRootPath.PathCombine(NBsn.C_PathConfig.AssetsABResDirPath).Unique(false);
-		}
-		else 
-		{
+		} else {
 			m_ABResRootPath = strABResRootPath.Unique(false);
 		}
 		NBsn.C_Global.Instance.Log.InfoFormat("m_ABResRootPath={0}", m_ABResRootPath); 
 		return true;
 	}
 
-	public void UnInit() 
-	{
+	public void InitAfterUpdateRes() {
+		m_abManifest = null;
+		LoadABManifest();
+	}
+
+	public void UnInit() {
 		NBsn.C_Global.Instance.Log.Info("NBsn.C_ABMgr.UnInit()"); 
 
-		foreach (var item in m_abCache)
-		{
+		foreach (var item in m_abCache) {
 			item.Value.Unload(false);
 		}
 		m_abCache.Clear();
@@ -94,34 +93,29 @@ public class C_ABMgr
 		m_ABResRootPath = null;
 	}
 
-    public bool LoadABManifest() 
-	{
+    public bool LoadABManifest() {
 		NBsn.C_Global.Instance.Log.Info("NBsn.C_ABMgr.LoadABManifest()");
 
-        if (m_abManifest != null) 
-        {
+        if (m_abManifest != null) {
 			NBsn.C_Global.Instance.Log.Info("m_abManifest != null");
             return true;
         }
 
 		var strABManifestPath = m_ABResRootPath.PathCombine(NBsn.C_PathConfig.ABResDirName);
 		NBsn.C_Global.Instance.Log.InfoFormat("strABManifestPath={0}", strABManifestPath);
-        if (!File.Exists(strABManifestPath)) 
-        {
+        if (!File.Exists(strABManifestPath)) {
 			NBsn.C_Global.Instance.Log.ErrorFormat("file not exist strABManifestPath={0}", strABManifestPath);
             return false;
         }
 
 		var ab = AssetBundle.LoadFromFile(strABManifestPath);
-		if (ab == null)
-		{
+		if (ab == null) {
 			NBsn.C_Global.Instance.Log.ErrorFormat("not AssetBundel file strABManifestPath={0}", strABManifestPath);
 			return false;
 		}
 
 		m_abManifest = ab.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
-		if (m_abManifest == null)
-		{
+		if (m_abManifest == null) {
 			NBsn.C_Global.Instance.Log.ErrorFormat("not AssetBundleManifest strABManifestPath={0}", strABManifestPath);
 			return false;
 		}
